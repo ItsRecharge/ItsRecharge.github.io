@@ -507,25 +507,35 @@ function showLb() {
   $(".lb-img", lb).src = lbState.imgs[lbState.i];
   $(".lb-cap", lb).textContent = `${lbState.name} — ${lbState.i + 1} / ${lbState.imgs.length}`;
 }
+function closeLightbox() {
+  if (!lb) return;
+  lb.hidden = true;
+  document.body.style.overflow = "";
+}
 function buildLightbox() {
   lb = el("div", "lb"); lb.hidden = true;
   lb.innerHTML = `
-    <button class="lb-close" aria-label="Close">✕</button>
-    <button class="lb-prev" aria-label="Previous">‹</button>
+    <button class="lb-close" type="button" aria-label="Close">✕</button>
+    <button class="lb-prev" type="button" aria-label="Previous">‹</button>
     <img class="lb-img" alt="">
-    <button class="lb-next" aria-label="Next">›</button>
+    <button class="lb-next" type="button" aria-label="Next">›</button>
     <div class="lb-cap"></div>`;
   document.body.appendChild(lb);
-  const close = () => { lb.hidden = true; document.body.style.overflow = ""; };
-  $(".lb-close", lb).addEventListener("click", close);
-  lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
-  $(".lb-prev", lb).addEventListener("click", () => { lbState.i = (lbState.i - 1 + lbState.imgs.length) % lbState.imgs.length; showLb(); });
-  $(".lb-next", lb).addEventListener("click", () => { lbState.i = (lbState.i + 1) % lbState.imgs.length; showLb(); });
+  // One delegated handler on the overlay — robust to any stacking/overlap quirks.
+  lb.addEventListener("click", (e) => {
+    const t = e.target;
+    if (t.closest(".lb-prev")) { e.stopPropagation(); lbState.i = (lbState.i - 1 + lbState.imgs.length) % lbState.imgs.length; showLb(); return; }
+    if (t.closest(".lb-next")) { e.stopPropagation(); lbState.i = (lbState.i + 1) % lbState.imgs.length; showLb(); return; }
+    if (t.closest(".lb-close")) { e.stopPropagation(); closeLightbox(); return; }
+    // click on the image itself does nothing; click on backdrop closes
+    if (t.closest(".lb-img")) return;
+    closeLightbox();
+  });
   document.addEventListener("keydown", (e) => {
     if (lb.hidden) return;
-    if (e.key === "Escape") close();
-    if (e.key === "ArrowLeft") $(".lb-prev", lb).click();
-    if (e.key === "ArrowRight") $(".lb-next", lb).click();
+    if (e.key === "Escape") { closeLightbox(); }
+    else if (e.key === "ArrowLeft") { lbState.i = (lbState.i - 1 + lbState.imgs.length) % lbState.imgs.length; showLb(); }
+    else if (e.key === "ArrowRight") { lbState.i = (lbState.i + 1) % lbState.imgs.length; showLb(); }
   });
 }
 

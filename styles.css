@@ -219,9 +219,10 @@ em { font-style: normal; }
 .footer-top:hover { color: var(--signal); }
 
 /* ---------- lightbox ---------- */
-.lb { position: fixed; inset: 0; z-index: 200; background: rgba(6, 9, 13, 0.94); display: flex; align-items: center; justify-content: center; }
+.lb { position: fixed; inset: 0; z-index: 500; background: rgba(6, 9, 13, 0.94); display: flex; align-items: center; justify-content: center; }
+.lb[hidden] { display: none !important; }
 .lb-img { max-width: 92vw; max-height: 84vh; border-radius: 8px; border: 1px solid var(--line); }
-.lb-close, .lb-prev, .lb-next { position: absolute; background: var(--paper-3); border: 1px solid var(--line); color: var(--ink); cursor: pointer; border-radius: 50%; width: 44px; height: 44px; font-size: 1.3rem; display: grid; place-items: center; }
+.lb-close, .lb-prev, .lb-next { position: absolute; z-index: 2; background: var(--paper-3); border: 1px solid var(--line); color: var(--ink); cursor: pointer; border-radius: 50%; width: 48px; height: 48px; font-size: 1.4rem; display: grid; place-items: center; -webkit-tap-highlight-color: transparent; }
 .lb-close { top: 1.2rem; right: 1.2rem; }
 .lb-prev { left: 1.2rem; top: 50%; transform: translateY(-50%); }
 .lb-next { right: 1.2rem; top: 50%; transform: translateY(-50%); }
