@@ -301,7 +301,7 @@ body.intro-active { overflow: hidden; }
 }
 #intro.s-welcome .intro-welcome { opacity: 1; transform: translateY(0); }
 
-/* Domain lockup: one stable "bansal.dev" that grows its "neel" prefix in front, landing on neelbansal.dev. */
+/* Domain lockup: "neelbansal" in black first; then ".dev" slides out after it in light blue, blurring into focus. */
 .intro-domainwrap { display: flex; justify-content: center; margin-bottom: .5rem; }
 .intro-domain {
   display: inline-flex; align-items: baseline;
@@ -312,16 +312,17 @@ body.intro-active { overflow: hidden; }
 }
 #intro.s-domain .intro-domain { opacity: 1; transform: translateY(0); }
 .intro-root { color: #14181d; }
-/* the "neel" prefix: hidden (width 0), then clip-reveals in front of the root */
+/* the ".dev" suffix: hidden (width 0, blurred), then clip-reveals after the root and sharpens */
 .intro-sub {
-  color: #147a70; display: inline-block; overflow: hidden;
-  max-width: 0; opacity: 0; clip-path: inset(0 100% 0 0);
-  transition: max-width .55s cubic-bezier(.16,1,.3,1) .05s, opacity .3s ease .05s, clip-path .55s cubic-bezier(.16,1,.3,1) .05s;
+  color: #5aa7ec; display: inline-block; overflow: hidden;
+  max-width: 0; opacity: 0; clip-path: inset(0 100% 0 0); filter: blur(10px); transform: translateX(-.35em);
+  transition: max-width .6s cubic-bezier(.16,1,.3,1) .05s, opacity .35s ease .05s, clip-path .6s cubic-bezier(.16,1,.3,1) .05s,
+              filter .7s ease .15s, transform .6s cubic-bezier(.16,1,.3,1) .05s;
 }
-#intro.s-sub .intro-sub { max-width: 6ch; opacity: 1; clip-path: inset(0 0 0 0); }
+#intro.s-sub .intro-sub { max-width: 5ch; opacity: 1; clip-path: inset(0 0 0 0); filter: blur(0); transform: translateX(0); }
 .intro-caret {
   display: inline-block; width: .09em; height: 1.05em; margin-left: .1em;
-  background: #147a70; transform: translateY(.12em);
+  background: #5aa7ec; transform: translateY(.12em);
   animation: introblink 1s steps(1) infinite;
 }
 #intro.s-rise .intro-caret { opacity: 0; }
