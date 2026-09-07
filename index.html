@@ -16,11 +16,13 @@
 </head>
 <body>
   <div id="intro" aria-hidden="true">
+    <canvas class="intro-constellation"></canvas>
     <div class="intro-inner">
-      <p class="intro-welcome">Welcome<span class="intro-dots"><i></i><i></i><i></i></span></p>
-      <div class="intro-domains">
-        <span class="intro-base">bansalcloud.com</span>
-        <span class="intro-full"><b>neel.</b>bansalcloud.com</span>
+      <p class="intro-welcome">Welcome</p>
+      <div class="intro-domainwrap">
+        <span class="intro-domain">
+          <span class="intro-sub">neel.</span><span class="intro-root">bansalcloud.com</span><span class="intro-caret"></span>
+        </span>
       </div>
       <div class="intro-ask">
         <p class="intro-q">What do you want to start by exploring?</p>
@@ -75,6 +77,21 @@
           <a class="btn btn-ghost" href="#work">See the work</a>
         </div>
       </div>
+      <aside class="hero-badge">
+        <div class="li-card">
+          <a class="li-head" href="https://www.linkedin.com/in/neel-bansalx/" target="_blank" rel="noopener">
+            <svg class="li-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45C23.2 24 24 23.22 24 22.25V1.75C24 .78 23.2 0 22.22 0z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <p class="li-name">Neel Bansal</p>
+          <p class="li-sub">Student · builder · researcher — Freshline, Instrumentify, and school-ops tools used by 450+ students.</p>
+          <a class="btn btn-live li-btn" href="https://www.linkedin.com/in/neel-bansalx/" target="_blank" rel="noopener">View full profile</a>
+          <!-- Official badge hydrates here in browsers where LinkedIn's script is allowed; the card above is the reliable fallback. -->
+          <div class="badge-base LI-profile-badge li-embed" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="neel-bansalx" data-version="v1">
+            <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/neel-bansalx?trk=profile-badge"></a>
+          </div>
+        </div>
+      </aside>
     </section>
 
     <section class="section" id="work">
@@ -205,21 +222,6 @@
             <a class="btn btn-ghost" href="https://github.com/ItsRecharge" target="_blank" rel="noopener">GitHub — @ItsRecharge</a>
           </div>
         </div>
-        <aside class="about-badge">
-          <div class="li-card">
-            <a class="li-head" href="https://www.linkedin.com/in/neel-bansalx/" target="_blank" rel="noopener">
-              <svg class="li-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45C23.2 24 24 23.22 24 22.25V1.75C24 .78 23.2 0 22.22 0z"/></svg>
-              <span>LinkedIn</span>
-            </a>
-            <p class="li-name">Neel Bansal</p>
-            <p class="li-sub">Student · builder · researcher — Freshline, Instrumentify, and school-ops tools used by 450+ students.</p>
-            <a class="btn btn-live li-btn" href="https://www.linkedin.com/in/neel-bansalx/" target="_blank" rel="noopener">View full profile</a>
-            <!-- Official badge hydrates here in browsers where LinkedIn's script is allowed; the card above is the reliable fallback. -->
-            <div class="badge-base LI-profile-badge li-embed" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="neel-bansalx" data-version="v1">
-              <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/neel-bansalx?trk=profile-badge"></a>
-            </div>
-          </div>
-        </aside>
       </div>
     </section>
   </main>
