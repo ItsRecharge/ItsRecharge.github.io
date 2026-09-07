@@ -633,14 +633,74 @@ function intro() {
     });
   });
 
+  introConstellation(stage);
+
   // orchestrated sequence via class toggles (CSS drives the transitions)
   const seq = [
-    [250, () => stage.classList.add("s-welcome")],   // "Welcome" + dots fade in
-    [900, () => stage.classList.add("s-domain")],    // bansalcloud.com appears
-    [2000, () => stage.classList.add("s-swish")],    // swish → neel.bansalcloud.com
-    [3100, () => stage.classList.add("s-rise")],     // rises up, reveals the question + choices
+    [200, () => stage.classList.add("s-welcome")],  // "Welcome" + constellation fade in
+    [850, () => stage.classList.add("s-domain")],   // bansalcloud.com types up with caret
+    [1550, () => stage.classList.add("s-sub")],     // "neel." grows in front (no collision)
+    [2650, () => stage.classList.add("s-rise")],    // lockup rises, reveals the question + choices
   ];
   seq.forEach(([t, fn]) => setTimeout(fn, t));
+}
+
+/* Subtle drifting node-graph behind the intro — a nod to the site's data theme. */
+function introConstellation(stage) {
+  const cv = stage.querySelector(".intro-constellation");
+  if (!cv) return;
+  const ctx = cv.getContext("2d");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W, H, dpr, nodes = [], raf, running = true;
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  size();
+  const N = Math.min(46, Math.max(22, Math.round((W * H) / 26000)));
+  for (let i = 0; i < N; i++) {
+    nodes.push({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.28, vy: (Math.random() - 0.5) * 0.28,
+      r: 1.2 + Math.random() * 1.8,
+    });
+  }
+  const INK = "20,24,29", LEAF = "20,122,112";
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    for (const n of nodes) {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    }
+    // links
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 138 * 138) {
+          const alpha = (1 - Math.sqrt(d2) / 138) * 0.16;
+          ctx.strokeStyle = `rgba(${INK},${alpha})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+    }
+    // nodes
+    for (const [i, n] of nodes.entries()) {
+      ctx.fillStyle = i % 5 === 0 ? `rgba(${LEAF},.5)` : `rgba(${INK},.32)`;
+      ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2); ctx.fill();
+    }
+    if (running && !reduce) raf = requestAnimationFrame(frame);
+  }
+  frame();
+  let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { size(); }, 150); });
+  // stop when the intro is removed
+  const stop = () => { running = false; cancelAnimationFrame(raf); };
+  const obs = new MutationObserver(() => { if (!document.body.contains(stage)) { stop(); obs.disconnect(); } });
+  obs.observe(document.body, { childList: true, subtree: true });
 }
 
 document.addEventListener("DOMContentLoaded", () => { intro(); render(); hero(); nav(); });
