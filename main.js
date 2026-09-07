@@ -117,14 +117,17 @@ const PROJECTS = [
     cover: "assets/img/drummajor/gallery/dashboard.webp",
   },
   {
-    slug: "instrument-tracking", name: "Instrument Asset Tracking", tag: "7 schools",
-    kind: "tool", accent: "signal2", private: true,
-    one: "A library system for band instruments — so none go missing.",
-    body: "After 35+ instruments were thrown away — broken, never reported, left for years — I built a library-style checkout system. Students check out, view, and manage instruments; every checkout keeps a photo history and an electronic log, with condition and damage notes so instruments are tracked at all times. Full email notifications. In use across seven schools, with Arlington High School and UMass Boston next.",
+    slug: "instrument-tracking", name: "Instrumentify", tag: "Company · in schools now",
+    kind: "startup", featured: true, accent: "signal2", private: true,
+    one: "Instrument tracking for schools — so none go missing.",
+    body: "After 35+ instruments were thrown away — broken, never reported, left for years — I built a library-style checkout system for school music programs. Students check out, view, and manage instruments; every checkout keeps a photo history and an electronic log, with condition and damage notes so instruments are tracked at all times, plus full email notifications. It's already in use across seven schools, and we're now reaching out to K-12 districts and colleges — public and private — to bring Instrumentify to their programs.",
+    born: "Grew out of one school's lost-instrument problem into a product we're taking to districts and colleges.",
     tech: ["Flask", "Python", "Photo history", "Email notifications", "Google Sheets"],
     links: [
-      { label: "Static demo", href: "demo/instrument-tracking/admin/dashboard/", kind: "demo" },
+      { label: "instrumentify.org", href: "https://instrumentify.org", kind: "live" },
+      { label: "Explore the app", href: "demo/instrument-tracking/admin/dashboard/", kind: "demo" },
     ],
+    note: "Bringing instrument tracking to K-12 and college programs — reach out to get set up.",
     gallery: [
       "assets/img/instrument-tracking/gallery/instruments.webp", "assets/img/instrument-tracking/gallery/dashboard.webp",
       "assets/img/instrument-tracking/gallery/instrument-history.webp", "assets/img/instrument-tracking/gallery/edit-instrument.webp",
@@ -375,8 +378,8 @@ function projectCard(p, opts = {}) {
 }
 
 function render() {
-  const feat = PROJECTS.find((p) => p.featured);
-  if ($("#featured")) $("#featured").appendChild(featuredCard(feat));
+  const feats = PROJECTS.filter((p) => p.featured);
+  if ($("#featured")) feats.forEach((f) => $("#featured").appendChild(featuredCard(f)));
 
   const live = PROJECTS.filter((p) => p.kind === "live");
   const liveWrap = $("#live-grid");
