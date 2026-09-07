@@ -1,0 +1,62 @@
+/* Shared banner + toast for portfolio demos. Injected into every demo page. */
+#nb-demo-banner {
+  position: sticky;
+  top: 0;
+  z-index: 2147483000;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0.55rem 1rem;
+  font: 500 13px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #0b0f14;
+  background: linear-gradient(90deg, #ffd166 0%, #ffb347 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.18);
+}
+#nb-demo-banner.nb-live {
+  background: linear-gradient(90deg, #7ee8a2 0%, #4fd1c5 100%);
+}
+#nb-demo-banner .nb-tag {
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.14);
+}
+#nb-demo-banner .nb-msg { flex: 1 1 auto; min-width: 12rem; }
+#nb-demo-banner .nb-links { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+#nb-demo-banner a {
+  color: #0b0f14;
+  text-decoration: none;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  white-space: nowrap;
+}
+#nb-demo-banner a:hover { background: #fff; }
+#nb-demo-banner a.nb-active { background: #0b0f14; color: #ffd166; border-color: #0b0f14; }
+#nb-demo-banner a.nb-home { font-weight: 700; }
+
+#nb-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translateX(-50%) translateY(20px);
+  z-index: 2147483001;
+  max-width: min(92vw, 30rem);
+  padding: 0.8rem 1.1rem;
+  border-radius: 12px;
+  background: #0b0f14;
+  color: #fff;
+  font: 500 14px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+#nb-toast.nb-show { opacity: 1; transform: translateX(-50%) translateY(0); }
+#nb-toast b { color: #ffd166; }

@@ -1,0 +1,22 @@
+{
+  "slug": "instrument-tracking",
+  "title": "Instrument Asset Tracking",
+  "base_url": "http://127.0.0.1:5001",
+  "out_dir": "demo/instrument-tracking",
+  "login_form_role": "admin",
+  "external_css": true,
+  "exclude": ["^/logout", "^/admin/shell", "/export/", "/backup", "/restore", "^/api", "^/status", "/generate-secret", "^/setup", "/checkout-requests", "/static/uploads", "^/delete_instrument", "^/admin/delete-instrument", "^/images/", "^/instrument-metrics", "/save_notes", "/compute-renewal", "/renew-instrument", "/generate_signup_code", "/set-school-level", "/manual-checkout$"],
+  "roles": [
+    {
+      "name": "public", "label": "Public pages", "landing": "/",
+      "owns": ["/", "/catalog", "/features", "/login", "/signup", "/forgot-password"],
+      "seeds": ["/catalog", "/features", "/login", "/signup", "/forgot-password"]
+    },
+    {
+      "name": "admin", "strip": "/admin", "label": "Admin portal", "landing": "/admin/dashboard",
+      "owns": ["/admin", "/instrument_history", "/edit_instrument", "/instruments", "/instrument-history", "/manual-checkout", "/add_instrument"],
+      "login": { "url": "/login", "fill": { "input[name=\"email\"]": "admin@demo.local", "input[name=\"password\"]": "AdminDemo1!" }, "submit": "button[type=\"submit\"]", "expect_url": "/admin" },
+      "seeds": ["/admin/instruments", "/admin/add-instrument", "/admin/check-in", "/admin/manual-checkout", "/admin/users", "/admin/settings"]
+    }
+  ]
+}

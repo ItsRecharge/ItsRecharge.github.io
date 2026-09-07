@@ -1,0 +1,48 @@
+{
+  "slug": "trim-hours",
+  "title": "Tri-M Hours Log",
+  "base_url": "http://localhost:3100",
+  "out_dir": "demo/trim-hours",
+  "login_form_role": "member",
+  "keep_query_keys": ["invite"],
+  "exclude": ["^/settings", "/officer/export", "/officer/ops", "/officer/email-test", "^/setup"],
+  "roles": [
+    {
+      "name": "public",
+      "label": "Public pages",
+      "landing": "/",
+      "owns": ["/", "/login", "/signup", "/forgot-password"],
+      "seeds": ["/login", "/signup?invite=QNqQy-Gp9UbetJ1fMMBMftjhE8WIviQtjboptMyQsQU", "/forgot-password"]
+    },
+    {
+      "name": "member", "strip": "/member",
+      "label": "Member view",
+      "landing": "/member/dashboard",
+      "owns": ["/member"],
+      "login": {
+        "url": "/login",
+        "fill": { "input[name=\"email\"]": "member1@demo.local", "input[name=\"password\"]": "MemberDemo1!" },
+        "submit": "button[type=\"submit\"]",
+        "expect_url": "/member"
+      },
+      "seeds": ["/member/events", "/member/history", "/member/report-hours", "/member/request-event"]
+    },
+    {
+      "name": "officer", "strip": "/officer",
+      "label": "Officer view",
+      "landing": "/officer/dashboard",
+      "owns": ["/officer"],
+      "login": {
+        "url": "/login",
+        "fill": { "input[name=\"email\"]": "officer@demo.local", "input[name=\"password\"]": "OfficerDemo1!" },
+        "submit": "button[type=\"submit\"]",
+        "expect_url": "/officer"
+      },
+      "seeds": [
+        "/officer/events", "/officer/events/1/attendance", "/officer/events/1/edit", "/officer/events/3/attendance",
+        "/officer/requests", "/officer/members", "/officer/members/2", "/officer/members/3", "/officer/invites",
+        "/officer/admin", "/officer/chapter", "/officer/integrations", "/officer/audit", "/officer/reset", "/officer/officers"
+      ]
+    }
+  ]
+}

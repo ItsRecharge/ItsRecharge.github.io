@@ -1,0 +1,33 @@
+{
+  "slug": "nhs-hours",
+  "title": "NHS Hours Log",
+  "base_url": "http://localhost:3101",
+  "out_dir": "demo/nhs-hours",
+  "login_form_role": "member",
+  "keep_query_keys": ["invite"],
+  "exclude": ["^/settings", "/officer/export", "/officer/ops", "/officer/email-test", "^/setup", "/uploads/"],
+  "roles": [
+    {
+      "name": "public", "label": "Public pages", "landing": "/",
+      "owns": ["/", "/login", "/signup", "/forgot-password", "/share"],
+      "seeds": ["/login", "/signup?invite=URTLyZHR_B_FgEZnKN_Zvhtc9n4zx8AsR46AzNoFehE", "/forgot-password",
+                "/share/roster/myP-uwKMMuYlD9z0NnE8JF9nyYxvvFZO3tiDhw5Htw0",
+                "/share/attendance/YP5UyMx9moAneMtKM5eWe4S1fxoV7rMLwYd0eIIxL5g", "/share/expired"]
+    },
+    {
+      "name": "member", "strip": "/member", "label": "Member view", "landing": "/member/dashboard", "owns": ["/member"],
+      "login": { "url": "/login", "fill": { "input[name=\"email\"]": "member1@demo.local", "input[name=\"password\"]": "MemberDemo1!" }, "submit": "button[type=\"submit\"]", "expect_url": "/member" },
+      "seeds": ["/member/events", "/member/history", "/member/report-hours", "/member/request-event"]
+    },
+    {
+      "name": "organizer", "strip": "/organizer", "label": "Organizer view", "landing": "/organizer/dashboard", "owns": ["/organizer"],
+      "login": { "url": "/login", "fill": { "input[name=\"email\"]": "organizer@demo.local", "input[name=\"password\"]": "OrganizerDemo1!" }, "submit": "button[type=\"submit\"]", "expect_url": "/organizer" },
+      "seeds": ["/organizer/roster"]
+    },
+    {
+      "name": "officer", "strip": "/officer", "label": "Officer view", "landing": "/officer/dashboard", "owns": ["/officer"],
+      "login": { "url": "/login", "fill": { "input[name=\"email\"]": "officer@demo.local", "input[name=\"password\"]": "OfficerDemo1!" }, "submit": "button[type=\"submit\"]", "expect_url": "/officer" },
+      "seeds": ["/officer/events", "/officer/events/1/attendance", "/officer/events/1/edit", "/officer/requests", "/officer/members", "/officer/members/2", "/officer/invites", "/officer/admin", "/officer/chapter", "/officer/integrations", "/officer/audit", "/officer/reset", "/officer/officers", "/officer/organizers", "/officer/share-links", "/officer/houses"]
+    }
+  ]
+}

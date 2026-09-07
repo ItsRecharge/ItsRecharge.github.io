@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM" name="csrf-token"/>
+<title>Instruments List</title>
+<link href="../../assets/bootstrap.min-3dcdb3f27208.css" rel="stylesheet"/>
+<link href="../../assets/all.min-b9c2a0a1cf43.css" rel="stylesheet"/>
+<link href="../../assets/style-5f7e0fa61ef4.css" rel="stylesheet"/>
+<link href="../../../_shared/demo.css" rel="stylesheet"/></head>
+<body><div id="nb-demo-banner"><span class="nb-tag">Static demo</span><span class="nb-msg"><b>Instrument Asset Tracking</b> — test site with fake data and no backend. Forms won’t submit; click around to explore.</span><span class="nb-links"><a class="" href="../../public/">Public pages</a><a class="nb-active" href="../../admin/dashboard/">Admin portal</a><a class="nb-home" href="../../../../">← Portfolio</a></span></div>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<a class="sidebar-brand" href="../../admin/">
+                Instrument Asset Tracking
+            </a>
+<div class="sidebar-subtitle">Admin</div>
+</div>
+<div class="sidebar-menu">
+<a class="sidebar-menu-item" href="../../admin/">
+<i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+</a>
+<a class="sidebar-menu-item active" href="../../admin/instruments/">
+<i class="fas fa-list"></i> <span>Instruments</span>
+</a>
+<a class="sidebar-menu-item" href="../../admin/add-instrument/">
+<i class="fas fa-plus-circle"></i> <span>Add Instrument</span>
+</a>
+<a class="sidebar-menu-item" href="../../admin/check-in/">
+<i class="fas fa-sign-in-alt"></i> <span>Check In</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-clipboard-check"></i> <span>Requests</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-hand-holding"></i> <span>Manual Checkout</span>
+</a>
+</div>
+<div class="sidebar-footer">
+<i class="fas fa-code"></i> Developed by Neel Bansal
+        </div>
+</div>
+<!-- Top Bar -->
+<div class="top-bar">
+<!-- User Menu -->
+<div class="user-menu-wrapper">
+<button aria-label="Open user menu" class="user-menu-toggle" id="userMenuToggle">
+<i class="fas fa-user"></i>
+</button>
+<div class="user-menu-dropdown" id="userMenuDropdown">
+<a class="user-menu-item" href="../../admin/settings/">
+<i class="fas fa-cog"></i> Settings
+                </a>
+<a class="user-menu-item" href="../../admin/users/">
+<i class="fas fa-users"></i> Users
+                </a>
+<a class="user-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-terminal"></i> Shell
+                </a>
+<a class="user-menu-item" href="../../public/" rel="noopener" target="_blank">
+<i class="fas fa-external-link-alt"></i> Public Site
+                </a>
+<a class="user-menu-item danger" data-demo-dead="1" href="#">
+<i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+</div>
+</div>
+</div>
+<!-- Mobile Sidebar Backdrop -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle">
+<i class="fas fa-bars"></i>
+</button>
+<!-- Main Content -->
+<div class="main-content reveal-in">
+<h2 class="section-title mb-4"><i class="fas fa-list"></i> Instruments List</h2>
+<div class="row">
+<!-- Filters section on the left -->
+<div class="col-lg-3 mb-4">
+<div class="filter-section">
+<form action="/instruments" method="GET">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<div class="form-group">
+<label for="brand"><i class="fas fa-tag"></i> Brand</label>
+<select class="form-control" id="brand" name="brand">
+<option value="">All Brands</option>
+<option value="Bach">Bach</option>
+<option value="Buffet">Buffet</option>
+<option value="Conn">Conn</option>
+<option value="Fox">Fox</option>
+<option value="Gemeinhardt">Gemeinhardt</option>
+<option value="Getzen">Getzen</option>
+<option value="Jupiter">Jupiter</option>
+<option value="King">King</option>
+<option value="Ludwig">Ludwig</option>
+<option value="Pearl">Pearl</option>
+<option value="Selmer">Selmer</option>
+<option value="Yamaha">Yamaha</option>
+</select>
+</div>
+<div class="form-group">
+<label for="instrument_type"><i class="fas fa-guitar"></i> Type</label>
+<select class="form-control" id="instrument_type" name="instrument_type">
+<option value="">All Types</option>
+<option value="Alto Saxophone">Alto Saxophone</option>
+<option value="Baritone">Baritone</option>
+<option value="Bass Clarinet">Bass Clarinet</option>
+<option value="Bass Drum">Bass Drum</option>
+<option value="Bassoon">Bassoon</option>
+<option value="Clarinet">Clarinet</option>
+<option value="Flute">Flute</option>
+<option value="French Horn">French Horn</option>
+<option value="Mellophone">Mellophone</option>
+<option value="Oboe">Oboe</option>
+<option value="Snare Drum">Snare Drum</option>
+<option value="Sousaphone">Sousaphone</option>
+<option value="Tenor Saxophone">Tenor Saxophone</option>
+<option value="Trombone">Trombone</option>
+<option value="Trumpet">Trumpet</option>
+<option value="Tuba">Tuba</option>
+</select>
+</div>
+<div class="form-group">
+<label for="condition"><i class="fas fa-star"></i> Condition</label>
+<select class="form-control" id="condition" name="condition">
+<option value="">All Conditions</option>
+<option value="Excellent">Excellent</option>
+<option value="Fair">Fair</option>
+<option value="Good">Good</option>
+<option value="Poor">Poor</option>
+</select>
+</div>
+<div class="form-group">
+<label for="checked_out"><i class="fas fa-check-circle"></i> Status</label>
+<select class="form-control" id="checked_out" name="checked_out">
+<option value="">All</option>
+<option value="Yes">Checked Out</option>
+<option value="No">Available</option>
+</select>
+</div>
+<div class="form-group">
+<label for="uuid"><i class="fas fa-barcode"></i> UUID/Barcode</label>
+<input class="form-control" id="uuid" name="uuid" placeholder="Scan or enter UUID" type="text" value=""/>
+</div>
+<div class="form-group">
+<label for="school_level"><i class="fas fa-school"></i> School Level</label>
+<select class="form-control" id="school_level" name="school_level">
+<option value="">All</option>
+<option value="High School">High School</option>
+<option value="Middle School">Middle School</option>
+</select>
+</div>
+<button class="btn btn-primary btn-block" type="submit">
+<i class="fas fa-search"></i> Apply Filters
+                </button>
+</form>
+</div>
+</div>
+<!-- Instruments list on the right -->
+<div class="col-lg-9">
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap flex-gap-sm">
+<h3>22 Instruments</h3>
+<div class="d-flex flex-gap-sm">
+<!-- Backup/Restore buttons (only shown if Google Sheets is enabled) -->
+<button class="btn btn-outline-primary btn-sm" data-target="#setHighSchoolModal" data-toggle="modal" title="Set all instruments to High School" type="button">
+<i class="fas fa-school"></i> Set all to High School
+                </button>
+</div>
+</div>
+<!-- Instrument cards -->
+<div id="instrumentsList">
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Yamaha <small>Flute</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> 10BFE7B9
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Excellent</span>
+<span class="badge badge-warning"><i class="fas fa-school"></i> Middle School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Jordan Patel</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/10BFE7B9/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/10BFE7B9/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/10BFE7B9" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-1" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-1">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">YA439563</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Band Room Cage B</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">jordan.patel@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2026</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">131544</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2026-06-14</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2026-12-11</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-flute-0-8ab581f67076.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Gemeinhardt <small>Flute</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> 8950AEBB
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Good</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Sam Okafor</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/8950AEBB/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/8950AEBB/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/8950AEBB" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-2" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-2">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">GE545140</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Band Room Cage A</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">sam.okafor@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2027</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">182657</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2025-10-05</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2026-04-03</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-flute-1-2c2a0e611e3b.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Buffet <small>Clarinet</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> 6CB22FEB
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-success">
+<i class="fas fa-check"></i> Available
+                                        </span>
+<span class="badge badge-info">Good</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/6CB22FEB/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/6CB22FEB/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/6CB22FEB" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-3" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-3">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">BU713984</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Percussion Room</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-clarinet-2-a9c9e4815f3b.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Yamaha <small>Clarinet</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> 7C2C14B1
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Fair</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Morgan Rivera</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/7C2C14B1/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/7C2C14B1/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/7C2C14B1" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-4" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-4">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">YA666950</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Band Room Cage A</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">morgan.rivera@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2028</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">112770</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2026-03-04</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2026-08-31</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">Case latch loose. Pads replaced last spring.</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-clarinet-3-891aae803c93.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Selmer <small>Alto Saxophone</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> EB72BB8A
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Excellent</span>
+<span class="badge badge-warning"><i class="fas fa-school"></i> Middle School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Jamie Lee</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/EB72BB8A/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/EB72BB8A/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/EB72BB8A" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-5" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-5">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">SE691783</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Band Room Cage A</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">jamie.lee@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2029</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">189181</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2025-10-22</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2026-04-20</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-alto-saxophone-4-545487717bdd.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Yamaha <small>Alto Saxophone</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> 7CDE2557
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-success">
+<i class="fas fa-check"></i> Available
+                                        </span>
+<span class="badge badge-info">Good</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/7CDE2557/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/7CDE2557/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/7CDE2557" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-6" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-6">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">YA914983</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Instrument Closet 2</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-alto-saxophone-5-00ab2afed202.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Yamaha <small>Tenor Saxophone</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> B6CFA65B
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Fair</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Dana Whitfield</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/B6CFA65B/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/B6CFA65B/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/B6CFA65B" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-7" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-7">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">YA636800</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Percussion Room</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">dana.whitfield@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2026</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">175107</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2026-06-27</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2026-12-24</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-tenor-saxophone-6-7efe767523e6.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Bach <small>Trumpet</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> 12F225C3
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Excellent</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Harper Diaz</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/12F225C3/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/12F225C3/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/12F225C3" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-8" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-8">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">BA829070</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Instrument Closet 2</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">harper.diaz@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2029</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">187051</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2025-12-10</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2026-06-08</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-trumpet-7-14c3431b0baa.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Yamaha <small>Trumpet</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> 5A8CD288
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-success">
+<i class="fas fa-check"></i> Available
+                                        </span>
+<span class="badge badge-info">Good</span>
+<span class="badge badge-warning"><i class="fas fa-school"></i> Middle School</span>
+</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/5A8CD288/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/5A8CD288/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/5A8CD288" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-9" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-9">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">YA866676</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Instrument Closet 2</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-trumpet-8-e748e70a39ab.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Getzen <small>Trumpet</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> BE83A905
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Poor</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Riley Nguyen</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/BE83A905/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/BE83A905/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/BE83A905" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-10" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-10">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">GE517225</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Percussion Room</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">riley.nguyen@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2027</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">158875</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2025-11-13</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2026-05-12</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">Valve 2 sticks; sent to repair shop 3/14. Dent in bell noted at check-in.</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-trumpet-9-5f0be4ad8d12.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Conn <small>French Horn</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> B98C91F2
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Good</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Avery Chen</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/B98C91F2/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/B98C91F2/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/B98C91F2" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-11" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-11">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">CO391335</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Band Room Cage B</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">avery.chen@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2026</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">163565</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2026-06-18</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2026-12-15</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-french-horn-10-f0b0fa0573e6.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Yamaha <small>Mellophone</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> 093FE706
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-success">
+<i class="fas fa-check"></i> Available
+                                        </span>
+<span class="badge badge-info">Good</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/093FE706/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/093FE706/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/093FE706" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-12" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-12">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">YA395625</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Band Room Cage A</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-mellophone-11-4c335078e948.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Bach <small>Trombone</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> B3326F6F
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Excellent</span>
+<span class="badge badge-warning"><i class="fas fa-school"></i> Middle School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Avery Chen</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/B3326F6F/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/B3326F6F/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/B3326F6F" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-13" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-13">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">BA513264</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Band Room Cage A</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">avery.chen@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2026</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">174289</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2026-03-16</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2026-09-12</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-trombone-12-e550e411a73c.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">King <small>Trombone</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> CE29E439
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Fair</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Jordan Patel</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/CE29E439/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/CE29E439/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/CE29E439" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-14" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-14">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">KI206393</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Instrument Closet 2</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">jordan.patel@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2026</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">127256</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2025-10-13</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2026-04-11</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">Case latch loose. Pads replaced last spring.</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-trombone-13-c7d9c9ed0410.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Yamaha <small>Baritone</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> A5B22402
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-success">
+<i class="fas fa-check"></i> Available
+                                        </span>
+<span class="badge badge-info">Good</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/A5B22402/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/A5B22402/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/A5B22402" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-15" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-15">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">YA765226</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Instrument Closet 2</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-baritone-14-3e2c2e2506a1.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Jupiter <small>Tuba</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> DAEAFD15
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Good</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Morgan Rivera</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/DAEAFD15/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/DAEAFD15/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/DAEAFD15" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-16" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-16">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">JU641415</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Band Room Cage A</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">morgan.rivera@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2028</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">129201</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2026-09-26</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2027-03-25</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-tuba-15-6fa3fe8ae71e.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Yamaha <small>Sousaphone</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> A157ACEE
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Fair</span>
+<span class="badge badge-warning"><i class="fas fa-school"></i> Middle School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Robin Alvarez</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/A157ACEE/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/A157ACEE/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/A157ACEE" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-17" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-17">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">YA916898</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Instrument Closet 2</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">robin.alvarez@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2027</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">125578</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2025-09-29</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2026-03-28</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-sousaphone-16-1c8fb5fc394e.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Pearl <small>Snare Drum</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> 5AEC57F2
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-success">
+<i class="fas fa-check"></i> Available
+                                        </span>
+<span class="badge badge-info">Excellent</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/5AEC57F2/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/5AEC57F2/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/5AEC57F2" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-18" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-18">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">PE875813</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Band Room Cage B</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-snare-drum-17-2227ffb0f6be.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Ludwig <small>Bass Drum</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> 611BD1FC
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Good</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Casey Brooks</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/611BD1FC/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/611BD1FC/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/611BD1FC" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-19" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-19">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">LU454143</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Band Room Cage B</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">casey.brooks@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2029</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">183341</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2026-08-07</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2027-02-03</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-bass-drum-18-c5f1b90c91f6.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Fox <small>Bassoon</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> 5FAB9583
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Excellent</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Riley Nguyen</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/5FAB9583/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/5FAB9583/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/5FAB9583" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-20" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-20">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">FO939724</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Percussion Room</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">riley.nguyen@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2027</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">177438</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2026-01-26</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2026-07-25</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-bassoon-19-aebb9824d842.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Yamaha <small>Oboe</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> 8936B241
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-success">
+<i class="fas fa-check"></i> Available
+                                        </span>
+<span class="badge badge-info">Good</span>
+<span class="badge badge-warning"><i class="fas fa-school"></i> Middle School</span>
+</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/8936B241/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/8936B241/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/8936B241" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-21" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-21">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">YA741281</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Percussion Room</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">—</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-oboe-20-322cf4ed977b.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="card mb-3">
+<div class="card-body">
+<div class="row">
+<div class="col-md-8">
+<h5 class="card-title">Selmer <small>Bass Clarinet</small></h5>
+<p class="card-text text-muted mb-2">
+<strong>UUID:</strong> D98414BF
+                                    </p>
+<p class="card-text mb-2">
+<span class="badge badge-danger">
+<i class="fas fa-lock"></i> Checked Out
+                                        </span>
+<span class="badge badge-info">Fair</span>
+<span class="badge badge-primary"><i class="fas fa-school"></i> High School</span>
+</p>
+<p class="card-text"><strong>Checked out to:</strong> Taylor Kim</p>
+</div>
+<div class="col-md-4">
+<div class="instrument-action-btns mt-2 mt-md-0">
+<a class="btn btn-info btn-sm" href="../../admin/instrument_history/D98414BF/">
+<i class="fas fa-history"></i> History
+                                        </a>
+<a class="btn btn-primary btn-sm" href="../../admin/edit_instrument/D98414BF/">
+<i class="fas fa-edit"></i> Edit
+                                        </a>
+<form action="/delete_instrument/D98414BF" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<input name="_method" type="hidden" value="DELETE"/>
+<button class="btn btn-danger btn-sm" type="submit">
+<i class="fas fa-trash"></i>
+</button>
+</form>
+</div>
+</div>
+</div>
+<button aria-expanded="false" class="btn btn-outline-secondary btn-sm mt-2" data-target="#details-22" data-toggle="collapse" type="button">
+<i class="fas fa-info-circle"></i> Details
+                            </button>
+<div class="collapse mt-2" id="details-22">
+<dl class="row mb-0 small">
+<dt class="col-sm-3">Serial #</dt><dd class="col-sm-9">SE304268</dd>
+<dt class="col-sm-3">Location</dt><dd class="col-sm-9">Band Room Cage B</dd>
+<dt class="col-sm-3">Student Email</dt><dd class="col-sm-9">taylor.kim@demo.local</dd>
+<dt class="col-sm-3">Grad Year</dt><dd class="col-sm-9">2028</dd>
+<dt class="col-sm-3">Student ID</dt><dd class="col-sm-9">171349</dd>
+<dt class="col-sm-3">Checkout Term</dt><dd class="col-sm-9">school_year</dd>
+<dt class="col-sm-3">Checkout Date</dt><dd class="col-sm-9">2026-08-03</dd>
+<dt class="col-sm-3">Due Date</dt><dd class="col-sm-9">2027-01-30</dd>
+<dt class="col-sm-3">Notes</dt><dd class="col-sm-9" style="white-space:pre-wrap;">Case latch loose. Pads replaced last spring.</dd>
+<dt class="col-sm-3">Images</dt>
+<dd class="col-sm-9">
+<a data-demo-dead="1" href="#" rel="noopener" target="_blank">
+<img alt="Instrument image" src="../../assets/demo-bass-clarinet-21-2947ec466e23.jpg" style="height:60px;width:auto;margin:2px;border-radius:4px;"/>
+</a>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modals rendered here, outside .main-content, so the reveal-in transform
+         stacking context cannot trap their z-index below the Bootstrap backdrop -->
+<div aria-hidden="true" class="modal fade" id="setHighSchoolModal" role="dialog" tabindex="-1">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title"><i class="fas fa-school"></i> Set All to High School</h5>
+<button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>
+</div>
+<div class="modal-body">
+<p>This sets the school level of <strong>every</strong> instrument to <strong>High School</strong>, overwriting any existing values (including Middle School tags). Continue?</p>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+<form action="/admin/instruments/set-school-level" method="POST" style="display:inline;">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h5Q.iw8gppat91UAW-dSWXOASe4B1TM"/>
+<button class="btn btn-primary" type="submit"><i class="fas fa-school"></i> Set All to High School</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+<script defer="" src="../../../_shared/demo.js"></script></body></html>

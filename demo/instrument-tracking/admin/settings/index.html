@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4htA.YnzOQMNkRSM2Q4TsvRpFCN10tiY" name="csrf-token"/>
+<title>Settings - Instrument Asset Tracking</title>
+<link href="../../assets/bootstrap.min-3dcdb3f27208.css" rel="stylesheet"/>
+<link href="../../assets/all.min-b9c2a0a1cf43.css" rel="stylesheet"/>
+<link href="../../assets/style-5f7e0fa61ef4.css" rel="stylesheet"/>
+<link href="../../../_shared/demo.css" rel="stylesheet"/></head>
+<body><div id="nb-demo-banner"><span class="nb-tag">Static demo</span><span class="nb-msg"><b>Instrument Asset Tracking</b> — test site with fake data and no backend. Forms won’t submit; click around to explore.</span><span class="nb-links"><a class="" href="../../public/">Public pages</a><a class="nb-active" href="../../admin/dashboard/">Admin portal</a><a class="nb-home" href="../../../../">← Portfolio</a></span></div>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<a class="sidebar-brand" href="../../admin/">
+                Instrument Asset Tracking
+            </a>
+<div class="sidebar-subtitle">Admin</div>
+</div>
+<div class="sidebar-menu">
+<a class="sidebar-menu-item" href="../../admin/">
+<i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+</a>
+<a class="sidebar-menu-item" href="../../admin/instruments/">
+<i class="fas fa-list"></i> <span>Instruments</span>
+</a>
+<a class="sidebar-menu-item" href="../../admin/add-instrument/">
+<i class="fas fa-plus-circle"></i> <span>Add Instrument</span>
+</a>
+<a class="sidebar-menu-item" href="../../admin/check-in/">
+<i class="fas fa-sign-in-alt"></i> <span>Check In</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-clipboard-check"></i> <span>Requests</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-hand-holding"></i> <span>Manual Checkout</span>
+</a>
+</div>
+<div class="sidebar-footer">
+<i class="fas fa-code"></i> Developed by Neel Bansal
+        </div>
+</div>
+<!-- Top Bar -->
+<div class="top-bar">
+<!-- User Menu -->
+<div class="user-menu-wrapper">
+<button aria-label="Open user menu" class="user-menu-toggle" id="userMenuToggle">
+<i class="fas fa-user"></i>
+</button>
+<div class="user-menu-dropdown" id="userMenuDropdown">
+<a class="user-menu-item" href="../../admin/settings/">
+<i class="fas fa-cog"></i> Settings
+                </a>
+<a class="user-menu-item" href="../../admin/users/">
+<i class="fas fa-users"></i> Users
+                </a>
+<a class="user-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-terminal"></i> Shell
+                </a>
+<a class="user-menu-item" href="../../public/" rel="noopener" target="_blank">
+<i class="fas fa-external-link-alt"></i> Public Site
+                </a>
+<a class="user-menu-item danger" data-demo-dead="1" href="#">
+<i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+</div>
+</div>
+</div>
+<!-- Mobile Sidebar Backdrop -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle">
+<i class="fas fa-bars"></i>
+</button>
+<!-- Main Content -->
+<div class="main-content reveal-in">
+<div class="container-fluid">
+<div class="row mb-4">
+<div class="col-12">
+<h2 class="page-title">
+<i class="fas fa-cog"></i> Admin Settings
+            </h2>
+<p class="text-muted">Configure security features and system settings</p>
+</div>
+</div>
+<form action="/admin/settings" data-demo-href="../../admin/dashboard/" id="settingsForm" method="POST">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4htA.YnzOQMNkRSM2Q4TsvRpFCN10tiY"/>
+<div class="settings-page-layout">
+<div class="settings-main">
+<div class="settings-search-row" id="settingsSearchRow">
+<input autocomplete="off" id="settingsSearch" placeholder="Search settings…" type="search"/>
+<button aria-label="Clear search" id="settingsSearchClear" type="button"><i class="fas fa-times"></i></button>
+</div>
+<div id="settingsSearchEmpty">No matching settings.</div>
+<!-- Security Settings Section -->
+<div class="settings-section" data-section-name="Security" id="section-security">
+<button aria-controls="section-security-body" aria-expanded="true" class="section-toggle" type="button">
+<span class="section-toggle-label"><i class="fas fa-shield-alt"></i> Security Settings</span>
+<i class="fas fa-chevron-down chevron"></i>
+</button>
+<div class="section-body" id="section-security-body">
+<div class="setting-item" data-search="
+                                     sign-in enabled
+                                    ⓘ
+                                 disable to block all logins (maintenance mode). 
+                                            enabled
+                                            disabled
+                                        ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-user-check"></i> Sign-in Enabled
+                                    <span class="info-icon" data-tooltip="Disable to block all logins (maintenance mode).">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="signInEnabled" name="SIGN_IN_ATTEMPTS_ENABLED" type="checkbox"/>
+<label class="custom-control-label" for="signInEnabled">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     rate limiting
+                                    ⓘ
+                                 prevents brute force login attacks by limiting login attempts to 5 per 5 minutes. recommended. 
+                                            enabled
+                                            disabled
+                                         max attempts window (seconds)">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-clock"></i> Rate Limiting
+                                    <span class="info-icon" data-tooltip="Prevents brute force login attacks by limiting login attempts to 5 per 5 minutes. Recommended.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="rateLimiting" name="SECURITY_RATE_LIMITING_ENABLED" type="checkbox"/>
+<label class="custom-control-label" for="rateLimiting">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+<div class="setting-fields" id="rateLimitConfig" style="display: block;">
+<div class="form-group mb-2">
+<label class="mb-1" for="rateLimitAttempts">Max Attempts</label>
+<input class="form-control" id="rateLimitAttempts" min="1" name="SECURITY_RATE_LIMIT_ATTEMPTS" step="1" type="number" value="5"/>
+</div>
+<div class="form-group mb-0">
+<label class="mb-1" for="rateLimitWindow">Window (seconds)</label>
+<input class="form-control" id="rateLimitWindow" min="30" name="SECURITY_RATE_LIMIT_WINDOW" step="30" type="number" value="300"/>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     strong password requirements
+                                    ⓘ
+                                 enforces 8+ character passwords with uppercase, lowercase, and numbers. when disabled, only 6 character minimum is required. recommended. 
+                                            enabled
+                                            disabled
+                                        ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-key"></i> Strong Password Requirements
+                                    <span class="info-icon" data-tooltip="Enforces 8+ character passwords with uppercase, lowercase, and numbers. When disabled, only 6 character minimum is required. Recommended.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="strongPasswords" name="SECURITY_STRONG_PASSWORDS" type="checkbox"/>
+<label class="custom-control-label" for="strongPasswords">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     csv injection protection
+                                    ⓘ
+                                 escapes special characters (=, +, -, @) in csv exports to prevent formula injection attacks. recommended. 
+                                            enabled
+                                            disabled
+                                        ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-file-csv"></i> CSV Injection Protection
+                                    <span class="info-icon" data-tooltip="Escapes special characters (=, +, -, @) in CSV exports to prevent formula injection attacks. Recommended.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="csvEscaping" name="SECURITY_CSV_ESCAPING" type="checkbox"/>
+<label class="custom-control-label" for="csvEscaping">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     input validation
+                                    ⓘ
+                                 validates uuids (1-50 chars, configurable), names (letters/spaces only), and limits notes to 500 characters. recommended. 
+                                            enabled
+                                            disabled
+                                        ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-check-circle"></i> Input Validation
+                                    <span class="info-icon" data-tooltip="Validates UUIDs (1-50 chars, configurable), names (letters/spaces only), and limits notes to 500 characters. Recommended.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="inputValidation" name="SECURITY_INPUT_VALIDATION" type="checkbox"/>
+<label class="custom-control-label" for="inputValidation">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     file upload security
+                                    ⓘ
+                                 validates actual file types using mime type checking, not just file extensions. limits uploads to 50 mb. recommended. 
+                                            enabled
+                                            disabled
+                                         max upload (mb)">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-upload"></i> File Upload Security
+                                    <span class="info-icon" data-tooltip="Validates actual file types using MIME type checking, not just file extensions. Limits uploads to 50 MB. Recommended.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="fileValidation" name="SECURITY_VALIDATE_FILE_TYPES" type="checkbox"/>
+<label class="custom-control-label" for="fileValidation">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+<div class="form-group mt-2 mb-0">
+<label for="maxUpload">Max Upload (MB)</label>
+<input class="form-control" id="maxUpload" min="1" name="SECURITY_MAX_UPLOAD_SIZE_MB" step="1" type="number" value="50"/>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     secure session cookies
+                                    ⓘ
+                                 protects session cookies with httponly, secure (https), and samesite flags. disable the secure flag if not using https. recommended. 
+                                            enabled
+                                            disabled
+                                         secure (https only) httponly samesite">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-lock"></i> Secure Session Cookies
+                                    <span class="info-icon" data-tooltip="Protects session cookies with HttpOnly, Secure (HTTPS), and SameSite flags. Disable the Secure flag if not using HTTPS. Recommended.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="secureSessions" name="SECURITY_SECURE_SESSIONS" type="checkbox"/>
+<label class="custom-control-label" for="secureSessions">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+<div class="setting-fields" id="sessionConfig" style="display: block;">
+<div class="form-check">
+<input class="form-check-input" id="cookieSecure" name="SECURITY_SESSION_COOKIE_SECURE" type="checkbox"/>
+<label class="form-check-label" for="cookieSecure">Secure (HTTPS only)</label>
+</div>
+<div class="form-check">
+<input checked="" class="form-check-input" id="cookieHttpOnly" name="SECURITY_SESSION_COOKIE_HTTPONLY" type="checkbox"/>
+<label class="form-check-label" for="cookieHttpOnly">HttpOnly</label>
+</div>
+<div class="form-group mt-2 mb-0">
+<label for="cookieSameSite">SameSite</label>
+<select class="form-control" id="cookieSameSite" name="SECURITY_SESSION_COOKIE_SAMESITE">
+<option selected="" value="Lax">Lax</option>
+<option value="Strict">Strict</option>
+<option value="None">None</option>
+</select>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     email normalization
+                                    ⓘ
+                                 converts all emails to lowercase to prevent duplicate accounts with different cases. (user@example.com = user@example.com) recommended. 
+                                            enabled
+                                            disabled
+                                        ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-at"></i> Email Normalization
+                                    <span class="info-icon" data-tooltip="Converts all emails to lowercase to prevent duplicate accounts with different cases. (User@Example.COM = user@example.com) Recommended.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="emailNormalization" name="SECURITY_NORMALIZE_EMAILS" type="checkbox"/>
+<label class="custom-control-label" for="emailNormalization">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     dropdown deduplication
+                                    ⓘ
+                                 case-insensitive deduplication of dropdown values. (violin and violin appear as one entry) recommended. 
+                                            enabled
+                                            disabled
+                                        ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-list"></i> Dropdown Deduplication
+                                    <span class="info-icon" data-tooltip="Case-insensitive deduplication of dropdown values. (Violin and violin appear as one entry) Recommended.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="dropdownDedup" name="SECURITY_DEDUPLICATE_DROPDOWNS" type="checkbox"/>
+<label class="custom-control-label" for="dropdownDedup">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Integration Settings Section -->
+<div class="settings-section" data-section-name="Integrations" id="section-integrations">
+<button aria-controls="section-integrations-body" aria-expanded="true" class="section-toggle" type="button">
+<span class="section-toggle-label"><i class="fas fa-plug"></i> Integration Settings</span>
+<i class="fas fa-chevron-down chevron"></i>
+</button>
+<div class="section-body" id="section-integrations-body">
+<div class="setting-item" data-search="
+                                     google sheets integration
+                                    ⓘ
+                                 enable automatic backup and restore with google sheets. requires service account configuration. google sheets worksheet name for renewal request responses. default: form responses 2. shown as a button in checkout denial emails. leave blank to omit. shown as a button in denial / rejection emails. leave blank to omit. 
+                                            enabled
+                                            disabled
+                                         credentials file backup spreadsheet id backup worksheet name forms spreadsheet id checkout form worksheet name 
+                                        renewal form worksheet name
+                                        ⓘ
+                                     
+                                        student checkout form url
+                                        ⓘ
+                                     
+                                        student renewal form url
+                                        ⓘ
+                                     backup mode timer interval (seconds)">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fab fa-google"></i> Google Sheets Integration
+                                    <span class="info-icon" data-tooltip="Enable automatic backup and restore with Google Sheets. Requires service account configuration.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input class="custom-control-input" id="googleSheets" name="GOOGLE_SHEETS_ENABLED" type="checkbox"/>
+<label class="custom-control-label" for="googleSheets">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+<div class="setting-fields" id="googleSheetsConfig" style="display: none;">
+<div class="form-group">
+<label for="gsCreds">Credentials File</label>
+<input class="form-control" id="gsCreds" name="GOOGLE_SHEETS_CREDENTIALS_FILE" type="text" value="/path/to/google_ServiceAccount/credentials.json"/>
+</div>
+<div class="form-group">
+<label for="gsBackupId">Backup Spreadsheet ID</label>
+<input class="form-control" id="gsBackupId" name="GOOGLE_SHEETS_BACKUP_SPREADSHEET_ID" type="text" value="your-spreadsheet-id-here"/>
+</div>
+<div class="form-group">
+<label for="gsBackupSheet">Backup Worksheet Name</label>
+<input class="form-control" id="gsBackupSheet" name="GOOGLE_SHEETS_BACKUP_WORKSHEET_NAME" type="text" value="data"/>
+</div>
+<div class="form-group">
+<label for="gsFormsId">Forms Spreadsheet ID</label>
+<input class="form-control" id="gsFormsId" name="GOOGLE_FORMS_CHECKOUT_SPREADSHEET_ID" type="text" value="your-spreadsheet-id-here"/>
+</div>
+<div class="form-group">
+<label for="gsFormsSheet">Checkout Form Worksheet Name</label>
+<input class="form-control" id="gsFormsSheet" name="GOOGLE_FORMS_CHECKOUT_WORKSHEET_NAME" type="text" value="Form Responses"/>
+</div>
+<div class="form-group">
+<label for="gsRenewalSheet">
+                                        Renewal Form Worksheet Name
+                                        <span class="info-icon" data-tooltip="Google Sheets worksheet name for renewal request responses. Default: Form Responses 2.">ⓘ</span>
+</label>
+<input class="form-control" id="gsRenewalSheet" name="GOOGLE_FORMS_RENEWAL_WORKSHEET_NAME" type="text" value="Form Responses 2"/>
+</div>
+<div class="form-group">
+<label for="studentCheckoutFormUrl">
+                                        Student Checkout Form URL
+                                        <span class="info-icon" data-tooltip="Shown as a button in checkout denial emails. Leave blank to omit.">ⓘ</span>
+</label>
+<input class="form-control" id="studentCheckoutFormUrl" name="STUDENT_CHECKOUT_FORM_URL" placeholder="https://forms.gle/..." type="url" value=""/>
+</div>
+<div class="form-group">
+<label for="studentRenewalFormUrl">
+                                        Student Renewal Form URL
+                                        <span class="info-icon" data-tooltip="Shown as a button in denial / rejection emails. Leave blank to omit.">ⓘ</span>
+</label>
+<input class="form-control" id="studentRenewalFormUrl" name="STUDENT_RENEWAL_FORM_URL" placeholder="https://forms.gle/..." type="url" value=""/>
+</div>
+<div class="form-group">
+<label for="gsMode">Backup Mode</label>
+<select class="form-control" id="gsMode" name="GOOGLE_SHEETS_BACKUP_MODE">
+<option selected="" value="on_edit">on_edit</option>
+<option value="timer">timer</option>
+<option value="manual">manual</option>
+</select>
+</div>
+<div class="form-group" id="gsIntervalGroup" style="display: none;">
+<label for="gsInterval">Timer Interval (seconds)</label>
+<input class="form-control" id="gsInterval" min="60" name="GOOGLE_SHEETS_BACKUP_INTERVAL" step="30" type="number" value="300"/>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     email notifications
+                                    ⓘ
+                                 send email notifications for checkout requests. requires smtp configuration. send a sample email of any type to verify your smtp configuration. save your settings above before testing. 
+                                            enabled
+                                            disabled
+                                         smtp host smtp port from address app password recipient address email type">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-envelope"></i> Email Notifications
+                                    <span class="info-icon" data-tooltip="Send email notifications for checkout requests. Requires SMTP configuration.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input class="custom-control-input" id="emailNotifications" name="EMAIL_ENABLED" type="checkbox"/>
+<label class="custom-control-label" for="emailNotifications">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+<div class="setting-fields inline-grid" id="emailConfig" style="display: none;">
+<div class="form-group">
+<label for="emailHost">SMTP Host</label>
+<input class="form-control" id="emailHost" name="EMAIL_HOST" type="text" value="smtp.gmail.com"/>
+</div>
+<div class="form-group">
+<label for="emailPort">SMTP Port</label>
+<input class="form-control" id="emailPort" min="1" name="EMAIL_PORT" type="number" value="587"/>
+</div>
+<div class="form-group">
+<label for="emailAddress">From Address</label>
+<input class="form-control" id="emailAddress" name="EMAIL_ADDRESS" type="text" value="your-email@gmail.com"/>
+</div>
+<div class="form-group mb-0">
+<label for="emailPassword">App Password</label>
+<input class="form-control" id="emailPassword" name="EMAIL_PASSWORD" placeholder="Leave blank to keep current password" type="password" value=""/>
+</div>
+</div>
+<div id="emailTestSection" style="display: none; margin-top: 1.5rem; border-top: 1px solid #e9ecef; padding-top: 1.25rem;">
+<h6 style="font-weight:600; margin-bottom:0.5rem;">
+<i class="fas fa-paper-plane"></i> Send Test Email
+                                    <span class="info-icon" data-tooltip="Send a sample email of any type to verify your SMTP configuration. Save your settings above before testing.">ⓘ</span>
+</h6>
+<div class="form-row align-items-end">
+<div class="form-group col-md-5 mb-2">
+<label for="testEmailRecipient">Recipient Address</label>
+<input class="form-control" id="testEmailRecipient" placeholder="you@example.com" type="email"/>
+</div>
+<div class="form-group col-md-4 mb-2">
+<label for="testEmailType">Email Type</label>
+<select class="form-control" id="testEmailType">
+<option value="admin_notification">Admin — New Checkout Request</option>
+<option value="admin_daily_summary">Admin — Daily Summary</option>
+<option value="checkout_approved">Student — Checkout Approved</option>
+<option value="checkout_denied">Student — Checkout Denied</option>
+<option value="return_reminder">Student — Return Reminder (upcoming)</option>
+<option value="return_reminder_overdue">Student — Return Reminder (overdue)</option>
+<option value="return_confirmation">Student — Return Confirmation</option>
+<option value="renewal_notification">Student — Checkout Renewed</option>
+<option value="renewal_rejection">Student — Renewal Rejected</option>
+</select>
+</div>
+<div class="form-group col-md-3 mb-2">
+<button class="btn btn-outline-primary btn-block" id="sendTestEmailBtn" type="button">
+<i class="fas fa-paper-plane"></i> Send Test
+                                        </button>
+</div>
+</div>
+<div class="mt-2" id="testEmailResult" style="display:none;"></div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     school year window
+                                    ⓘ
+                                 used to compute due dates for school year, summer, and both checkout terms. enter dates as mm-dd (year is ignored). comma-separated offsets: positive = before due, 0 = due today, negative = overdue. after a checkout is overdue, re-send a reminder every n days. set to 0 to disable recurring late emails. auto-derived from today's date and the school year boundaries above. advances when the school year rolls over. optional json map keyed by graduation year to override school year start / end dates. example: {&quot;2027&quot;: {&quot;start_mm_dd&quot;: &quot;08-15&quot;, &quot;end_mm_dd&quot;: &quot;06-01&quot;}} school year start (mm-dd) school year end (mm-dd) 
+                                        reminder stages (days)
+                                        ⓘ
+                                     
+                                        repeat late emails every (days)
+                                        ⓘ
+                                     
+                                        check-in focus graduation year
+                                        ⓘ
+                                     
+                                    cohort school year overrides (json)
+                                    ⓘ
+                                ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-calendar-alt"></i> School Year Window
+                                    <span class="info-icon" data-tooltip="Used to compute due dates for School Year, Summer, and Both checkout terms. Enter dates as MM-DD (year is ignored).">ⓘ</span>
+</h5>
+</div>
+<div class="form-row mt-2">
+<div class="form-group col-md-6">
+<label for="schoolYearStart">School Year Start (MM-DD)</label>
+<input class="form-control" id="schoolYearStart" name="SCHOOL_YEAR_START_MM_DD" placeholder="08-15" type="text" value="08-15"/>
+</div>
+<div class="form-group col-md-6">
+<label for="schoolYearEnd">School Year End (MM-DD)</label>
+<input class="form-control" id="schoolYearEnd" name="SCHOOL_YEAR_END_MM_DD" placeholder="06-15" type="text" value="06-15"/>
+</div>
+</div>
+<div class="form-row">
+<div class="form-group col-md-6">
+<label for="reminderStages">
+                                        Reminder Stages (days)
+                                        <span class="info-icon" data-tooltip="Comma-separated offsets: positive = before due, 0 = due today, negative = overdue.">ⓘ</span>
+</label>
+<input class="form-control" id="reminderStages" name="CHECKOUT_REMINDER_STAGES" placeholder="7,2,0,-3,-7" type="text" value="7, 2, 0, -3, -7"/>
+</div>
+<div class="form-group col-md-6">
+<label for="lateEmailInterval">
+                                        Repeat Late Emails Every (days)
+                                        <span class="info-icon" data-tooltip="After a checkout is overdue, re-send a reminder every N days. Set to 0 to disable recurring late emails.">ⓘ</span>
+</label>
+<input class="form-control" id="lateEmailInterval" min="0" name="LATE_EMAIL_INTERVAL_DAYS" placeholder="0" type="number" value="0"/>
+<small class="form-text text-muted">0 = disabled. E.g. 2 = email every other day while overdue.</small>
+</div>
+<div class="form-group col-md-6">
+<label>
+                                        Check-In Focus Graduation Year
+                                        <span class="info-icon" data-tooltip="Auto-derived from today's date and the school year boundaries above. Advances when the school year rolls over.">ⓘ</span>
+</label>
+<input class="form-control" disabled="" type="text" value="2027"/>
+</div>
+</div>
+<div class="form-group mb-0">
+<label for="cohortOverrides">
+                                    Cohort School Year Overrides (JSON)
+                                    <span class="info-icon" data-tooltip='Optional JSON map keyed by graduation year to override school year start / end dates. Example: {"2027": {"start_mm_dd": "08-15", "end_mm_dd": "06-01"}}'>ⓘ</span>
+</label>
+<textarea class="form-control" id="cohortOverrides" name="SCHOOL_YEAR_COHORT_OVERRIDES" placeholder='{"2027": {"start_mm_dd": "08-15", "end_mm_dd": "06-01"}}' rows="4">{}</textarea>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     storage management
+                                    ⓘ
+                                 balance local vs cloud images; set compression and thresholds. 
+                                            enabled
+                                            disabled
+                                         cloud priority % local quality max width max height drive limit (gb) drive warn % local warn (gb) cleanup start % min retention (days) auto cleanup auto rebalance rebalance interval (hours)">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-database"></i> Storage Management
+                                    <span class="info-icon" data-tooltip="Balance local vs cloud images; set compression and thresholds.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="storageEnabled" name="STORAGE_MANAGEMENT_ENABLED" type="checkbox"/>
+<label class="custom-control-label" for="storageEnabled">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+<div class="setting-fields inline-grid" id="storageConfig" style="display: grid;">
+<div class="form-group">
+<label for="cloudPriority">Cloud Priority %</label>
+<input class="form-control" id="cloudPriority" max="100" min="0" name="CLOUD_STORAGE_PRIORITY_PERCENT" type="number" value="30"/>
+</div>
+<div class="form-group">
+<label for="localQuality">Local Quality</label>
+<input class="form-control" id="localQuality" max="100" min="1" name="LOCAL_COMPRESSION_QUALITY" type="number" value="85"/>
+</div>
+<div class="form-group">
+<label for="maxWidth">Max Width</label>
+<input class="form-control" id="maxWidth" min="200" name="LOCAL_COMPRESSION_MAX_WIDTH" type="number" value="1920"/>
+</div>
+<div class="form-group">
+<label for="maxHeight">Max Height</label>
+<input class="form-control" id="maxHeight" min="200" name="LOCAL_COMPRESSION_MAX_HEIGHT" type="number" value="1080"/>
+</div>
+<div class="form-group">
+<label for="driveLimitGb">Drive Limit (GB)</label>
+<input class="form-control" id="driveLimitGb" min="0" name="GOOGLE_DRIVE_STORAGE_LIMIT_GB" type="number" value="15"/>
+<small class="form-text text-muted">Set to <strong>0</strong> for Unlimited (e.g. Google Workspace)</small>
+</div>
+<div class="form-group">
+<label for="driveWarn">Drive Warn %</label>
+<input class="form-control" id="driveWarn" max="100" min="10" name="GOOGLE_DRIVE_WARNING_THRESHOLD_PERCENT" type="number" value="80"/>
+</div>
+<div class="form-group">
+<label for="localWarn">Local Warn (GB)</label>
+<input class="form-control" id="localWarn" min="1" name="LOCAL_STORAGE_WARNING_THRESHOLD_GB" type="number" value="5"/>
+</div>
+<div class="form-group">
+<label for="cleanupThreshold">Cleanup Start %</label>
+<input class="form-control" id="cleanupThreshold" max="100" min="10" name="AUTO_CLEANUP_THRESHOLD_PERCENT" type="number" value="90"/>
+</div>
+<div class="form-group">
+<label for="retainDays">Min Retention (days)</label>
+<input class="form-control" id="retainDays" min="1" name="MIN_IMAGE_RETENTION_DAYS" type="number" value="180"/>
+</div>
+<div class="form-check" style="align-self: center;">
+<input checked="" class="form-check-input" id="autoCleanup" name="AUTO_CLEANUP_ENABLED" type="checkbox"/>
+<label class="form-check-label" for="autoCleanup">Auto cleanup</label>
+</div>
+<div class="form-check" style="align-self: center;">
+<input checked="" class="form-check-input" id="autoRebalance" name="AUTO_REBALANCE_ENABLED" type="checkbox"/>
+<label class="form-check-label" for="autoRebalance">Auto rebalance</label>
+</div>
+<div class="form-group mb-0">
+<label for="rebalanceHours">Rebalance Interval (hours)</label>
+<input class="form-control" id="rebalanceHours" min="1" name="REBALANCE_CHECK_INTERVAL_HOURS" type="number" value="24"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Feature Settings Section -->
+<div class="settings-section" data-section-name="Features" id="section-features">
+<button aria-controls="section-features-body" aria-expanded="true" class="section-toggle" type="button">
+<span class="section-toggle-label"><i class="fas fa-magic"></i> Feature Settings</span>
+<i class="fas fa-chevron-down chevron"></i>
+</button>
+<div class="section-body" id="section-features-body">
+<div class="setting-item" data-search="
+                                     audit logging
+                                    ⓘ
+                                 track all admin actions (delete, edit, approve, deny) in a separate audit log file. recommended. 
+                                            enabled
+                                            disabled
+                                        ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-clipboard-list"></i> Audit Logging
+                                    <span class="info-icon" data-tooltip="Track all admin actions (delete, edit, approve, deny) in a separate audit log file. Recommended.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="auditLogging" name="audit_logging_enabled" type="checkbox"/>
+<label class="custom-control-label" for="auditLogging">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     enhanced csv formula protection
+                                    ⓘ
+                                 additional csv injection protection that prepends a single quote to values starting with =, +, -, @, etc. works alongside basic csv escaping. recommended. 
+                                            enabled
+                                            disabled
+                                        ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-shield-virus"></i> Enhanced CSV Formula Protection
+                                    <span class="info-icon" data-tooltip="Additional CSV injection protection that prepends a single quote to values starting with =, +, -, @, etc. Works alongside basic CSV escaping. Recommended.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="csvFormulaEscaping" name="csv_formula_escaping_enabled" type="checkbox"/>
+<label class="custom-control-label" for="csvFormulaEscaping">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     export functionality
+                                    ⓘ
+                                 allow administrators to export instruments, users, and checkout history as csv files. accessible via settings page. 
+                                            enabled
+                                            disabled
+                                        ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-download"></i> Export Functionality
+                                    <span class="info-icon" data-tooltip="Allow administrators to export instruments, users, and checkout history as CSV files. Accessible via Settings page.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="exportFunctionality" name="export_functionality_enabled" type="checkbox"/>
+<label class="custom-control-label" for="exportFunctionality">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     activity metrics
+                                    ⓘ
+                                 display checkout count and last checkout date on instrument cards. helps track popular instruments and usage patterns. 
+                                            enabled
+                                            disabled
+                                        ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-chart-line"></i> Activity Metrics
+                                    <span class="info-icon" data-tooltip="Display checkout count and last checkout date on instrument cards. Helps track popular instruments and usage patterns.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="activityMetrics" name="activity_metrics_enabled" type="checkbox"/>
+<label class="custom-control-label" for="activityMetrics">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     confirmation dialogs
+                                    ⓘ
+                                 show 'are you sure?' confirmation dialogs before delete and other critical actions. prevents accidental deletions. 
+                                            enabled
+                                            disabled
+                                        ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-exclamation-triangle"></i> Confirmation Dialogs
+                                    <span class="info-icon" data-tooltip="Show 'Are you sure?' confirmation dialogs before delete and other critical actions. Prevents accidental deletions.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="confirmationDialogs" name="confirmation_dialogs_enabled" type="checkbox"/>
+<label class="custom-control-label" for="confirmationDialogs">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     auto-approve renewals
+                                    ⓘ
+                                 automatically approve renewal requests from verified non-graduating students. seniors and unverifiable requests are always auto-rejected. renewal requests submitted earlier than this many months before the due date are auto-rejected. late submissions (after the due date) are also auto-rejected. 
+                                            enabled
+                                            disabled
+                                         
+                                    renewal submission window (months before due date)
+                                    ⓘ
+                                ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-redo"></i> Auto-Approve Renewals
+                                    <span class="info-icon" data-tooltip="Automatically approve renewal requests from verified non-graduating students. Seniors and unverifiable requests are always auto-rejected.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="autoRenewEnabled" name="auto_renew_enabled" type="checkbox"/>
+<label class="custom-control-label" for="autoRenewEnabled">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+<div class="form-group mt-3 mb-0">
+<label for="renewalWindowMonths">
+                                    Renewal Submission Window (months before due date)
+                                    <span class="info-icon" data-tooltip="Renewal requests submitted earlier than this many months before the due date are auto-rejected. Late submissions (after the due date) are also auto-rejected.">ⓘ</span>
+</label>
+<input class="form-control" id="renewalWindowMonths" max="12" min="1" name="RENEWAL_WINDOW_MONTHS_BEFORE_END" type="number" value="2"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Public Pages & Branding Section -->
+<div class="settings-section" data-section-name="Public Pages" id="section-public">
+<button aria-controls="section-public-body" aria-expanded="true" class="section-toggle" type="button">
+<span class="section-toggle-label"><i class="fas fa-globe"></i> Public Pages &amp; Branding</span>
+<i class="fas fa-chevron-down chevron"></i>
+</button>
+<div class="section-body" id="section-public-body">
+<div class="setting-item" data-search="
+                                     landing page
+                                    ⓘ
+                                 when disabled, visiting the root url redirects directly to the login page. 
+                                            enabled
+                                            disabled
+                                        ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-home"></i> Landing Page
+                                    <span class="info-icon" data-tooltip="When disabled, visiting the root URL redirects directly to the login page.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="landingPageEnabled" name="LANDING_PAGE_ENABLED" type="checkbox"/>
+<label class="custom-control-label" for="landingPageEnabled">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     public catalog page
+                                    ⓘ
+                                 show /catalog with the public-facing instrument list. 
+                                            enabled
+                                            disabled
+                                        ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-list"></i> Public Catalog Page
+                                    <span class="info-icon" data-tooltip="Show /catalog with the public-facing instrument list.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="publicCatalogEnabled" name="PUBLIC_CATALOG_ENABLED" type="checkbox"/>
+<label class="custom-control-label" for="publicCatalogEnabled">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     features page
+                                    ⓘ
+                                 show /features. 
+                                            enabled
+                                            disabled
+                                        ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-star"></i> Features Page
+                                    <span class="info-icon" data-tooltip="Show /features.">ⓘ</span>
+</h5>
+<div class="setting-toggle">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="featuresPageEnabled" name="FEATURES_PAGE_ENABLED" type="checkbox"/>
+<label class="custom-control-label" for="featuresPageEnabled">
+<span class="toggle-on">Enabled</span>
+<span class="toggle-off">Disabled</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search=" the application name shown in the admin sidebar, browser tab, and emails. replaces the default value across all pages. name shown in the public footer as 'licensed to …'. leave blank to hide the line. separate from the app/nav name. main heading shown on the public home page hero. secondary text under the hero title. footer line at the bottom of the public landing page. set checkout request form url in integrations to enable this toggle. set renewal request form url in integrations to enable this toggle. 
+                                    navbar brand (app name)
+                                    ⓘ
+                                 
+                                    footer &quot;licensed to&quot;
+                                    ⓘ
+                                 
+                                    landing page title
+                                    ⓘ
+                                 
+                                    landing page subtitle
+                                    ⓘ
+                                 
+                                    landing page footer text
+                                    ⓘ
+                                 show stats band show feature cards show music icon next to landing title show music icon in navbar (top-right) 
+                                            show checkout button on landing
+                                            
+                                            ⓘ
+                                            
+                                         
+                                            show renewal button on landing
+                                            
+                                            ⓘ
+                                            
+                                        ">
+<div class="form-group">
+<label for="appName">
+                                    Navbar Brand (App Name)
+                                    <span class="info-icon" data-tooltip="The application name shown in the admin sidebar, browser tab, and emails. Replaces the default value across all pages.">ⓘ</span>
+</label>
+<input class="form-control" id="appName" maxlength="100" name="APP_NAME" placeholder="e.g. Bansal Music Dept" type="text" value="Instrument Asset Tracking"/>
+</div>
+<div class="form-group">
+<label for="footerLicensedTo">
+                                    Footer "Licensed To"
+                                    <span class="info-icon" data-tooltip="Name shown in the public footer as 'Licensed to …'. Leave blank to hide the line. Separate from the app/nav name.">ⓘ</span>
+</label>
+<input class="form-control" id="footerLicensedTo" maxlength="150" name="FOOTER_LICENSED_TO" placeholder="e.g. Westfield High School Music Dept" type="text" value=""/>
+</div>
+<div class="form-group">
+<label for="landingPageTitle">
+                                    Landing Page Title
+                                    <span class="info-icon" data-tooltip="Main heading shown on the public home page hero.">ⓘ</span>
+</label>
+<input class="form-control" id="landingPageTitle" maxlength="100" name="LANDING_PAGE_TITLE" type="text" value="Instrument Asset Tracking System"/>
+</div>
+<div class="form-group">
+<label for="landingPageSubtitle">
+                                    Landing Page Subtitle
+                                    <span class="info-icon" data-tooltip="Secondary text under the hero title.">ⓘ</span>
+</label>
+<input class="form-control" id="landingPageSubtitle" maxlength="200" name="LANDING_PAGE_SUBTITLE" type="text" value="Track, manage, and monitor your instrument inventory with ease"/>
+</div>
+<div class="form-group">
+<label for="landingPageFooter">
+                                    Landing Page Footer Text
+                                    <span class="info-icon" data-tooltip="Footer line at the bottom of the public landing page.">ⓘ</span>
+</label>
+<input class="form-control" id="landingPageFooter" maxlength="200" name="LANDING_PAGE_FOOTER_TEXT" type="text" value="© 2024 Instrument Asset Tracking System. All rights reserved."/>
+</div>
+<div class="form-row">
+<div class="form-group col-md-6">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="landingShowStats" name="LANDING_PAGE_SHOW_STATS" type="checkbox"/>
+<label class="custom-control-label" for="landingShowStats">Show stats band</label>
+</div>
+</div>
+<div class="form-group col-md-6">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="landingShowFeatures" name="LANDING_PAGE_SHOW_FEATURES" type="checkbox"/>
+<label class="custom-control-label" for="landingShowFeatures">Show feature cards</label>
+</div>
+</div>
+<div class="form-group col-md-6">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="landingShowHeroIcon" name="LANDING_PAGE_SHOW_HERO_ICON" type="checkbox"/>
+<label class="custom-control-label" for="landingShowHeroIcon">Show music icon next to landing title</label>
+</div>
+</div>
+<div class="form-group col-md-6">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" id="landingShowNavbarIcon" name="LANDING_PAGE_SHOW_NAVBAR_ICON" type="checkbox"/>
+<label class="custom-control-label" for="landingShowNavbarIcon">Show music icon in navbar (top-right)</label>
+</div>
+</div>
+<div class="form-group col-md-6">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" disabled="" id="landingShowCheckoutBtn" name="LANDING_PAGE_SHOW_CHECKOUT_BUTTON" type="checkbox"/>
+<label class="custom-control-label" for="landingShowCheckoutBtn">
+                                            Show Checkout button on landing
+                                            
+                                            <span class="info-icon" data-tooltip="Set Checkout Request Form URL in Integrations to enable this toggle.">ⓘ</span>
+</label>
+</div>
+</div>
+<div class="form-group col-md-6">
+<div class="custom-control custom-switch">
+<input checked="" class="custom-control-input" disabled="" id="landingShowRenewalBtn" name="LANDING_PAGE_SHOW_RENEWAL_BUTTON" type="checkbox"/>
+<label class="custom-control-label" for="landingShowRenewalBtn">
+                                            Show Renewal button on landing
+                                            
+                                            <span class="info-icon" data-tooltip="Set Renewal Request Form URL in Integrations to enable this toggle.">ⓘ</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="setting-item" data-search="
+                                     branding
+                                    ⓘ
+                                 logo and favicon options. files must be uploaded to the static/ folder first. when off, the app name is shown beside a music icon. path relative to the static/ folder. example: logo.png — upload your file to static/ first. path relative to the static/ folder. example: favicon.ico. 
+                                            use logo image in navbar
+                                            ⓘ
+                                         navbar logo height (px) 
+                                    navbar logo path
+                                    ⓘ
+                                 
+                                    favicon path
+                                    ⓘ
+                                ">
+<div class="setting-header">
+<h5 class="setting-title">
+<i class="fas fa-image"></i> Branding
+                                    <span class="info-icon" data-tooltip="Logo and favicon options. Files must be uploaded to the static/ folder first.">ⓘ</span>
+</h5>
+</div>
+<div class="form-row mt-2">
+<div class="form-group col-md-6">
+<div class="custom-control custom-switch">
+<input class="custom-control-input" id="navbarUseLogo" name="NAVBAR_USE_LOGO" type="checkbox"/>
+<label class="custom-control-label" for="navbarUseLogo">
+                                            Use logo image in navbar
+                                            <span class="info-icon" data-tooltip="When off, the app name is shown beside a music icon.">ⓘ</span>
+</label>
+</div>
+</div>
+<div class="form-group col-md-6">
+<label for="navbarLogoHeight">Navbar Logo Height (px)</label>
+<input class="form-control" id="navbarLogoHeight" max="200" min="10" name="NAVBAR_LOGO_HEIGHT" type="number" value="40"/>
+</div>
+</div>
+<div class="form-group">
+<label for="navbarLogoPath">
+                                    Navbar Logo Path
+                                    <span class="info-icon" data-tooltip="Path relative to the static/ folder. Example: logo.png — upload your file to static/ first.">ⓘ</span>
+</label>
+<input class="form-control" id="navbarLogoPath" maxlength="200" name="NAVBAR_LOGO_PATH" placeholder="logo.png" type="text" value="logo.png"/>
+</div>
+<div class="form-group">
+<label for="faviconPath">
+                                    Favicon Path
+                                    <span class="info-icon" data-tooltip="Path relative to the static/ folder. Example: favicon.ico.">ⓘ</span>
+</label>
+<input class="form-control" id="faviconPath" maxlength="200" name="FAVICON_PATH" placeholder="favicon.ico" type="text" value="favicon.ico"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Export Actions -->
+<div class="settings-section" data-section-name="Quick Export" id="section-export">
+<button aria-controls="section-export-body" aria-expanded="true" class="section-toggle" type="button">
+<span class="section-toggle-label"><i class="fas fa-file-export"></i> Quick Export</span>
+<i class="fas fa-chevron-down chevron"></i>
+</button>
+<div class="section-body" id="section-export-body">
+<div class="setting-item" data-search="  ">
+<div class="row">
+<div class="col-md-4 mb-3">
+<a class="btn btn-outline-success btn-block btn-lg" data-demo-dead="1" href="#">
+<i class="fas fa-download"></i> Export Instruments
+                                    </a>
+</div>
+<div class="col-md-4 mb-3">
+<a class="btn btn-outline-success btn-block btn-lg" data-demo-dead="1" href="#">
+<i class="fas fa-download"></i> Export Users
+                                    </a>
+</div>
+<div class="col-md-4 mb-3">
+<a class="btn btn-outline-success btn-block btn-lg" data-demo-dead="1" href="#">
+<i class="fas fa-download"></i> Export Checkout History
+                                    </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Audit Log Viewer -->
+<div class="settings-section" data-section-name="Audit Log" id="section-audit">
+<button aria-controls="section-audit-body" aria-expanded="true" class="section-toggle" type="button">
+<span class="section-toggle-label"><i class="fas fa-history"></i> Recent Audit Log (Last 50 Entries)</span>
+<i class="fas fa-chevron-down chevron"></i>
+</button>
+<div class="section-body" id="section-audit-body">
+<div class="setting-item" data-search="  ">
+<div style="max-height: 400px; overflow-y: auto; background: #f8f9fa; padding: 15px; border-radius: 5px; font-family: monospace; font-size: 0.85rem;">
+<p class="text-muted mb-0">No audit entries yet</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="settings-rail" id="settingsRail">
+<p class="settings-rail-title">Categories</p>
+<a class="is-active" data-target="section-security" href="#section-security"><i class="fas fa-shield-alt"></i> Security</a>
+<a data-target="section-integrations" href="#section-integrations"><i class="fas fa-plug"></i> Integrations</a>
+<a data-target="section-features" href="#section-features"><i class="fas fa-magic"></i> Features</a>
+<a data-target="section-public" href="#section-public"><i class="fas fa-globe"></i> Public Pages</a>
+<a data-target="section-export" href="#section-export"><i class="fas fa-file-export"></i> Quick Export</a>
+<a data-target="section-audit" href="#section-audit"><i class="fas fa-history"></i> Audit Log</a>
+</aside>
+</div>
+<!-- Action Buttons -->
+<div class="d-flex flex-wrap justify-content-end action-btn-row mt-4 mb-5" style="gap: 0.5rem;">
+<a class="btn btn-secondary btn-lg" href="../../admin/">
+<i class="fas fa-times"></i> Cancel
+            </a>
+<button class="btn btn-primary btn-lg" type="submit">
+<i class="fas fa-save"></i> Save Settings
+            </button>
+</div>
+</form>
+</div>
+
+</div>
+<!-- Modals rendered here, outside .main-content, so the reveal-in transform
+         stacking context cannot trap their z-index below the Bootstrap backdrop -->
+
+
+
+
+<script defer="" src="../../../_shared/demo.js"></script></body></html>

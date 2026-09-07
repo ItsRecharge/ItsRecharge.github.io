@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Relativity Express</title>
+<meta content="Einstein's light clock in 3D. Ride the train and the photon bounces straight; watch from the platform and the same photon traces a zigzag. Time dilation, computed live." name="description"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101420'/%3E%3Crect x='8' y='6' width='16' height='3' rx='1.5' fill='%23cfd8e6'/%3E%3Crect x='8' y='23' width='16' height='3' rx='1.5' fill='%23cfd8e6'/%3E%3Ccircle cx='16' cy='16' r='3.4' fill='%23f5b942'/%3E%3C/svg%3E" rel="icon"/>
+<link href="css/style.css" rel="stylesheet"/>
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three.module.js",
+    "three/addons/controls/OrbitControls.js": "./vendor/OrbitControls.js"
+  }
+}
+</script>
+<link data-nb="1" href="../_shared/demo.css" rel="stylesheet"/></head>
+<body><div class="nb-live" id="nb-demo-banner"><span class="nb-tag">Live demo</span><span class="nb-msg"><b>Relativity Express</b> — runs entirely in your browser. Drag to orbit; toggle reference frames.</span><span class="nb-links"><a class="nb-home" href="../">All demos</a><a class="nb-home" href="../../">← Portfolio</a></span></div>
+<div id="app"></div>
+<header id="topbar">
+<div id="brand">
+<h1>Relativity Express</h1>
+<p>Einstein's light clock, from two frames</p>
+</div>
+<div aria-label="Reference frame" id="frameToggle" role="tablist">
+<button class="frame-btn active" id="btnPlatform" role="tab">Platform view</button>
+<button class="frame-btn" id="btnTrain" role="tab">On the train</button>
+</div>
+<button class="chip" id="btnPause">Pause</button>
+</header>
+<aside id="controls">
+<section class="block">
+<div class="label">Train speed</div>
+<div id="betaRow"><span id="betaValue">0.700</span><span class="unit">c</span></div>
+<input aria-label="Train speed in percent of c" id="speedSlider" max="99.9" min="0" step="0.1" type="range" value="70"/>
+<div id="presets">
+<button data-beta="0.5">0.5c</button>
+<button data-beta="0.866">0.866c</button>
+<button data-beta="0.99">0.99c</button>
+</div>
+</section>
+<section class="block">
+<dl id="readouts">
+<div><dt>Lorentz factor γ</dt><dd id="roGamma">1.400</dd></div>
+<div><dt>Speed</dt><dd id="roSpeed">0.755 billion km/h</dd></div>
+<div><dt id="roLengthLabel">Train length here</dt><dd id="roLength">57.1 m of 80 m</dd></div>
+<div><dt id="roRateLabel">Train clock ticks at</dt><dd id="roRate">71.4%</dd></div>
+</dl>
+</section>
+<section class="block">
+<div class="label">Elapsed time <button class="mini" id="btnReset">Reset</button></div>
+<div class="clockrow"><span class="who">Platform</span><span class="tval" id="clockPlatform">0.00 s</span></div>
+<div class="clockrow"><span class="who accent">Train clock</span><span class="tval accent" id="clockTrain">0.00 s</span><span class="ticks" id="ticksTrain">0 ticks</span></div>
+</section>
+<section class="block">
+<p id="explain"></p>
+</section>
+<div id="keys"><kbd>F</kbd> switch frame <kbd>Space</kbd> pause <kbd>R</kbd> reset</div>
+</aside>
+<script src="js/main.js" type="module"></script>
+</body>
+</html>

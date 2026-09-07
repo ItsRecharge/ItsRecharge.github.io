@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4htg.ngvZBrD65BHHYpHA9Ev48V8LleY" name="csrf-token"/>
+<title>Dashboard - Instrument Asset Tracking</title>
+<link href="../assets/bootstrap.min-3dcdb3f27208.css" rel="stylesheet"/>
+<link href="../assets/all.min-b9c2a0a1cf43.css" rel="stylesheet"/>
+<link href="../assets/style-5f7e0fa61ef4.css" rel="stylesheet"/>
+<link href="../../_shared/demo.css" rel="stylesheet"/></head>
+<body><div id="nb-demo-banner"><span class="nb-tag">Static demo</span><span class="nb-msg"><b>Instrument Asset Tracking</b> — test site with fake data and no backend. Forms won’t submit; click around to explore.</span><span class="nb-links"><a class="" href="../public/">Public pages</a><a class="nb-active" href="../admin/dashboard/">Admin portal</a><a class="nb-home" href="../../../">← Portfolio</a></span></div>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<a class="sidebar-brand" href="../admin/">
+                Instrument Asset Tracking
+            </a>
+<div class="sidebar-subtitle">Admin</div>
+</div>
+<div class="sidebar-menu">
+<a class="sidebar-menu-item" href="../admin/">
+<i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+</a>
+<a class="sidebar-menu-item" href="../admin/instruments/">
+<i class="fas fa-list"></i> <span>Instruments</span>
+</a>
+<a class="sidebar-menu-item" href="../admin/add-instrument/">
+<i class="fas fa-plus-circle"></i> <span>Add Instrument</span>
+</a>
+<a class="sidebar-menu-item" href="../admin/check-in/">
+<i class="fas fa-sign-in-alt"></i> <span>Check In</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-clipboard-check"></i> <span>Requests</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-hand-holding"></i> <span>Manual Checkout</span>
+</a>
+</div>
+<div class="sidebar-footer">
+<i class="fas fa-code"></i> Developed by Neel Bansal
+        </div>
+</div>
+<!-- Top Bar -->
+<div class="top-bar">
+<!-- User Menu -->
+<div class="user-menu-wrapper">
+<button aria-label="Open user menu" class="user-menu-toggle" id="userMenuToggle">
+<i class="fas fa-user"></i>
+</button>
+<div class="user-menu-dropdown" id="userMenuDropdown">
+<a class="user-menu-item" href="../admin/settings/">
+<i class="fas fa-cog"></i> Settings
+                </a>
+<a class="user-menu-item" href="../admin/users/">
+<i class="fas fa-users"></i> Users
+                </a>
+<a class="user-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-terminal"></i> Shell
+                </a>
+<a class="user-menu-item" href="../public/" rel="noopener" target="_blank">
+<i class="fas fa-external-link-alt"></i> Public Site
+                </a>
+<a class="user-menu-item danger" data-demo-dead="1" href="#">
+<i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+</div>
+</div>
+</div>
+<!-- Mobile Sidebar Backdrop -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle">
+<i class="fas fa-bars"></i>
+</button>
+<!-- Main Content -->
+<div class="main-content reveal-in">
+<div class="container-fluid">
+<!-- Welcome Section -->
+<div class="row mb-4">
+<div class="col-12">
+<div class="welcome-card">
+<h2 class="welcome-title">
+<i class="fas fa-tachometer-alt"></i> Welcome back, Admin User!
+                </h2>
+<p class="welcome-subtitle">Here's an overview of your instrument inventory</p>
+</div>
+</div>
+</div>
+<!-- Quick Stats -->
+<div class="row mb-4">
+<div class="col-md-3">
+<div class="stat-card stat-primary">
+<div class="stat-icon">
+<i class="fas fa-guitar"></i>
+</div>
+<div class="stat-details">
+<h3 class="stat-number" id="totalInstruments">22</h3>
+<p class="stat-label">Total Instruments</p>
+</div>
+</div>
+</div>
+<div class="col-md-3">
+<div class="stat-card stat-success">
+<div class="stat-icon">
+<i class="fas fa-check-circle"></i>
+</div>
+<div class="stat-details">
+<h3 class="stat-number" id="availableInstruments">7</h3>
+<p class="stat-label">Available</p>
+</div>
+</div>
+</div>
+<div class="col-md-3">
+<div class="stat-card stat-danger">
+<div class="stat-icon">
+<i class="fas fa-times-circle"></i>
+</div>
+<div class="stat-details">
+<h3 class="stat-number" id="checkedOutInstruments">15</h3>
+<p class="stat-label">Checked Out</p>
+</div>
+</div>
+</div>
+<div class="col-md-3">
+<div class="stat-card stat-warning">
+<div class="stat-icon">
+<i class="fas fa-clipboard-list"></i>
+</div>
+<div class="stat-details">
+<h3 class="stat-number" id="pendingRequests">0</h3>
+<p class="stat-label">Pending Requests</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="row mb-4">
+<div class="col-12">
+<div class="quick-actions-card">
+<h4 class="section-title"><i class="fas fa-bolt"></i> Quick Actions</h4>
+<div class="row mt-3">
+<div class="col-md-3 mb-3">
+<a class="action-btn action-primary" href="../admin/add-instrument/">
+<i class="fas fa-plus-circle"></i>
+<span>Add Instrument</span>
+</a>
+</div>
+<div class="col-md-3 mb-3">
+<a class="action-btn action-info" href="../admin/instruments/">
+<i class="fas fa-list"></i>
+<span>View Instruments</span>
+</a>
+</div>
+<div class="col-md-3 mb-3">
+<a class="action-btn action-warning" data-demo-dead="1" href="#">
+<i class="fas fa-clipboard-check"></i>
+<span>Checkout Requests</span>
+</a>
+</div>
+<div class="col-md-3 mb-3">
+<a class="action-btn action-secondary" href="../admin/settings/">
+<i class="fas fa-cog"></i>
+<span>Settings</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Storage Management Section (if enabled) -->
+<!-- Recent Activity (Placeholder) -->
+<div class="row">
+<div class="col-md-8">
+<div class="activity-card">
+<h4 class="section-title"><i class="fas fa-history"></i> Recent Activity</h4>
+<div class="activity-list">
+<p class="text-muted text-center py-4">Activity tracking coming soon...</p>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="activity-card">
+<h4 class="section-title"><i class="fas fa-info-circle"></i> System Info</h4>
+<div class="system-info">
+<div class="info-item">
+<span class="info-label">Google Sheets:</span>
+<span class="info-value text-danger">
+                            Disabled
+                        </span>
+</div>
+<div class="info-item">
+<span class="info-label">Email Notifications:</span>
+<span class="info-value text-danger">
+                            Disabled
+                        </span>
+</div>
+<div class="info-item">
+<span class="info-label">Rate Limiting:</span>
+<span class="info-value text-success">
+                            Enabled
+                        </span>
+</div>
+<div class="info-item">
+<span class="info-label">Input Validation:</span>
+<span class="info-value text-success">
+                            Enabled
+                        </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<!-- Modals rendered here, outside .main-content, so the reveal-in transform
+         stacking context cannot trap their z-index below the Bootstrap backdrop -->
+
+
+
+
+<script defer="" src="../../_shared/demo.js"></script></body></html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4hsQ.i6Qaxram3FGKG7qggsUgAfaFg7o" name="csrf-token"/>
+<title>Add Instrument</title>
+<link href="../../assets/bootstrap.min-3dcdb3f27208.css" rel="stylesheet"/>
+<link href="../../assets/all.min-b9c2a0a1cf43.css" rel="stylesheet"/>
+<link href="../../assets/style-5f7e0fa61ef4.css" rel="stylesheet"/>
+<link href="../../../_shared/demo.css" rel="stylesheet"/></head>
+<body><div id="nb-demo-banner"><span class="nb-tag">Static demo</span><span class="nb-msg"><b>Instrument Asset Tracking</b> — test site with fake data and no backend. Forms won’t submit; click around to explore.</span><span class="nb-links"><a class="" href="../../public/">Public pages</a><a class="nb-active" href="../../admin/dashboard/">Admin portal</a><a class="nb-home" href="../../../../">← Portfolio</a></span></div>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<a class="sidebar-brand" href="../../admin/">
+                Instrument Asset Tracking
+            </a>
+<div class="sidebar-subtitle">Admin</div>
+</div>
+<div class="sidebar-menu">
+<a class="sidebar-menu-item" href="../../admin/">
+<i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+</a>
+<a class="sidebar-menu-item" href="../../admin/instruments/">
+<i class="fas fa-list"></i> <span>Instruments</span>
+</a>
+<a class="sidebar-menu-item active" href="../../admin/add-instrument/">
+<i class="fas fa-plus-circle"></i> <span>Add Instrument</span>
+</a>
+<a class="sidebar-menu-item" href="../../admin/check-in/">
+<i class="fas fa-sign-in-alt"></i> <span>Check In</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-clipboard-check"></i> <span>Requests</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-hand-holding"></i> <span>Manual Checkout</span>
+</a>
+</div>
+<div class="sidebar-footer">
+<i class="fas fa-code"></i> Developed by Neel Bansal
+        </div>
+</div>
+<!-- Top Bar -->
+<div class="top-bar">
+<!-- User Menu -->
+<div class="user-menu-wrapper">
+<button aria-label="Open user menu" class="user-menu-toggle" id="userMenuToggle">
+<i class="fas fa-user"></i>
+</button>
+<div class="user-menu-dropdown" id="userMenuDropdown">
+<a class="user-menu-item" href="../../admin/settings/">
+<i class="fas fa-cog"></i> Settings
+                </a>
+<a class="user-menu-item" href="../../admin/users/">
+<i class="fas fa-users"></i> Users
+                </a>
+<a class="user-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-terminal"></i> Shell
+                </a>
+<a class="user-menu-item" href="../../public/" rel="noopener" target="_blank">
+<i class="fas fa-external-link-alt"></i> Public Site
+                </a>
+<a class="user-menu-item danger" data-demo-dead="1" href="#">
+<i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+</div>
+</div>
+</div>
+<!-- Mobile Sidebar Backdrop -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle">
+<i class="fas fa-bars"></i>
+</button>
+<!-- Main Content -->
+<div class="main-content reveal-in">
+<div class="card mx-auto" style="max-width: 600px;">
+<div class="card-body">
+<h3 class="card-title text-center">Add a New Instrument</h3>
+<form action="/add_instrument" enctype="multipart/form-data" method="POST">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4hsQ.i6Qaxram3FGKG7qggsUgAfaFg7o"/>
+<!-- Brand -->
+<div class="form-group">
+<label for="brand">Brand</label>
+<select class="form-control" id="brand" name="brand">
+<option disabled="" selected="">Choose a brand...</option>
+<option value="Bach">Bach</option>
+<option value="Buffet">Buffet</option>
+<option value="Conn">Conn</option>
+<option value="Fox">Fox</option>
+<option value="Gemeinhardt">Gemeinhardt</option>
+<option value="Getzen">Getzen</option>
+<option value="Jupiter">Jupiter</option>
+<option value="King">King</option>
+<option value="Ludwig">Ludwig</option>
+<option value="Pearl">Pearl</option>
+<option value="Selmer">Selmer</option>
+<option value="Yamaha">Yamaha</option>
+<option value="Add new...">Add new...</option>
+</select>
+<input class="form-control mt-2" id="new_brand" name="new_brand" placeholder="Enter new brand" style="display: none;" type="text"/>
+</div>
+<!-- Instrument Type -->
+<div class="form-group">
+<label for="instrument_type">Instrument Type</label>
+<select class="form-control" id="instrument_type" name="instrument_type">
+<option disabled="" selected="">Choose an instrument type...</option>
+<option value="Alto Saxophone">Alto Saxophone</option>
+<option value="Baritone">Baritone</option>
+<option value="Bass Clarinet">Bass Clarinet</option>
+<option value="Bass Drum">Bass Drum</option>
+<option value="Bassoon">Bassoon</option>
+<option value="Clarinet">Clarinet</option>
+<option value="Flute">Flute</option>
+<option value="French Horn">French Horn</option>
+<option value="Mellophone">Mellophone</option>
+<option value="Oboe">Oboe</option>
+<option value="Snare Drum">Snare Drum</option>
+<option value="Sousaphone">Sousaphone</option>
+<option value="Tenor Saxophone">Tenor Saxophone</option>
+<option value="Trombone">Trombone</option>
+<option value="Trumpet">Trumpet</option>
+<option value="Tuba">Tuba</option>
+<option value="Add new...">Add new...</option>
+</select>
+<input class="form-control mt-2" id="new_instrument_type" name="new_instrument_type" placeholder="Enter new instrument type" style="display: none;" type="text"/>
+</div>
+<!-- Serial Number -->
+<div class="form-group">
+<label for="serial_number">Serial Number</label>
+<input class="form-control" id="serial_number" maxlength="100" name="serial_number" required="" type="text" value=""/>
+<small class="form-text text-muted">Maximum 100 characters</small>
+</div>
+<!-- UUID (from barcode, scanned or typed) -->
+<div class="form-group">
+<label for="uuid">UUID (from barcode, scanned or typed)</label>
+<input class="form-control" id="uuid" maxlength="100" name="uuid" placeholder="Scan or type the UUID here" required="" type="text" value=""/>
+<small class="form-text text-muted">Maximum 100 characters. Allowed: letters, numbers, hyphens, underscores, dots, slashes, colons</small>
+</div>
+<!-- Condition -->
+<div class="form-group">
+<label for="condition">Condition</label>
+<select class="form-control" id="condition" name="condition">
+<option disabled="" selected="">Choose a condition...</option>
+<option value="Excellent">Excellent</option>
+<option value="Fair">Fair</option>
+<option value="Good">Good</option>
+<option value="Poor">Poor</option>
+<option value="Add new...">Add new...</option>
+</select>
+<input class="form-control mt-2" id="new_condition" name="new_condition" placeholder="Enter new condition" style="display: none;" type="text"/>
+</div>
+<!-- Images -->
+<div class="form-group">
+<label for="images">Upload Images <span class="text-muted">(Optional)</span></label>
+<input accept="image/*" class="form-control" id="images" multiple="" name="images" type="file"/>
+<small class="form-text text-muted">You can add images later if needed. Max 15MB per image. Supported: PNG, JPG, JPEG, GIF</small>
+</div>
+<!-- Checked Out -->
+<div class="form-check">
+<input class="form-check-input" id="checked_out" name="checked_out" type="checkbox"/>
+<label class="form-check-label" for="checked_out">Checked Out</label>
+</div>
+<!-- Location (if not checked out) -->
+<div class="form-group" id="location_group" style="display: block;">
+<label for="location">Location <span class="text-muted">(Optional)</span></label>
+<input class="form-control" id="location" name="location" placeholder="Storage location if known" type="text"/>
+</div>
+<!-- Student Details (if checked out) -->
+<div id="student_details" style="display: none;">
+<div class="form-group">
+<label for="student_name">Student Name</label>
+<input class="form-control" id="student_name" name="student_name" type="text"/>
+</div>
+<div class="form-group">
+<label for="grad_year">Year of Graduation <span class="text-muted">(Optional)</span></label>
+<input class="form-control" id="grad_year" name="grad_year" placeholder="e.g., 2026" type="text"/>
+</div>
+<div class="form-group">
+<label for="student_id">Student ID <span class="text-muted">(Optional)</span></label>
+<input class="form-control" id="student_id" name="student_id" placeholder="Student identifier" type="text"/>
+</div>
+</div>
+<!-- Miscellaneous Notes -->
+<div class="form-group">
+<label for="notes">Miscellaneous Notes</label>
+<textarea class="form-control" id="notes" maxlength="1000" name="notes" rows="3"></textarea>
+<small class="form-text text-muted"><span id="notes-count">0</span>/1000 characters</small>
+</div>
+<!-- School Level -->
+<div class="form-check mb-3">
+<input class="form-check-input" id="middle_school" name="middle_school" type="checkbox"/>
+<label class="form-check-label" for="middle_school">Middle School instrument (leave unchecked for High School)</label>
+</div>
+<div class="d-flex justify-content-between">
+<!-- Add Instrument Button -->
+<button class="btn btn-success" type="submit">Add Instrument</button>
+<!-- Go Home Button -->
+<a class="btn btn-secondary" href="../../admin/dashboard/">Go Home</a>
+</div>
+</form>
+</div>
+</div>
+<!-- JavaScript for handling dynamic form elements -->
+
+</div>
+<!-- Modals rendered here, outside .main-content, so the reveal-in transform
+         stacking context cannot trap their z-index below the Bootstrap backdrop -->
+
+
+
+
+<script defer="" src="../../../_shared/demo.js"></script></body></html>

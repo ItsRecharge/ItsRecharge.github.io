@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4hsw.i2qw4ESmpJUKOrLo_ihXuI2aVrI" name="csrf-token"/>
+<title>User Management</title>
+<link href="../../assets/bootstrap.min-3dcdb3f27208.css" rel="stylesheet"/>
+<link href="../../assets/all.min-b9c2a0a1cf43.css" rel="stylesheet"/>
+<link href="../../assets/style-5f7e0fa61ef4.css" rel="stylesheet"/>
+<link href="../../../_shared/demo.css" rel="stylesheet"/></head>
+<body><div id="nb-demo-banner"><span class="nb-tag">Static demo</span><span class="nb-msg"><b>Instrument Asset Tracking</b> — test site with fake data and no backend. Forms won’t submit; click around to explore.</span><span class="nb-links"><a class="" href="../../public/">Public pages</a><a class="nb-active" href="../../admin/dashboard/">Admin portal</a><a class="nb-home" href="../../../../">← Portfolio</a></span></div>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<a class="sidebar-brand" href="../../admin/">
+                Instrument Asset Tracking
+            </a>
+<div class="sidebar-subtitle">Admin</div>
+</div>
+<div class="sidebar-menu">
+<a class="sidebar-menu-item" href="../../admin/">
+<i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+</a>
+<a class="sidebar-menu-item" href="../../admin/instruments/">
+<i class="fas fa-list"></i> <span>Instruments</span>
+</a>
+<a class="sidebar-menu-item" href="../../admin/add-instrument/">
+<i class="fas fa-plus-circle"></i> <span>Add Instrument</span>
+</a>
+<a class="sidebar-menu-item" href="../../admin/check-in/">
+<i class="fas fa-sign-in-alt"></i> <span>Check In</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-clipboard-check"></i> <span>Requests</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-hand-holding"></i> <span>Manual Checkout</span>
+</a>
+</div>
+<div class="sidebar-footer">
+<i class="fas fa-code"></i> Developed by Neel Bansal
+        </div>
+</div>
+<!-- Top Bar -->
+<div class="top-bar">
+<!-- User Menu -->
+<div class="user-menu-wrapper">
+<button aria-label="Open user menu" class="user-menu-toggle" id="userMenuToggle">
+<i class="fas fa-user"></i>
+</button>
+<div class="user-menu-dropdown" id="userMenuDropdown">
+<a class="user-menu-item" href="../../admin/settings/">
+<i class="fas fa-cog"></i> Settings
+                </a>
+<a class="user-menu-item" href="../../admin/users/">
+<i class="fas fa-users"></i> Users
+                </a>
+<a class="user-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-terminal"></i> Shell
+                </a>
+<a class="user-menu-item" href="../../public/" rel="noopener" target="_blank">
+<i class="fas fa-external-link-alt"></i> Public Site
+                </a>
+<a class="user-menu-item danger" data-demo-dead="1" href="#">
+<i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+</div>
+</div>
+</div>
+<!-- Mobile Sidebar Backdrop -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle">
+<i class="fas fa-bars"></i>
+</button>
+<!-- Main Content -->
+<div class="main-content reveal-in">
+<div class="container-fluid">
+<div class="d-flex align-items-center mb-3">
+<h2 class="mb-0 me-3"><i class="fas fa-users"></i> User Management</h2>
+<span class="text-muted">Logged in as <strong>Admin User</strong></span>
+</div>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+        Welcome back, Admin User!
+        <button class="close" data-dismiss="alert" type="button"><span>×</span></button>
+</div>
+<!-- ── User List ─────────────────────────────────────────────────────── -->
+<div class="card user-card shadow-sm">
+<div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+<span><i class="fas fa-list"></i> All Users (2 regular + 1 admin)</span>
+<button class="btn btn-light btn-sm">
+<i class="fas fa-plus"></i> Add User
+      </button>
+</div>
+<div class="card-body">
+<!-- Add User inline form -->
+<div class="border rounded p-3 mb-3 bg-light" id="addUserForm">
+<h6 class="font-weight-bold mb-3"><i class="fas fa-user-plus"></i> Add User Directly</h6>
+<form action="/admin/users/add" data-demo-href="../../admin/dashboard/" method="POST">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4hsw.i2qw4ESmpJUKOrLo_ihXuI2aVrI"/>
+<div class="form-row">
+<div class="form-group col-md-3">
+<label>First Name</label>
+<input class="form-control" name="first_name" placeholder="Jane" required="" type="text"/>
+</div>
+<div class="form-group col-md-3">
+<label>Last Name</label>
+<input class="form-control" name="last_name" placeholder="Smith" required="" type="text"/>
+</div>
+<div class="form-group col-md-3">
+<label>Email</label>
+<input class="form-control" name="email" placeholder="jane@example.com" required="" type="email"/>
+</div>
+<div class="form-group col-md-3">
+<label>Password</label>
+<input class="form-control" name="password" placeholder="Minimum 8 characters" required="" type="password"/>
+</div>
+</div>
+<button class="btn btn-success btn-sm" type="submit">Add User</button>
+<button class="btn btn-secondary btn-sm ml-2" type="button">Cancel</button>
+</form>
+</div>
+<!-- User table -->
+<div class="table-responsive">
+<table class="table table-striped table-hover table-sm w-100" id="usersTable">
+<thead class="thead-dark">
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Role</th>
+<th>Email Notifications</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<!-- Admin row (always present, cannot be deleted) -->
+<tr>
+<td><i class="fas fa-shield-alt text-warning mr-1"></i> Admin</td>
+<td>admin@demo.local</td>
+<td><span class="badge badge-role-admin">admin</span></td>
+<td>—</td>
+<td><span class="text-muted small">system account</span></td>
+</tr>
+<tr>
+<td>Alex Morgan</td>
+<td>alex.morgan@demo.local</td>
+<td>
+<span class="badge badge-role-user">
+                  user
+                </span>
+</td>
+<td>No</td>
+<td>
+<button class="btn btn-danger btn-sm">
+<i class="fas fa-trash-alt"></i>
+</button>
+</td>
+</tr>
+<tr>
+<td>Priya Shah</td>
+<td>priya.shah@demo.local</td>
+<td>
+<span class="badge badge-role-user">
+                  user
+                </span>
+</td>
+<td>No</td>
+<td>
+<button class="btn btn-danger btn-sm">
+<i class="fas fa-trash-alt"></i>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- ── Invite via Email ───────────────────────────────────────────────── -->
+<div class="card user-card shadow-sm">
+<div class="card-header bg-success text-white">
+<i class="fas fa-envelope"></i> Invite Someone via Email
+    </div>
+<div class="card-body">
+<p class="text-muted mb-3">
+        Enter an email address to generate a one-time signup link and send it directly.
+        Leave the email field blank to just generate a link you can share manually.
+      </p>
+<form action="/admin/users/invite" method="POST">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4hsw.i2qw4ESmpJUKOrLo_ihXuI2aVrI"/>
+<div class="form-row align-items-end">
+<div class="form-group col-md-6 mb-0">
+<label for="inviteEmail">Recipient Email (optional)</label>
+<input class="form-control" id="inviteEmail" name="invite_email" placeholder="student@school.edu" type="email"/>
+</div>
+<div class="col-md-auto">
+<button class="btn btn-success" type="submit">
+<i class="fas fa-paper-plane"></i>
+              Generate Invite Link
+            </button>
+</div>
+</div>
+<small class="text-warning mt-1 d-block">
+<i class="fas fa-exclamation-triangle"></i>
+          Email is not enabled — a link will be generated for manual sharing.
+        </small>
+</form>
+</div>
+</div>
+<!-- ── Active Signup Codes ────────────────────────────────────────────── -->
+<div class="card user-card shadow-sm">
+<div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+<span><i class="fas fa-key"></i> Active Invite Codes</span>
+<form action="/generate_signup_code" class="mb-0" method="POST">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4hsw.i2qw4ESmpJUKOrLo_ihXuI2aVrI"/>
+<button class="btn btn-light btn-sm" type="submit">+ Generate Code Only</button>
+</form>
+</div>
+<div class="card-body">
+<p class="text-muted mb-0">No active codes. Use the Invite form above or click "Generate Code Only".</p>
+</div>
+</div>
+</div>
+<!-- Delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header bg-danger text-white">
+<h5 class="modal-title"><i class="fas fa-exclamation-triangle"></i> Remove User</h5>
+<button class="close text-white" data-dismiss="modal" type="button"><span>×</span></button>
+</div>
+<div class="modal-body">
+<p>Remove <strong id="deleteUserName"></strong> (<span id="deleteUserEmail"></span>)?</p>
+<p class="text-muted small">This removes login access. Existing checkout records are not affected.</p>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+<form action="/admin/users/delete" class="mb-0" method="POST">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4hsw.i2qw4ESmpJUKOrLo_ihXuI2aVrI"/>
+<input id="deleteEmailInput" name="email" type="hidden"/>
+<button class="btn btn-danger" type="submit">Remove</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+<!-- Modals rendered here, outside .main-content, so the reveal-in transform
+         stacking context cannot trap their z-index below the Bootstrap backdrop -->
+
+
+
+
+<script defer="" src="../../../_shared/demo.js"></script></body></html>

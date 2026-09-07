@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Instrument Catalog - Instrument Asset Tracking</title>
+<link href="../../assets/bootstrap.min-3dcdb3f27208.css" rel="stylesheet"/>
+<link href="../../assets/all.min-b9c2a0a1cf43.css" rel="stylesheet"/>
+<link href="../../assets/style-5f7e0fa61ef4.css" rel="stylesheet"/>
+<link href="../../../_shared/demo.css" rel="stylesheet"/></head>
+<body class="public-page"><div id="nb-demo-banner"><span class="nb-tag">Static demo</span><span class="nb-msg"><b>Instrument Asset Tracking</b> — test site with fake data and no backend. Forms won’t submit; click around to explore.</span><span class="nb-links"><a class="nb-active" href="../../public/">Public pages</a><a class="" href="../../admin/dashboard/">Admin portal</a><a class="nb-home" href="../../../../">← Portfolio</a></span></div>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light">
+<div class="container-fluid">
+<a class="navbar-brand" href="../../public/">
+<i class="fas fa-music"></i> Instrument Asset Tracking
+                
+            </a>
+<button class="navbar-toggler" data-target="#navbarNav" data-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ml-auto">
+<li class="nav-item">
+<a class="nav-link" href="../../public/"><i class="fas fa-home"></i> Home</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../public/features/"><i class="fas fa-star"></i> Features</a>
+</li>
+<li class="nav-item active">
+<a class="nav-link" href="../../public/catalog/"><i class="fas fa-guitar"></i> Catalog</a>
+</li>
+<li class="nav-item">
+<a class="btn btn-admin-login ml-lg-3 mt-2 mt-lg-0" href="../../public/login/">
+<i class="fas fa-lock"></i> Admin
+                        </a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<main class="container reveal-in mt-4 mb-5">
+<section class="public-section">
+<h1 class="section-title mb-2"><i class="fas fa-guitar"></i> Instrument Catalog</h1>
+<p class="section-subtitle mb-0">Browse current inventory and quickly filter by type, status, or UUID.</p>
+</section>
+<section class="catalog-controls mt-3">
+<div class="row">
+<div class="col-md-5 mb-3 mb-md-0">
+<label for="searchInput"><i class="fas fa-search"></i> Search</label>
+<input class="form-control" id="searchInput" placeholder="UUID, brand, or instrument type" type="text"/>
+</div>
+<div class="col-md-3 mb-3 mb-md-0">
+<label for="typeFilter"><i class="fas fa-filter"></i> Type</label>
+<select class="form-control" id="typeFilter">
+<option value="">All Types</option>
+<option value="Alto Saxophone">Alto Saxophone</option>
+<option value="Baritone">Baritone</option>
+<option value="Bass Clarinet">Bass Clarinet</option>
+<option value="Bass Drum">Bass Drum</option>
+<option value="Bassoon">Bassoon</option>
+<option value="Clarinet">Clarinet</option>
+<option value="Flute">Flute</option>
+<option value="French Horn">French Horn</option>
+<option value="Mellophone">Mellophone</option>
+<option value="Oboe">Oboe</option>
+<option value="Snare Drum">Snare Drum</option>
+<option value="Sousaphone">Sousaphone</option>
+<option value="Tenor Saxophone">Tenor Saxophone</option>
+<option value="Trombone">Trombone</option>
+<option value="Trumpet">Trumpet</option>
+<option value="Tuba">Tuba</option>
+</select>
+</div>
+<div class="col-md-2 mb-3 mb-md-0">
+<label for="statusFilter"><i class="fas fa-check-circle"></i> Status</label>
+<select class="form-control" id="statusFilter">
+<option value="">All</option>
+<option value="available">Available</option>
+<option value="checked_out">Checked Out</option>
+</select>
+</div>
+<div class="col-md-2 d-flex align-items-end">
+<button class="btn btn-outline-primary btn-block" id="clearFilters">
+<i class="fas fa-redo"></i> Reset
+                    </button>
+</div>
+</div>
+</section>
+<div class="catalog-count mt-3 mb-2">
+<i class="fas fa-info-circle"></i> Showing <strong id="resultsCount">22</strong> of <strong>22</strong> instruments
+        </div>
+<div class="catalog-table">
+<div class="table-responsive" style="border-radius: inherit;">
+<table class="table table-hover" id="catalogTable">
+<thead>
+<tr>
+<th><i class="fas fa-barcode"></i> UUID</th>
+<th><i class="fas fa-tag"></i> Brand</th>
+<th><i class="fas fa-music"></i> Type</th>
+<th><i class="fas fa-star"></i> Condition</th>
+<th><i class="fas fa-check-circle"></i> Status</th>
+</tr>
+</thead>
+<tbody id="catalogBody">
+<tr data-brand="yamaha" data-status="checked_out" data-type="flute" data-uuid="10bfe7b9">
+<td class="instrument-uuid">10BFE7B9</td>
+<td><strong>Yamaha</strong></td>
+<td>Flute</td>
+<td><span class="badge badge-info">Excellent</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+<tr data-brand="gemeinhardt" data-status="checked_out" data-type="flute" data-uuid="8950aebb">
+<td class="instrument-uuid">8950AEBB</td>
+<td><strong>Gemeinhardt</strong></td>
+<td>Flute</td>
+<td><span class="badge badge-info">Good</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+<tr data-brand="buffet" data-status="available" data-type="clarinet" data-uuid="6cb22feb">
+<td class="instrument-uuid">6CB22FEB</td>
+<td><strong>Buffet</strong></td>
+<td>Clarinet</td>
+<td><span class="badge badge-info">Good</span></td>
+<td>
+<span class="badge-available">
+<i class="fas fa-check"></i> Available
+                                    </span>
+</td>
+</tr>
+<tr data-brand="yamaha" data-status="checked_out" data-type="clarinet" data-uuid="7c2c14b1">
+<td class="instrument-uuid">7C2C14B1</td>
+<td><strong>Yamaha</strong></td>
+<td>Clarinet</td>
+<td><span class="badge badge-info">Fair</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+<tr data-brand="selmer" data-status="checked_out" data-type="alto saxophone" data-uuid="eb72bb8a">
+<td class="instrument-uuid">EB72BB8A</td>
+<td><strong>Selmer</strong></td>
+<td>Alto Saxophone</td>
+<td><span class="badge badge-info">Excellent</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+<tr data-brand="yamaha" data-status="available" data-type="alto saxophone" data-uuid="7cde2557">
+<td class="instrument-uuid">7CDE2557</td>
+<td><strong>Yamaha</strong></td>
+<td>Alto Saxophone</td>
+<td><span class="badge badge-info">Good</span></td>
+<td>
+<span class="badge-available">
+<i class="fas fa-check"></i> Available
+                                    </span>
+</td>
+</tr>
+<tr data-brand="yamaha" data-status="checked_out" data-type="tenor saxophone" data-uuid="b6cfa65b">
+<td class="instrument-uuid">B6CFA65B</td>
+<td><strong>Yamaha</strong></td>
+<td>Tenor Saxophone</td>
+<td><span class="badge badge-info">Fair</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+<tr data-brand="bach" data-status="checked_out" data-type="trumpet" data-uuid="12f225c3">
+<td class="instrument-uuid">12F225C3</td>
+<td><strong>Bach</strong></td>
+<td>Trumpet</td>
+<td><span class="badge badge-info">Excellent</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+<tr data-brand="yamaha" data-status="available" data-type="trumpet" data-uuid="5a8cd288">
+<td class="instrument-uuid">5A8CD288</td>
+<td><strong>Yamaha</strong></td>
+<td>Trumpet</td>
+<td><span class="badge badge-info">Good</span></td>
+<td>
+<span class="badge-available">
+<i class="fas fa-check"></i> Available
+                                    </span>
+</td>
+</tr>
+<tr data-brand="getzen" data-status="checked_out" data-type="trumpet" data-uuid="be83a905">
+<td class="instrument-uuid">BE83A905</td>
+<td><strong>Getzen</strong></td>
+<td>Trumpet</td>
+<td><span class="badge badge-info">Poor</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+<tr data-brand="conn" data-status="checked_out" data-type="french horn" data-uuid="b98c91f2">
+<td class="instrument-uuid">B98C91F2</td>
+<td><strong>Conn</strong></td>
+<td>French Horn</td>
+<td><span class="badge badge-info">Good</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+<tr data-brand="yamaha" data-status="available" data-type="mellophone" data-uuid="093fe706">
+<td class="instrument-uuid">093FE706</td>
+<td><strong>Yamaha</strong></td>
+<td>Mellophone</td>
+<td><span class="badge badge-info">Good</span></td>
+<td>
+<span class="badge-available">
+<i class="fas fa-check"></i> Available
+                                    </span>
+</td>
+</tr>
+<tr data-brand="bach" data-status="checked_out" data-type="trombone" data-uuid="b3326f6f">
+<td class="instrument-uuid">B3326F6F</td>
+<td><strong>Bach</strong></td>
+<td>Trombone</td>
+<td><span class="badge badge-info">Excellent</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+<tr data-brand="king" data-status="checked_out" data-type="trombone" data-uuid="ce29e439">
+<td class="instrument-uuid">CE29E439</td>
+<td><strong>King</strong></td>
+<td>Trombone</td>
+<td><span class="badge badge-info">Fair</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+<tr data-brand="yamaha" data-status="available" data-type="baritone" data-uuid="a5b22402">
+<td class="instrument-uuid">A5B22402</td>
+<td><strong>Yamaha</strong></td>
+<td>Baritone</td>
+<td><span class="badge badge-info">Good</span></td>
+<td>
+<span class="badge-available">
+<i class="fas fa-check"></i> Available
+                                    </span>
+</td>
+</tr>
+<tr data-brand="jupiter" data-status="checked_out" data-type="tuba" data-uuid="daeafd15">
+<td class="instrument-uuid">DAEAFD15</td>
+<td><strong>Jupiter</strong></td>
+<td>Tuba</td>
+<td><span class="badge badge-info">Good</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+<tr data-brand="yamaha" data-status="checked_out" data-type="sousaphone" data-uuid="a157acee">
+<td class="instrument-uuid">A157ACEE</td>
+<td><strong>Yamaha</strong></td>
+<td>Sousaphone</td>
+<td><span class="badge badge-info">Fair</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+<tr data-brand="pearl" data-status="available" data-type="snare drum" data-uuid="5aec57f2">
+<td class="instrument-uuid">5AEC57F2</td>
+<td><strong>Pearl</strong></td>
+<td>Snare Drum</td>
+<td><span class="badge badge-info">Excellent</span></td>
+<td>
+<span class="badge-available">
+<i class="fas fa-check"></i> Available
+                                    </span>
+</td>
+</tr>
+<tr data-brand="ludwig" data-status="checked_out" data-type="bass drum" data-uuid="611bd1fc">
+<td class="instrument-uuid">611BD1FC</td>
+<td><strong>Ludwig</strong></td>
+<td>Bass Drum</td>
+<td><span class="badge badge-info">Good</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+<tr data-brand="fox" data-status="checked_out" data-type="bassoon" data-uuid="5fab9583">
+<td class="instrument-uuid">5FAB9583</td>
+<td><strong>Fox</strong></td>
+<td>Bassoon</td>
+<td><span class="badge badge-info">Excellent</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+<tr data-brand="yamaha" data-status="available" data-type="oboe" data-uuid="8936b241">
+<td class="instrument-uuid">8936B241</td>
+<td><strong>Yamaha</strong></td>
+<td>Oboe</td>
+<td><span class="badge badge-info">Good</span></td>
+<td>
+<span class="badge-available">
+<i class="fas fa-check"></i> Available
+                                    </span>
+</td>
+</tr>
+<tr data-brand="selmer" data-status="checked_out" data-type="bass clarinet" data-uuid="d98414bf">
+<td class="instrument-uuid">D98414BF</td>
+<td><strong>Selmer</strong></td>
+<td>Bass Clarinet</td>
+<td><span class="badge badge-info">Fair</span></td>
+<td>
+<span class="badge-checked-out">
+<i class="fas fa-lock"></i> Checked Out
+                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="catalog-table" id="noResults" style="display: none;">
+<div class="empty-state">
+<i class="fas fa-search"></i>
+<h4>No matching instruments</h4>
+<p>Try adjusting your search or filters.</p>
+</div>
+</div>
+</main>
+
+
+
+<footer class="public-footer py-4 text-center">
+<div class="container">
+<p class="mb-0">© 2026 Neel Bansal.</p>
+<p class="mb-0 mt-2"><i class="fas fa-code"></i> Developed by Neel Bansal</p>
+</div>
+</footer>
+
+<script defer="" src="../../../_shared/demo.js"></script></body></html>

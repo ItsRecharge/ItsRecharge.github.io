@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4hsg.D69PzjUBWe1XnWVFlc2lKRkf2lw" name="csrf-token"/>
+<title>Check In Instruments - Instrument Asset Tracking</title>
+<link href="../../assets/bootstrap.min-3dcdb3f27208.css" rel="stylesheet"/>
+<link href="../../assets/all.min-b9c2a0a1cf43.css" rel="stylesheet"/>
+<link href="../../assets/style-5f7e0fa61ef4.css" rel="stylesheet"/>
+<link href="../../../_shared/demo.css" rel="stylesheet"/></head>
+<body><div id="nb-demo-banner"><span class="nb-tag">Static demo</span><span class="nb-msg"><b>Instrument Asset Tracking</b> — test site with fake data and no backend. Forms won’t submit; click around to explore.</span><span class="nb-links"><a class="" href="../../public/">Public pages</a><a class="nb-active" href="../../admin/dashboard/">Admin portal</a><a class="nb-home" href="../../../../">← Portfolio</a></span></div>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<a class="sidebar-brand" href="../../admin/">
+                Instrument Asset Tracking
+            </a>
+<div class="sidebar-subtitle">Admin</div>
+</div>
+<div class="sidebar-menu">
+<a class="sidebar-menu-item" href="../../admin/">
+<i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+</a>
+<a class="sidebar-menu-item" href="../../admin/instruments/">
+<i class="fas fa-list"></i> <span>Instruments</span>
+</a>
+<a class="sidebar-menu-item" href="../../admin/add-instrument/">
+<i class="fas fa-plus-circle"></i> <span>Add Instrument</span>
+</a>
+<a class="sidebar-menu-item active" href="../../admin/check-in/">
+<i class="fas fa-sign-in-alt"></i> <span>Check In</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-clipboard-check"></i> <span>Requests</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-hand-holding"></i> <span>Manual Checkout</span>
+</a>
+</div>
+<div class="sidebar-footer">
+<i class="fas fa-code"></i> Developed by Neel Bansal
+        </div>
+</div>
+<!-- Top Bar -->
+<div class="top-bar">
+<!-- User Menu -->
+<div class="user-menu-wrapper">
+<button aria-label="Open user menu" class="user-menu-toggle" id="userMenuToggle">
+<i class="fas fa-user"></i>
+</button>
+<div class="user-menu-dropdown" id="userMenuDropdown">
+<a class="user-menu-item" href="../../admin/settings/">
+<i class="fas fa-cog"></i> Settings
+                </a>
+<a class="user-menu-item" href="../../admin/users/">
+<i class="fas fa-users"></i> Users
+                </a>
+<a class="user-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-terminal"></i> Shell
+                </a>
+<a class="user-menu-item" href="../../public/" rel="noopener" target="_blank">
+<i class="fas fa-external-link-alt"></i> Public Site
+                </a>
+<a class="user-menu-item danger" data-demo-dead="1" href="#">
+<i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+</div>
+</div>
+</div>
+<!-- Mobile Sidebar Backdrop -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle">
+<i class="fas fa-bars"></i>
+</button>
+<!-- Main Content -->
+<div class="main-content reveal-in">
+<div class="container-fluid">
+<div class="row mb-4">
+<div class="col-12">
+<div class="page-header">
+<h2><i class="fas fa-sign-in-alt"></i> Check In Instruments</h2>
+<p class="text-muted">Check in returned instruments and manage graduating students</p>
+</div>
+</div>
+</div>
+<!-- Filter Options -->
+<div class="row mb-4">
+<div class="col-12">
+<div class="card">
+<div class="card-body">
+<div class="row align-items-end">
+<div class="col-md-4">
+<label class="font-weight-bold" for="searchBox">
+<i class="fas fa-search"></i> Search
+                            </label>
+<input class="form-control" id="searchBox" placeholder="Search by UUID, student, brand..." type="text"/>
+</div>
+<div class="col-md-3">
+<label class="font-weight-bold" for="graduationFilter">
+<i class="fas fa-graduation-cap"></i> Graduation Year
+                            </label>
+<select class="form-control" id="graduationFilter">
+<option value="all">All Students</option>
+<option value="2026">2026</option>
+<option selected="" value="2027">2027 (Focus Year)</option>
+<option value="2028">2028</option>
+<option value="2029">2029</option>
+<option value="other">Other Years</option>
+</select>
+</div>
+<div class="col-md-3">
+<button class="btn btn-success btn-block" id="bulkCheckInBtn" style="margin-top: 8px;">
+<i class="fas fa-check-double"></i> Bulk Check In Selected
+                            </button>
+</div>
+<div class="col-md-2">
+<div class="info-badge">
+<strong id="checkedOutCount">15</strong> checked out
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Graduating Students Alert -->
+<div class="row mb-4">
+<div class="col-12">
+<div class="alert alert-warning">
+<h5><i class="fas fa-graduation-cap"></i> Graduating Students Alert</h5>
+<p class="mb-2">There are <strong>4</strong> instruments checked out to students graduating in 2027.</p>
+<button class="btn btn-warning btn-sm" id="checkInAllGraduating">
+<i class="fas fa-user-graduate"></i> Check In All Graduating Students (2027)
+                </button>
+</div>
+</div>
+</div>
+<!-- Checked Out Instruments Table -->
+<div class="row">
+<div class="col-12">
+<div class="card">
+<div class="card-header">
+<h5 class="mb-0"><i class="fas fa-table"></i> Checked Out Instruments</h5>
+</div>
+<div class="card-body">
+<div class="table-responsive">
+<table class="table table-hover" id="instrumentsTable">
+<thead>
+<tr>
+<th width="50">
+<input id="selectAll" title="Select All" type="checkbox"/>
+</th>
+<th>UUID</th>
+<th>Instrument</th>
+<th>Student Name</th>
+<th>Student ID</th>
+<th>Grad Year</th>
+<th>Condition</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="instrument-row" data-grad-year="2026" data-search="10bfe7b9 yamaha flute jordan patel 131544" style="display: none;">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="10BFE7B9"/>
+</td>
+<td>
+<strong>10BFE7B9</strong>
+</td>
+<td>
+                                        Yamaha Flute
+                                        
+                                        <br/><small class="text-muted">SN: YA439563</small>
+</td>
+<td>
+                                        Jordan Patel
+                                    </td>
+<td>
+                                        131544
+                                    </td>
+<td>
+<span class="badge badge-secondary">2026</span>
+</td>
+<td>
+<span class="badge badge-info">Excellent</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="10BFE7B9">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2026-12-11" data-gradyear="2026" data-info="Yamaha Flute" data-student="Jordan Patel" data-term="school_year" data-uuid="10BFE7B9">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/10BFE7B9/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+<tr class="instrument-row" data-grad-year="2027" data-search="8950aebb gemeinhardt flute sam okafor 182657">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="8950AEBB"/>
+</td>
+<td>
+<strong>8950AEBB</strong>
+</td>
+<td>
+                                        Gemeinhardt Flute
+                                        
+                                        <br/><small class="text-muted">SN: GE545140</small>
+</td>
+<td>
+                                        Sam Okafor
+                                    </td>
+<td>
+                                        182657
+                                    </td>
+<td>
+<span class="badge badge-warning">
+<i class="fas fa-graduation-cap"></i> 2027
+                                                </span>
+</td>
+<td>
+<span class="badge badge-info">Good</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="8950AEBB">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2026-04-03" data-gradyear="2027" data-info="Gemeinhardt Flute" data-student="Sam Okafor" data-term="school_year" data-uuid="8950AEBB">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/8950AEBB/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+<tr class="instrument-row" data-grad-year="2028" data-search="7c2c14b1 yamaha clarinet morgan rivera 112770" style="display: none;">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="7C2C14B1"/>
+</td>
+<td>
+<strong>7C2C14B1</strong>
+</td>
+<td>
+                                        Yamaha Clarinet
+                                        
+                                        <br/><small class="text-muted">SN: YA666950</small>
+</td>
+<td>
+                                        Morgan Rivera
+                                    </td>
+<td>
+                                        112770
+                                    </td>
+<td>
+<span class="badge badge-secondary">2028</span>
+</td>
+<td>
+<span class="badge badge-info">Fair</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="7C2C14B1">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2026-08-31" data-gradyear="2028" data-info="Yamaha Clarinet" data-student="Morgan Rivera" data-term="school_year" data-uuid="7C2C14B1">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/7C2C14B1/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+<tr class="instrument-row" data-grad-year="2029" data-search="eb72bb8a selmer alto saxophone jamie lee 189181" style="display: none;">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="EB72BB8A"/>
+</td>
+<td>
+<strong>EB72BB8A</strong>
+</td>
+<td>
+                                        Selmer Alto Saxophone
+                                        
+                                        <br/><small class="text-muted">SN: SE691783</small>
+</td>
+<td>
+                                        Jamie Lee
+                                    </td>
+<td>
+                                        189181
+                                    </td>
+<td>
+<span class="badge badge-secondary">2029</span>
+</td>
+<td>
+<span class="badge badge-info">Excellent</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="EB72BB8A">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2026-04-20" data-gradyear="2029" data-info="Selmer Alto Saxophone" data-student="Jamie Lee" data-term="school_year" data-uuid="EB72BB8A">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/EB72BB8A/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+<tr class="instrument-row" data-grad-year="2026" data-search="b6cfa65b yamaha tenor saxophone dana whitfield 175107" style="display: none;">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="B6CFA65B"/>
+</td>
+<td>
+<strong>B6CFA65B</strong>
+</td>
+<td>
+                                        Yamaha Tenor Saxophone
+                                        
+                                        <br/><small class="text-muted">SN: YA636800</small>
+</td>
+<td>
+                                        Dana Whitfield
+                                    </td>
+<td>
+                                        175107
+                                    </td>
+<td>
+<span class="badge badge-secondary">2026</span>
+</td>
+<td>
+<span class="badge badge-info">Fair</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="B6CFA65B">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2026-12-24" data-gradyear="2026" data-info="Yamaha Tenor Saxophone" data-student="Dana Whitfield" data-term="school_year" data-uuid="B6CFA65B">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/B6CFA65B/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+<tr class="instrument-row" data-grad-year="2029" data-search="12f225c3 bach trumpet harper diaz 187051" style="display: none;">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="12F225C3"/>
+</td>
+<td>
+<strong>12F225C3</strong>
+</td>
+<td>
+                                        Bach Trumpet
+                                        
+                                        <br/><small class="text-muted">SN: BA829070</small>
+</td>
+<td>
+                                        Harper Diaz
+                                    </td>
+<td>
+                                        187051
+                                    </td>
+<td>
+<span class="badge badge-secondary">2029</span>
+</td>
+<td>
+<span class="badge badge-info">Excellent</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="12F225C3">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2026-06-08" data-gradyear="2029" data-info="Bach Trumpet" data-student="Harper Diaz" data-term="school_year" data-uuid="12F225C3">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/12F225C3/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+<tr class="instrument-row" data-grad-year="2027" data-search="be83a905 getzen trumpet riley nguyen 158875">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="BE83A905"/>
+</td>
+<td>
+<strong>BE83A905</strong>
+</td>
+<td>
+                                        Getzen Trumpet
+                                        
+                                        <br/><small class="text-muted">SN: GE517225</small>
+</td>
+<td>
+                                        Riley Nguyen
+                                    </td>
+<td>
+                                        158875
+                                    </td>
+<td>
+<span class="badge badge-warning">
+<i class="fas fa-graduation-cap"></i> 2027
+                                                </span>
+</td>
+<td>
+<span class="badge badge-info">Poor</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="BE83A905">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2026-05-12" data-gradyear="2027" data-info="Getzen Trumpet" data-student="Riley Nguyen" data-term="school_year" data-uuid="BE83A905">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/BE83A905/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+<tr class="instrument-row" data-grad-year="2026" data-search="b98c91f2 conn french horn avery chen 163565" style="display: none;">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="B98C91F2"/>
+</td>
+<td>
+<strong>B98C91F2</strong>
+</td>
+<td>
+                                        Conn French Horn
+                                        
+                                        <br/><small class="text-muted">SN: CO391335</small>
+</td>
+<td>
+                                        Avery Chen
+                                    </td>
+<td>
+                                        163565
+                                    </td>
+<td>
+<span class="badge badge-secondary">2026</span>
+</td>
+<td>
+<span class="badge badge-info">Good</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="B98C91F2">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2026-12-15" data-gradyear="2026" data-info="Conn French Horn" data-student="Avery Chen" data-term="school_year" data-uuid="B98C91F2">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/B98C91F2/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+<tr class="instrument-row" data-grad-year="2026" data-search="b3326f6f bach trombone avery chen 174289" style="display: none;">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="B3326F6F"/>
+</td>
+<td>
+<strong>B3326F6F</strong>
+</td>
+<td>
+                                        Bach Trombone
+                                        
+                                        <br/><small class="text-muted">SN: BA513264</small>
+</td>
+<td>
+                                        Avery Chen
+                                    </td>
+<td>
+                                        174289
+                                    </td>
+<td>
+<span class="badge badge-secondary">2026</span>
+</td>
+<td>
+<span class="badge badge-info">Excellent</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="B3326F6F">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2026-09-12" data-gradyear="2026" data-info="Bach Trombone" data-student="Avery Chen" data-term="school_year" data-uuid="B3326F6F">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/B3326F6F/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+<tr class="instrument-row" data-grad-year="2026" data-search="ce29e439 king trombone jordan patel 127256" style="display: none;">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="CE29E439"/>
+</td>
+<td>
+<strong>CE29E439</strong>
+</td>
+<td>
+                                        King Trombone
+                                        
+                                        <br/><small class="text-muted">SN: KI206393</small>
+</td>
+<td>
+                                        Jordan Patel
+                                    </td>
+<td>
+                                        127256
+                                    </td>
+<td>
+<span class="badge badge-secondary">2026</span>
+</td>
+<td>
+<span class="badge badge-info">Fair</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="CE29E439">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2026-04-11" data-gradyear="2026" data-info="King Trombone" data-student="Jordan Patel" data-term="school_year" data-uuid="CE29E439">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/CE29E439/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+<tr class="instrument-row" data-grad-year="2028" data-search="daeafd15 jupiter tuba morgan rivera 129201" style="display: none;">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="DAEAFD15"/>
+</td>
+<td>
+<strong>DAEAFD15</strong>
+</td>
+<td>
+                                        Jupiter Tuba
+                                        
+                                        <br/><small class="text-muted">SN: JU641415</small>
+</td>
+<td>
+                                        Morgan Rivera
+                                    </td>
+<td>
+                                        129201
+                                    </td>
+<td>
+<span class="badge badge-secondary">2028</span>
+</td>
+<td>
+<span class="badge badge-info">Good</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="DAEAFD15">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2027-03-25" data-gradyear="2028" data-info="Jupiter Tuba" data-student="Morgan Rivera" data-term="school_year" data-uuid="DAEAFD15">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/DAEAFD15/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+<tr class="instrument-row" data-grad-year="2027" data-search="a157acee yamaha sousaphone robin alvarez 125578">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="A157ACEE"/>
+</td>
+<td>
+<strong>A157ACEE</strong>
+</td>
+<td>
+                                        Yamaha Sousaphone
+                                        
+                                        <br/><small class="text-muted">SN: YA916898</small>
+</td>
+<td>
+                                        Robin Alvarez
+                                    </td>
+<td>
+                                        125578
+                                    </td>
+<td>
+<span class="badge badge-warning">
+<i class="fas fa-graduation-cap"></i> 2027
+                                                </span>
+</td>
+<td>
+<span class="badge badge-info">Fair</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="A157ACEE">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2026-03-28" data-gradyear="2027" data-info="Yamaha Sousaphone" data-student="Robin Alvarez" data-term="school_year" data-uuid="A157ACEE">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/A157ACEE/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+<tr class="instrument-row" data-grad-year="2029" data-search="611bd1fc ludwig bass drum casey brooks 183341" style="display: none;">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="611BD1FC"/>
+</td>
+<td>
+<strong>611BD1FC</strong>
+</td>
+<td>
+                                        Ludwig Bass Drum
+                                        
+                                        <br/><small class="text-muted">SN: LU454143</small>
+</td>
+<td>
+                                        Casey Brooks
+                                    </td>
+<td>
+                                        183341
+                                    </td>
+<td>
+<span class="badge badge-secondary">2029</span>
+</td>
+<td>
+<span class="badge badge-info">Good</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="611BD1FC">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2027-02-03" data-gradyear="2029" data-info="Ludwig Bass Drum" data-student="Casey Brooks" data-term="school_year" data-uuid="611BD1FC">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/611BD1FC/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+<tr class="instrument-row" data-grad-year="2027" data-search="5fab9583 fox bassoon riley nguyen 177438">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="5FAB9583"/>
+</td>
+<td>
+<strong>5FAB9583</strong>
+</td>
+<td>
+                                        Fox Bassoon
+                                        
+                                        <br/><small class="text-muted">SN: FO939724</small>
+</td>
+<td>
+                                        Riley Nguyen
+                                    </td>
+<td>
+                                        177438
+                                    </td>
+<td>
+<span class="badge badge-warning">
+<i class="fas fa-graduation-cap"></i> 2027
+                                                </span>
+</td>
+<td>
+<span class="badge badge-info">Excellent</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="5FAB9583">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2026-07-25" data-gradyear="2027" data-info="Fox Bassoon" data-student="Riley Nguyen" data-term="school_year" data-uuid="5FAB9583">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/5FAB9583/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+<tr class="instrument-row" data-grad-year="2028" data-search="d98414bf selmer bass clarinet taylor kim 171349" style="display: none;">
+<td>
+<input class="instrument-checkbox" type="checkbox" value="D98414BF"/>
+</td>
+<td>
+<strong>D98414BF</strong>
+</td>
+<td>
+                                        Selmer Bass Clarinet
+                                        
+                                        <br/><small class="text-muted">SN: SE304268</small>
+</td>
+<td>
+                                        Taylor Kim
+                                    </td>
+<td>
+                                        171349
+                                    </td>
+<td>
+<span class="badge badge-secondary">2028</span>
+</td>
+<td>
+<span class="badge badge-info">Fair</span>
+</td>
+<td>
+<button class="btn btn-sm btn-success check-in-btn" data-uuid="D98414BF">
+<i class="fas fa-check"></i> Check In
+                                        </button>
+<button class="btn btn-sm btn-warning renew-btn" data-due="2027-01-30" data-gradyear="2028" data-info="Selmer Bass Clarinet" data-student="Taylor Kim" data-term="school_year" data-uuid="D98414BF">
+<i class="fas fa-redo"></i> Renew
+                                        </button>
+<a class="btn btn-sm btn-info" href="../../admin/instrument_history/D98414BF/" target="_blank">
+<i class="fas fa-history"></i>
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="text-center text-muted py-4" id="noResults" style="display: none;">
+<i class="fas fa-search fa-3x mb-3"></i>
+<p>No instruments found matching your filters.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<!-- Modals rendered here, outside .main-content, so the reveal-in transform
+         stacking context cannot trap their z-index below the Bootstrap backdrop -->
+<div class="modal fade" id="renewalModal" role="dialog" tabindex="-1">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title"><i class="fas fa-redo"></i> Renew Instrument</h5>
+<button class="close" data-dismiss="modal" type="button">×</button>
+</div>
+<div class="modal-body">
+<p class="font-weight-bold mb-1" id="renewalInstrumentInfo"></p>
+<p class="mb-1">Student: <span id="renewalStudentName"></span></p>
+<p class="mb-3">Current due date: <span id="renewalCurrentDue"></span></p>
+<div class="form-group">
+<label for="renewalTerm"><strong>New Checkout Term</strong></label>
+<select class="form-control" id="renewalTerm">
+<option value="school year">School Year</option>
+<option value="summer">Summer</option>
+<option value="both">Both (Full Year + Summer)</option>
+</select>
+</div>
+<p class="mb-2">New due date: <strong class="text-success" id="renewalNewDue">—</strong></p>
+<div class="alert alert-danger mb-0" id="renewalSeniorWarning" style="display:none;">
+<i class="fas fa-exclamation-triangle"></i> <span id="renewalSeniorMsg"></span>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+<button class="btn btn-primary" id="renewalConfirmBtn" type="button">
+<i class="fas fa-redo"></i> Confirm Renewal
+                </button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+<script defer="" src="../../../_shared/demo.js"></script></body></html>

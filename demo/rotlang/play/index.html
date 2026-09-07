@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RotLang Playground</title>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;💀&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+<script crossorigin="" src="../assets/play-CTP5-i_V.js" type="module"></script>
+<link crossorigin="" href="../assets/modulepreload-polyfill-B5Qt9EMX.js" rel="modulepreload"/>
+<link crossorigin="" href="../assets/play-DKaJPD-0.css" rel="stylesheet"/>
+<link data-nb="1" href="../../_shared/demo.css" rel="stylesheet"/></head>
+<body><div class="nb-live" id="nb-demo-banner"><span class="nb-tag">Live demo</span><span class="nb-msg"><b>RotLang Playground</b> — runs entirely in your browser. Pick Flappy Bird from the examples and Run.</span><span class="nb-links"><a class="nb-home" href="../../">All demos</a><a class="nb-home" href="../../../">← Portfolio</a></span></div>
+<header class="topbar">
+<h1 class="wordmark"><a class="wordmark-link" href="../">rotlang<span class="wordmark-semi">;</span></a></h1>
+<p class="tagline">the playground</p>
+<div class="controls">
+<a class="nav-link" href="../">docs</a>
+<label class="example-label" for="example-select">example</label>
+<select aria-label="Load example program" id="example-select">
+<option value="fizzbuzz">fizzbuzz</option>
+<option value="fib">fibonacci</option>
+<option value="arrays">arrays + closures</option>
+<option value="vibecheck">objects + lambdas</option>
+<option value="flappy">flappy bird</option>
+</select>
+<button id="run-button" type="button">run it</button>
+</div>
+</header>
+<main class="panes">
+<section class="pane">
+<div class="pane-head">
+<h2>the code</h2>
+<span class="hint">⌘⏎ to run</span>
+</div>
+<textarea aria-label="RotLang source code" autocapitalize="off" autocomplete="off" id="editor" spellcheck="false"></textarea>
+</section>
+<section class="pane">
+<div class="pane-head">
+<h2>the yap</h2>
+<span class="status" id="status" role="status"></span>
+</div>
+<pre aria-live="polite" id="output"></pre>
+<canvas height="500" id="game-canvas" style="display:none;" tabindex="0" width="400"></canvas>
+</section>
+</main>
+<footer class="foot">
+<span>lexer → parser → AST → interpreter, all in TypeScript</span>
+</footer>
+</body>
+</html>

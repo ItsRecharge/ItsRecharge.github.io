@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ImY0YzM0YmFjOGIyOGM0ZThjMWY0NjRkYzU1MTRlYzdiYjgzM2ViNjgi.ap4hqw.n9_gGMxqF_N40sGqrKn3Y_d9hws" name="csrf-token"/>
+<link href="../../assets/bootstrap.min-3dcdb3f27208.css" rel="stylesheet"/>
+<link href="../../assets/all.min-b9c2a0a1cf43.css" rel="stylesheet"/>
+<link href="../../assets/style-5f7e0fa61ef4.css" rel="stylesheet"/>
+<link href="#" rel="icon" type="image/x-icon"/>
+<title>Sign Up</title>
+<link href="../../../_shared/demo.css" rel="stylesheet"/></head>
+<body class="reveal-in"><div id="nb-demo-banner"><span class="nb-tag">Static demo</span><span class="nb-msg"><b>Instrument Asset Tracking</b> — test site with fake data and no backend. Forms won’t submit; click around to explore.</span><span class="nb-links"><a class="nb-active" href="../../public/">Public pages</a><a class="" href="../../admin/dashboard/">Admin portal</a><a class="nb-home" href="../../../../">← Portfolio</a></span></div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+<div class="container-fluid">
+<a class="navbar-brand" href="../../admin/dashboard/">
+                
+                    Instrument Asset Tracking
+                
+            </a>
+<button class="navbar-toggler" data-target="#navbarNav" data-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+</div>
+</div>
+</nav>
+<main class="container content-shell">
+<div class="row justify-content-center">
+<div class="col-md-6">
+<div class="card">
+<div class="card-header">
+<h3 class="mb-0"><i class="fas fa-user-plus"></i> Create Your Account</h3>
+</div>
+<div class="card-body">
+<form action="/signup" data-demo-href="../../admin/dashboard/" method="POST">
+<input name="csrf_token" type="hidden" value="ImY0YzM0YmFjOGIyOGM0ZThjMWY0NjRkYzU1MTRlYzdiYjgzM2ViNjgi.ap4hqw.n9_gGMxqF_N40sGqrKn3Y_d9hws"/>
+<div class="form-group">
+<label for="first_name"><i class="fas fa-user"></i> First Name</label>
+<input class="form-control" id="first_name" maxlength="100" name="first_name" placeholder="John" required="" type="text"/>
+<small class="form-text text-muted">Maximum 100 characters</small>
+</div>
+<div class="form-group">
+<label for="last_name"><i class="fas fa-user"></i> Last Name</label>
+<input class="form-control" id="last_name" maxlength="100" name="last_name" placeholder="Doe" required="" type="text"/>
+<small class="form-text text-muted">Maximum 100 characters</small>
+</div>
+<div class="form-group">
+<label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+<input class="form-control" id="email" name="email" placeholder="john.doe@example.com" required="" type="email"/>
+</div>
+<div class="form-group">
+<label for="password"><i class="fas fa-key"></i> Password</label>
+<input class="form-control" id="password" name="password" placeholder="Choose a strong password" required="" type="password"/>
+<small class="form-text text-muted">
+                            
+                                Minimum 8 characters, uppercase, lowercase, number
+                            
+                        </small>
+</div>
+<div class="form-group">
+<label for="signup_code"><i class="fas fa-ticket-alt"></i> Invite Code</label>
+<input class="form-control" id="signup_code" name="signup_code" placeholder="Enter your invite code" required="" type="text"/>
+<small class="form-text text-muted">Ask an existing admin to generate an invite code for you. Codes expire after 1 hour.</small>
+
+</div>
+<button class="btn btn-primary btn-block" type="submit">
+<i class="fas fa-user-check"></i> Create Account
+                    </button>
+</form>
+<div class="signup-divider">
+<p class="text-muted mb-0">Already have an account? <a href="../../public/login/">Sign in here</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="site-footer mt-5 py-4 text-center">
+<div class="container">
+<p class="text-muted mb-1">
+<i class="fas fa-code"></i> Developed by Neel Bansal
+            </p>
+<small class="text-muted">Instrument Asset Tracking</small>
+</div>
+</footer>
+
+
+
+<script defer="" src="../../../_shared/demo.js"></script></body></html>

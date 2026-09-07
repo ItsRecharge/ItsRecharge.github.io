@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4huQ.zWoKrcJsKeQmS0yRj6EFpEub0Uw" name="csrf-token"/>
+<title>Instrument History</title>
+<link href="../../../assets/bootstrap.min-3dcdb3f27208.css" rel="stylesheet"/>
+<link href="../../../assets/all.min-b9c2a0a1cf43.css" rel="stylesheet"/>
+<link href="../../../assets/style-5f7e0fa61ef4.css" rel="stylesheet"/>
+<link href="../../../../_shared/demo.css" rel="stylesheet"/></head>
+<body><div id="nb-demo-banner"><span class="nb-tag">Static demo</span><span class="nb-msg"><b>Instrument Asset Tracking</b> — test site with fake data and no backend. Forms won’t submit; click around to explore.</span><span class="nb-links"><a class="" href="../../../public/">Public pages</a><a class="nb-active" href="../../../admin/dashboard/">Admin portal</a><a class="nb-home" href="../../../../../">← Portfolio</a></span></div>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<a class="sidebar-brand" href="../../../admin/">
+                Instrument Asset Tracking
+            </a>
+<div class="sidebar-subtitle">Admin</div>
+</div>
+<div class="sidebar-menu">
+<a class="sidebar-menu-item" href="../../../admin/">
+<i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+</a>
+<a class="sidebar-menu-item" href="../../../admin/instruments/">
+<i class="fas fa-list"></i> <span>Instruments</span>
+</a>
+<a class="sidebar-menu-item" href="../../../admin/add-instrument/">
+<i class="fas fa-plus-circle"></i> <span>Add Instrument</span>
+</a>
+<a class="sidebar-menu-item" href="../../../admin/check-in/">
+<i class="fas fa-sign-in-alt"></i> <span>Check In</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-clipboard-check"></i> <span>Requests</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-hand-holding"></i> <span>Manual Checkout</span>
+</a>
+</div>
+<div class="sidebar-footer">
+<i class="fas fa-code"></i> Developed by Neel Bansal
+        </div>
+</div>
+<!-- Top Bar -->
+<div class="top-bar">
+<!-- User Menu -->
+<div class="user-menu-wrapper">
+<button aria-label="Open user menu" class="user-menu-toggle" id="userMenuToggle">
+<i class="fas fa-user"></i>
+</button>
+<div class="user-menu-dropdown" id="userMenuDropdown">
+<a class="user-menu-item" href="../../../admin/settings/">
+<i class="fas fa-cog"></i> Settings
+                </a>
+<a class="user-menu-item" href="../../../admin/users/">
+<i class="fas fa-users"></i> Users
+                </a>
+<a class="user-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-terminal"></i> Shell
+                </a>
+<a class="user-menu-item" href="../../../public/" rel="noopener" target="_blank">
+<i class="fas fa-external-link-alt"></i> Public Site
+                </a>
+<a class="user-menu-item danger" data-demo-dead="1" href="#">
+<i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+</div>
+</div>
+</div>
+<!-- Mobile Sidebar Backdrop -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle">
+<i class="fas fa-bars"></i>
+</button>
+<!-- Main Content -->
+<div class="main-content reveal-in">
+<div class="container">
+<div class="page-header mb-3">
+<h2>Checkout History</h2>
+<p class="text-muted mb-0">Timeline and condition-image record for this instrument.</p>
+</div>
+<div class="card">
+<div class="card-header">
+<h5 class="mb-0">Gemeinhardt Flute</h5>
+</div>
+<div class="card-body">
+<ul class="list-unstyled mb-0">
+<li><strong>UUID:</strong> 8950AEBB</li>
+<li><strong>Serial Number:</strong> GE545140</li>
+<li><strong>Condition:</strong> Good</li>
+<li><strong>Currently Checked Out:</strong> Yes</li>
+<li><strong>Current Student:</strong> Sam Okafor</li>
+</ul>
+<div class="mt-3">
+<button class="btn btn-warning" data-due="2026-04-03" data-gradyear="2027" data-info="Gemeinhardt Flute" data-student="Sam Okafor" data-term="school_year" data-uuid="8950AEBB" id="renewBtn">
+<i class="fas fa-redo"></i> Renew
+                </button>
+</div>
+<div class="mt-3">
+<strong class="d-block mb-2">Images</strong>
+<div class="history-thumbnail-grid">
+<img alt="Instrument" class="img-thumbnail history-static-thumbnail" src="../../../assets/demo-flute-1-2c2a0e611e3b.jpg"/>
+</div>
+</div>
+</div>
+</div>
+<div class="card mt-4">
+<div class="card-header">
+<h5 class="mb-0">Checkout Timeline</h5>
+<small class="text-muted">1 total entries, newest first</small>
+</div>
+<div class="card-body">
+<div class="timeline" id="timelineContainer">
+<article class="timeline-item" data-history-entry="">
+<div class="timeline-bar timeline-bar-checkout"></div>
+<div class="timeline-content">
+<div class="timeline-head">
+<div>
+<h6 class="timeline-action timeline-action-checkout">
+<i class="fas fa-arrow-up"></i> Checkout
+                                            
+                                        </h6>
+<small class="text-muted">2025-10-05 22:11:56</small>
+</div>
+<span class="timeline-term">Term: school_year</span>
+</div>
+<div class="timeline-student">
+<span class="timeline-student-name">Sam Okafor</span>
+<span class="history-class-badge">Class of 2027</span>
+<div class="timeline-info">ID: 182657 | Email: sam.okafor@demo.local</div>
+</div>
+<div class="history-image-block">
+<strong class="history-image-title">Condition Images (Band Room Cage A)</strong>
+<div class="history-thumbnail-grid">
+<div class="history-thumbnail">
+<img alt="Condition" src="../../../assets/demo-flute-1-2c2a0e611e3b.jpg"/>
+<small class="history-source-badge history-source-local">Local</small>
+</div>
+</div>
+</div>
+<div class="history-note">
+<small><strong>Admin Notes:</strong> Strap missing at pickup.</small>
+</div>
+</div>
+</article>
+</div>
+</div>
+</div>
+<div class="mt-4">
+<a class="btn btn-secondary" href="../../../admin/instruments/">Back to Instruments</a>
+</div>
+</div>
+<div aria-hidden="true" class="history-image-modal" id="imageModal">
+<div class="history-modal-shell">
+<img alt="Full resolution condition image" class="history-modal-image" id="expandedImage" src=""/>
+<button aria-label="Close image viewer" class="history-modal-close" type="button">×</button>
+<div class="history-modal-caption">Click outside the image or press ESC to close.</div>
+</div>
+</div>
+
+</div>
+<!-- Modals rendered here, outside .main-content, so the reveal-in transform
+         stacking context cannot trap their z-index below the Bootstrap backdrop -->
+<div class="modal fade" id="renewalModal" role="dialog" tabindex="-1">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title"><i class="fas fa-redo"></i> Renew Instrument</h5>
+<button class="close" data-dismiss="modal" type="button">×</button>
+</div>
+<div class="modal-body">
+<p class="font-weight-bold mb-1" id="renewalInstrumentInfo"></p>
+<p class="mb-1">Student: <span id="renewalStudentName"></span></p>
+<p class="mb-3">Current due date: <span id="renewalCurrentDue"></span></p>
+<div class="form-group">
+<label for="renewalTerm"><strong>New Checkout Term</strong></label>
+<select class="form-control" id="renewalTerm">
+<option value="school year">School Year</option>
+<option value="summer">Summer</option>
+<option value="both">Both (Full Year + Summer)</option>
+</select>
+</div>
+<p class="mb-2">New due date: <strong class="text-success" id="renewalNewDue">—</strong></p>
+<div class="alert alert-danger mb-0" id="renewalSeniorWarning" style="display:none;">
+<i class="fas fa-exclamation-triangle"></i> <span id="renewalSeniorMsg"></span>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+<button class="btn btn-primary" id="renewalConfirmBtn" type="button">
+<i class="fas fa-redo"></i> Confirm Renewal
+                </button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+<script defer="" src="../../../../_shared/demo.js"></script></body></html>

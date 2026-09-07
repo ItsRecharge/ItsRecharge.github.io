@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h3g.4I5BZOqNcnweE4nC8LbKCzhaV7Q" name="csrf-token"/>
+<title>Edit Instrument</title>
+<link href="../../../assets/bootstrap.min-3dcdb3f27208.css" rel="stylesheet"/>
+<link href="../../../assets/all.min-b9c2a0a1cf43.css" rel="stylesheet"/>
+<link href="../../../assets/style-5f7e0fa61ef4.css" rel="stylesheet"/>
+<link href="../../../../_shared/demo.css" rel="stylesheet"/></head>
+<body><div id="nb-demo-banner"><span class="nb-tag">Static demo</span><span class="nb-msg"><b>Instrument Asset Tracking</b> — test site with fake data and no backend. Forms won’t submit; click around to explore.</span><span class="nb-links"><a class="" href="../../../public/">Public pages</a><a class="nb-active" href="../../../admin/dashboard/">Admin portal</a><a class="nb-home" href="../../../../../">← Portfolio</a></span></div>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<a class="sidebar-brand" href="../../../admin/">
+                Instrument Asset Tracking
+            </a>
+<div class="sidebar-subtitle">Admin</div>
+</div>
+<div class="sidebar-menu">
+<a class="sidebar-menu-item" href="../../../admin/">
+<i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+</a>
+<a class="sidebar-menu-item" href="../../../admin/instruments/">
+<i class="fas fa-list"></i> <span>Instruments</span>
+</a>
+<a class="sidebar-menu-item" href="../../../admin/add-instrument/">
+<i class="fas fa-plus-circle"></i> <span>Add Instrument</span>
+</a>
+<a class="sidebar-menu-item" href="../../../admin/check-in/">
+<i class="fas fa-sign-in-alt"></i> <span>Check In</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-clipboard-check"></i> <span>Requests</span>
+</a>
+<a class="sidebar-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-hand-holding"></i> <span>Manual Checkout</span>
+</a>
+</div>
+<div class="sidebar-footer">
+<i class="fas fa-code"></i> Developed by Neel Bansal
+        </div>
+</div>
+<!-- Top Bar -->
+<div class="top-bar">
+<!-- User Menu -->
+<div class="user-menu-wrapper">
+<button aria-label="Open user menu" class="user-menu-toggle" id="userMenuToggle">
+<i class="fas fa-user"></i>
+</button>
+<div class="user-menu-dropdown" id="userMenuDropdown">
+<a class="user-menu-item" href="../../../admin/settings/">
+<i class="fas fa-cog"></i> Settings
+                </a>
+<a class="user-menu-item" href="../../../admin/users/">
+<i class="fas fa-users"></i> Users
+                </a>
+<a class="user-menu-item" data-demo-dead="1" href="#">
+<i class="fas fa-terminal"></i> Shell
+                </a>
+<a class="user-menu-item" href="../../../public/" rel="noopener" target="_blank">
+<i class="fas fa-external-link-alt"></i> Public Site
+                </a>
+<a class="user-menu-item danger" data-demo-dead="1" href="#">
+<i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+</div>
+</div>
+</div>
+<!-- Mobile Sidebar Backdrop -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle">
+<i class="fas fa-bars"></i>
+</button>
+<!-- Main Content -->
+<div class="main-content reveal-in">
+<h1>Edit Instrument Information</h1>
+<form action="/edit_instrument/611BD1FC" method="POST">
+<input name="csrf_token" type="hidden" value="ImJiYTllOTAyN2VjNGEzMDUwZGExOGMxYjVmODQyZDM1MmRhNDQ1YTgi.ap4h3g.4I5BZOqNcnweE4nC8LbKCzhaV7Q"/>
+<div class="form-group">
+<label for="uuid">UUID / Barcode</label>
+<input class="form-control" id="uuid" maxlength="100" name="uuid" required="" type="text" value="611BD1FC"/>
+<small class="form-text text-muted">Changing the UUID also rewrites all checkout history and reminder records for this instrument.</small>
+</div>
+<div class="form-group">
+<label for="brand">Brand</label>
+<input class="form-control" id="brand" maxlength="100" name="brand" required="" type="text" value="Ludwig"/>
+<small class="form-text text-muted">Maximum 100 characters</small>
+</div>
+<div class="form-group">
+<label for="instrument_type">Instrument Type</label>
+<input class="form-control" id="instrument_type" maxlength="100" name="instrument_type" required="" type="text" value="Bass Drum"/>
+<small class="form-text text-muted">Maximum 100 characters</small>
+</div>
+<div class="form-group">
+<label for="serial_number">Serial Number</label>
+<input class="form-control" id="serial_number" maxlength="100" name="serial_number" required="" type="text" value="LU454143"/>
+<small class="form-text text-muted">Maximum 100 characters</small>
+</div>
+<div class="form-group">
+<label for="condition">Condition</label>
+<input class="form-control" id="condition" maxlength="50" name="condition" required="" type="text" value="Good"/>
+<small class="form-text text-muted">Maximum 50 characters</small>
+</div>
+<div class="form-group">
+<label for="checked_out">Checked Out</label>
+<input checked="" id="checked_out" name="checked_out" type="checkbox"/>
+</div>
+<div class="form-group">
+<label for="location">Location</label>
+<input class="form-control" id="location" maxlength="200" name="location" type="text" value="Band Room Cage B"/>
+<small class="form-text text-muted">Maximum 200 characters</small>
+</div>
+<div class="form-group">
+<label for="student_name">Student Name</label>
+<input class="form-control" id="student_name" maxlength="100" name="student_name" type="text" value="Casey Brooks"/>
+<small class="form-text text-muted">Maximum 100 characters</small>
+</div>
+<div class="form-group">
+<label for="grad_year">Graduation Year</label>
+<input class="form-control" id="grad_year" maxlength="10" name="grad_year" type="text" value="2029"/>
+<small class="form-text text-muted">e.g., 2026</small>
+</div>
+<div class="form-group">
+<label for="student_id">Student ID</label>
+<input class="form-control" id="student_id" maxlength="50" name="student_id" type="text" value="183341"/>
+<small class="form-text text-muted">Maximum 50 characters</small>
+</div>
+<div class="form-group">
+<label for="notes">Notes</label>
+<textarea class="form-control" id="notes" maxlength="1000" name="notes" rows="4"></textarea>
+<small class="form-text text-muted">Maximum 1000 characters</small>
+</div>
+<div class="form-group form-check">
+<input class="form-check-input" id="middle_school" name="middle_school" type="checkbox"/>
+<label class="form-check-label" for="middle_school">Middle School instrument (leave unchecked for High School)</label>
+</div>
+<button class="btn btn-success" type="submit">Save Changes</button>
+<a class="btn btn-secondary" href="../../../admin/instruments/">Cancel</a>
+</form>
+</div>
+<!-- Modals rendered here, outside .main-content, so the reveal-in transform
+         stacking context cannot trap their z-index below the Bootstrap backdrop -->
+
+
+
+
+<script defer="" src="../../../../_shared/demo.js"></script></body></html>

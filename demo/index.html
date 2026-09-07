@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demos · Neel Bansal</title>
+  <meta name="description" content="Click-through test sites and live in-browser demos of Neel Bansal's projects.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2310151c'/%3E%3Cpath d='M20 70 L38 30 L50 70 L62 30 L80 70' fill='none' stroke='%2335e0d0' stroke-width='7' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--paper:#10151c;--paper-2:#161d27;--paper-3:#1c2531;--ink:#eef2f7;--ink-dim:#97a4b6;--ink-faint:#66748a;--line:rgba(120,150,190,.14);--line-soft:rgba(120,150,190,.08);--signal:#35e0d0;--signal-2:#7aa2ff;--warn:#ffb454;--f-disp:"Space Grotesk",system-ui,sans-serif;--f-serif:"Fraunces",Georgia,serif;--f-mono:"IBM Plex Mono",monospace;}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-disp);line-height:1.6;
+      background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);background-size:32px 32px;}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1120px;margin:0 auto;padding:clamp(2rem,5vw,4rem) clamp(1rem,4vw,2.5rem)}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:2.5rem}
+    .brand{font-weight:600;display:flex;align-items:center;gap:.5rem}
+    .brand span{font-family:var(--f-mono);color:var(--signal)}
+    .back{color:var(--ink-dim);font-size:.9rem}
+    .back:hover{color:var(--signal)}
+    h1{font-family:var(--f-serif);font-weight:600;font-size:clamp(2rem,5vw,3rem);margin:0 0 .4rem}
+    .lede{color:var(--ink-dim);max-width:60ch;margin:0 0 1rem}
+    .notice{display:inline-flex;gap:.5rem;align-items:center;font-size:.82rem;color:#0b0f14;background:linear-gradient(90deg,#ffd166,#ffb347);padding:.4rem .9rem;border-radius:999px;font-weight:500;margin-bottom:2.5rem}
+    h2{font-family:var(--f-serif);font-weight:500;font-size:1.5rem;margin:2.5rem 0 1rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
+    .card{background:var(--paper-2);border:1px solid var(--line-soft);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s}
+    .card:hover{border-color:var(--line)}
+    .card-media{aspect-ratio:16/9;overflow:hidden;background:var(--paper-3);border-bottom:1px solid var(--line-soft)}
+    .card-media img{width:100%;height:100%;object-fit:cover;object-position:top}
+    .card-b{padding:1.1rem 1.2rem 1.2rem;display:flex;flex-direction:column;flex:1}
+    .card-b h3{margin:0 0 .3rem;font-size:1.1rem}
+    .kind{font-family:var(--f-mono);font-size:.7rem;padding:.15em .5em;border-radius:5px;margin-left:.5rem;vertical-align:middle}
+    .kind-live{color:#06251f;background:var(--signal)}
+    .kind-static{color:var(--warn);background:rgba(255,180,84,.14);border:1px solid rgba(255,180,84,.3)}
+    .card-b p{color:var(--ink-dim);font-size:.9rem;margin:0 0 1rem;flex:1}
+    .links{display:flex;flex-wrap:wrap;gap:.5rem}
+    .btn{font-size:.85rem;font-weight:500;padding:.5em 1em;border-radius:999px;border:1px solid var(--line);color:var(--ink);background:var(--paper-3)}
+    .btn:hover{border-color:var(--ink-faint)}
+    .btn-p{background:var(--signal);color:#06251f;font-weight:600;border-color:var(--signal)}
+    .btn-p:hover{background:#55efdf}
+    .footer{color:var(--ink-faint);font-size:.85rem;margin-top:3rem;border-top:1px solid var(--line-soft);padding-top:1.5rem}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <a class="brand" href="../"><span>/\/\</span> Neel Bansal</a>
+      <a class="back" href="../">← Back to portfolio</a>
+    </div>
+    <h1>Demos</h1>
+    <p class="lede">Two kinds here: a few projects run live in your browser, and the rest are static test sites — real rendered pages seeded with fake data so you can click through the actual interface without an account.</p>
+    <p class="notice">🟢 Live demos are the real app · 🟡 Static demos have no backend — forms won't submit</p>
+
+    <h2>Runs in your browser <span class="kind kind-live">live</span></h2>
+    <div class="grid" id="live"></div>
+
+    <h2>Static test sites <span class="kind kind-static">static</span></h2>
+    <div class="grid" id="static"></div>
+
+    <p class="footer">All demo data is fictional. No real student information appears in any demo.</p>
+  </div>
+
+  <script>
+    const LIVE = [
+      { name: "Relativity Express", img: "../assets/img/relativity/relativity-platform.webp", desc: "Interactive 3D special-relativity simulator.", href: "relativity-train/" },
+      { name: "HumScore", img: "../assets/img/humscore/3-score.webp", desc: "Hum parts, get playable sheet music (allow mic).", href: "humscore/" },
+      { name: "RotLang", img: "../assets/img/rotlang/rotlang-play-flappy.webp", desc: "A slang programming language — run Flappy Bird in it.", href: "rotlang/play/#example=flappy", href2: "rotlang/", label2: "Docs" },
+      { name: "Freshline", img: "../assets/img/freshline/freshline-hero.webp", desc: "The Freshline landing site.", href: "freshline/" },
+    ];
+    const STATIC = [
+      { name: "Tri-M Hours Log", img: "../assets/img/trim-hours/officer-01-dashboard.webp", desc: "Service-hours tracker — enter as officer or member.", href: "trim-hours/officer/dashboard/" },
+      { name: "NHS Hours Log", img: "../assets/img/nhs-hours/officer-01-dashboard.webp", desc: "Honor-society hours tracker with houses.", href: "nhs-hours/officer/dashboard/" },
+      { name: "Instrument Asset Tracking", img: "../assets/img/instrument-tracking/instruments.webp", desc: "Library-style instrument checkout admin.", href: "instrument-tracking/admin/dashboard/" },
+      { name: "Drum Major Portal", img: "../assets/img/drummajor/dashboard.webp", desc: "Band-leadership announcements + music library.", href: "drummajor/admin/dashboard/" },
+      { name: "SafetyBoston", img: "../assets/img/safetyboston/dashboard.webp", desc: "Incident feed + community reports + map.", href: "safetyboston/dashboard/" },
+      { name: "GrantBridge", img: "../assets/img/grantbridge/swipe.webp", desc: "Scholarship-matching swipe demo (interactive mock).", href: "grantbridge/mock/" },
+    ];
+    const mk = (p) => `<div class="card"><div class="card-media"><img loading="lazy" src="${p.img}" alt="${p.name}"></div><div class="card-b"><h3>${p.name}</h3><p>${p.desc}</p><div class="links"><a class="btn btn-p" href="${p.href}">Open</a>${p.href2 ? `<a class="btn" href="${p.href2}">${p.label2}</a>` : ""}</div></div></div>`;
+    document.getElementById("live").innerHTML = LIVE.map(mk).join("");
+    document.getElementById("static").innerHTML = STATIC.map(mk).join("");
+  </script>
+</body>
+</html>

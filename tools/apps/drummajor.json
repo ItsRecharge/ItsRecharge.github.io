@@ -1,0 +1,22 @@
+{
+  "slug": "drummajor",
+  "title": "Drum Major Portal",
+  "base_url": "http://localhost:3102",
+  "out_dir": "demo/drummajor",
+  "login_form_role": "admin",
+  "keep_query_keys": ["token"],
+  "exclude": ["/open$", "^/t/", "^/i/", "^/setup", "^/api", "/export", "^/invite/"],
+  "roles": [
+    {
+      "name": "public", "label": "Public pages", "landing": "/login",
+      "owns": ["/login", "/forgot-password"],
+      "seeds": ["/forgot-password"]
+    },
+    {
+      "name": "admin", "label": "Admin / Drum Major view", "landing": "/dashboard",
+      "owns": ["/dashboard", "/announcements", "/library", "/events", "/tasks", "/notes", "/handoff", "/rosters", "/invites", "/admin", "/audit", "/settings", "/notifications", "/profile"],
+      "login": { "url": "/login", "fill": { "input[name=\"email\"]": "alex.morgan@example.edu", "input[name=\"password\"]": "DemoPass1!" }, "submit": "button[type=\"submit\"]", "expect_url": "/dashboard" },
+      "seeds": ["/announcements", "/announcements/new", "/library", "/events", "/tasks", "/notes", "/handoff", "/rosters", "/invites", "/admin/users", "/audit", "/settings", "/notifications"]
+    }
+  ]
+}

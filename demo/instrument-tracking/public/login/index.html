@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Login - Instrument Asset Tracking</title>
+<link href="../../assets/bootstrap.min-3dcdb3f27208.css" rel="stylesheet"/>
+<link href="../../assets/all.min-b9c2a0a1cf43.css" rel="stylesheet"/>
+<link href="../../assets/style-5f7e0fa61ef4.css" rel="stylesheet"/>
+<link href="../../../_shared/demo.css" rel="stylesheet"/></head>
+<body class="auth-page reveal-in"><div id="nb-demo-banner"><span class="nb-tag">Static demo</span><span class="nb-msg"><b>Instrument Asset Tracking</b> — test site with fake data and no backend. Forms won’t submit; click around to explore.</span><span class="nb-links"><a class="nb-active" href="../../public/">Public pages</a><a class="" href="../../admin/dashboard/">Admin portal</a><a class="nb-home" href="../../../../">← Portfolio</a></span></div>
+<div class="auth-panel">
+<div class="auth-head">
+<div>
+<i class="fas fa-lock"></i>
+<h2>Admin Portal</h2>
+</div>
+</div>
+<div class="auth-body">
+<form action="/login" data-demo-href="../../admin/dashboard/" method="POST">
+<input name="csrf_token" type="hidden" value="ImY0YzM0YmFjOGIyOGM0ZThjMWY0NjRkYzU1MTRlYzdiYjgzM2ViNjgi.ap4hqg.hoXka2DIVZVrPfeZ5FTGJKM7Zjg"/>
+<div class="form-group">
+<label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+<input autofocus="" class="form-control" id="email" name="email" placeholder="Enter your email" required="" type="email"/>
+</div>
+<div class="form-group">
+<label for="password"><i class="fas fa-key"></i> Password</label>
+<input class="form-control" id="password" name="password" placeholder="Enter your password" required="" type="password"/>
+</div>
+<div class="form-check mb-3">
+<input class="form-check-input" id="rememberMe" name="remember_me" type="checkbox"/>
+<label class="form-check-label" for="rememberMe">
+                        Keep me signed in for 30 days
+                    </label>
+</div>
+<button class="btn btn-primary btn-block" type="submit">
+<i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+<a class="btn btn-secondary btn-block mt-2" href="../../public/">
+<i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+</form>
+<div class="text-center mt-3">
+<a href="../../public/forgot-password/">Forgot your password?</a>
+</div>
+<div class="text-center mt-4 pt-3 auth-divider">
+                Need an account? <a href="../../public/signup/">Sign up with an invite code</a>
+</div>
+</div>
+<p class="auth-credit"><i class="fas fa-code"></i> Developed by Neel Bansal</p>
+</div>
+
+
+
+<script defer="" src="../../../_shared/demo.js"></script></body></html>

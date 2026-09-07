@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neel Bansal</title>
+  <meta name="description" content="Neel Bansal builds tools people actually use — school-ops software used by hundreds of students, two hackathon wins, a startup, and an ML research paper.">
+  <meta property="og:title" content="Neel Bansal">
+  <meta property="og:description" content="Builder & researcher. Tools used by 450+ students across 8 schools, two hackathon wins, and a startup, Freshline.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2310151c'/%3E%3Cpath d='M20 70 L38 30 L50 70 L62 30 L80 70' fill='none' stroke='%2335e0d0' stroke-width='7' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="nav-brand" href="#top"><span class="brand-mark" aria-hidden="true">/\/\</span> Neel Bansal</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#live">Live demos</a>
+      <a href="#research">Research</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://github.com/ItsRecharge" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-live" href="https://www.linkedin.com/in/neel-bansalx/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <main id="top">
+    <section class="hero" id="hero">
+      <canvas id="telemetry" aria-hidden="true"></canvas>
+      <div class="hero-inner">
+        <p class="hero-eyebrow">Student · builder · researcher</p>
+        <h1 class="hero-title">I build tools that<br><em>measure the real world</em><br>and get used.</h1>
+        <p class="hero-sub">
+          Hours logs, instrument libraries, incident maps, spacetime, scholarships, model drift — most of what I make
+          exists to track something and put it in front of the people who need it. A lot of it is running in schools right now.
+        </p>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-v">450<span class="plus">+</span></span><span class="stat-l">students using my tools</span></div>
+          <div class="stat"><span class="stat-v">7</span><span class="stat-l">schools</span></div>
+          <div class="stat"><span class="stat-v">🥇🥈</span><span class="stat-l">BU &amp; Microsoft hackathons</span></div>
+          <div class="stat"><span class="stat-v">1</span><span class="stat-l">startup, in beta</span></div>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-demo" href="#live">Try a live demo</a>
+          <a class="btn btn-ghost" href="#work">See the work</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="section-head">
+        <h2>Freshline</h2>
+        <p class="section-sub">The one I'm building into a company.</p>
+      </div>
+      <div id="featured"></div>
+
+      <div class="section-head section-head-sub">
+        <h2>Tools people use</h2>
+        <p class="section-sub">Software running in real schools and competitions. Each has a click-through test site with fake data — no login needed.</p>
+      </div>
+      <div id="work-grid" class="grid"></div>
+    </section>
+
+    <section class="section" id="live">
+      <div class="section-head">
+        <h2>Runs in your browser</h2>
+        <p class="section-sub">No screenshots — the real thing, loaded on demand.</p>
+      </div>
+      <div id="live-grid" class="live-grid"></div>
+    </section>
+
+    <section class="section" id="also">
+      <div class="section-head section-head-sub">
+        <h2>Also built</h2>
+        <p class="section-sub">A desktop simulator and a theme that traveled further than expected.</p>
+      </div>
+      <div id="also-grid" class="grid grid-2"></div>
+    </section>
+
+    <section class="section" id="research">
+      <div class="section-head">
+        <h2>Research</h2>
+        <p class="section-sub">A paper I'm writing.</p>
+      </div>
+      <article class="research-card">
+        <div class="research-text">
+          <span class="badge badge-private">paper in progress</span>
+          <h3>Controlling Parameter Drift in LoRA Continual Test-Time Adaptation via Reset Detection</h3>
+          <p>
+            When a model adapts to new data at test time, it can drift — over-fitting to a shifting domain until it forgets
+            what it knew. I'm studying whether freezing the base weights and adapting <strong>only the LoRA layers</strong>
+            keeps that in check, and whether watching the model's prediction entropy can detect the moment drift sets in.
+          </p>
+          <p>
+            When entropy spikes past a threshold, the system <strong>dynamically resets</strong> the adaptation. The question:
+            does reset detection help more as the domain shifts get more severe? That's what the experiments are built to measure.
+          </p>
+          <div class="chips">
+            <span class="chip">LoRA</span><span class="chip">Continual test-time adaptation</span>
+            <span class="chip">Entropy-based drift detection</span><span class="chip">Dynamic reset</span>
+          </div>
+        </div>
+        <figure class="research-diagram">
+          <svg viewBox="0 0 320 300" role="img" aria-label="Diagram: input stream to a model with frozen base weights and trainable LoRA layers; an entropy monitor triggers a reset when drift is detected.">
+            <defs>
+              <marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#7aa2ff"/></marker>
+              <marker id="ahw" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#ffb454"/></marker>
+            </defs>
+            <text x="18" y="40" class="d-lbl">test stream →</text>
+            <rect x="16" y="52" width="288" height="86" rx="10" class="d-box"/>
+            <text x="30" y="78" class="d-title">model</text>
+            <rect x="30" y="90" width="120" height="34" rx="7" class="d-frozen"/>
+            <text x="46" y="111" class="d-sm">base — frozen</text>
+            <rect x="170" y="90" width="118" height="34" rx="7" class="d-lora"/>
+            <text x="188" y="111" class="d-sm d-sm-a">LoRA — adapts</text>
+            <line x1="160" y1="150" x2="160" y2="176" class="d-flow" marker-end="url(#ah)"/>
+            <rect x="60" y="178" width="200" height="40" rx="9" class="d-box"/>
+            <text x="160" y="203" class="d-title d-center">entropy monitor</text>
+            <path d="M270 198 C300 198 300 108 292 108" class="d-reset" marker-end="url(#ahw)"/>
+            <text x="238" y="252" class="d-reset-lbl">drift → reset</text>
+            <polyline points="20,285 60,270 90,278 120,250 150,262 175,220 200,252 240,214 275,270 300,258" class="d-plot"/>
+          </svg>
+          <figcaption>Base weights stay frozen; only LoRA adapts. When the entropy monitor sees drift, it resets.</figcaption>
+        </figure>
+      </article>
+    </section>
+
+    <section class="section" id="about">
+      <div class="about-wrap">
+        <div class="about-text">
+          <div class="section-head"><h2>About</h2></div>
+          <p>
+            I'm Neel Bansal. Most of my projects start the same way — I notice a thing people are doing badly by hand
+            (texting one person to log 150 students' service hours; losing instruments to damage nobody reported;
+            scattering sheet music across a dozen Google Classrooms) and build the system that should have existed.
+          </p>
+          <p>
+            Some of it is competition work: a scholarship-matching platform that took 2nd at a Microsoft hackathon, and a
+            public-safety awareness map that won 1st at Boston University. Some of it is just curiosity — a relativity
+            simulator, a programming language made of slang, a paper on how models forget. And one of them, Freshline,
+            I'm turning into a company.
+          </p>
+          <div class="about-links">
+            <a class="btn btn-live" href="https://www.linkedin.com/in/neel-bansalx/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn btn-ghost" href="https://github.com/ItsRecharge" target="_blank" rel="noopener">GitHub — @ItsRecharge</a>
+          </div>
+        </div>
+        <aside class="about-badge">
+          <div class="li-card">
+            <a class="li-head" href="https://www.linkedin.com/in/neel-bansalx/" target="_blank" rel="noopener">
+              <svg class="li-mark" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45C23.2 24 24 23.22 24 22.25V1.75C24 .78 23.2 0 22.22 0z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <p class="li-name">Neel Bansal</p>
+            <p class="li-sub">Student · builder · researcher — Freshline, GrantBridge, and school-ops tools used by 450+ students.</p>
+            <a class="btn btn-live li-btn" href="https://www.linkedin.com/in/neel-bansalx/" target="_blank" rel="noopener">View full profile</a>
+            <!-- Official badge hydrates here in browsers where LinkedIn's script is allowed; the card above is the reliable fallback. -->
+            <div class="badge-base LI-profile-badge li-embed" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="neel-bansalx" data-version="v1">
+              <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/neel-bansalx?trk=profile-badge"></a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Built by Neel Bansal.</span>
+    <span class="footer-note">Demos are static test sites with fake data — no real student information.</span>
+    <a href="#top" class="footer-top">Back to top ↑</a>
+  </footer>
+
+  <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+  <script src="main.js" defer></script>
+</body>
+</html>

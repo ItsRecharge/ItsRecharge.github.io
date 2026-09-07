@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RotLang — a real programming language, no cap</title>
+<meta content="A programming language whose syntax is English + brainrot slang. Full lexer, parser, and interpreter in TypeScript. Genuinely runs code." name="description"/>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;💀&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+<script crossorigin="" src="./assets/docs-BdF6mH6j.js" type="module"></script>
+<link crossorigin="" href="./assets/modulepreload-polyfill-B5Qt9EMX.js" rel="modulepreload"/>
+<link crossorigin="" href="./assets/docs-BZpVWSLH.css" rel="stylesheet"/>
+<link data-nb="1" href="../_shared/demo.css" rel="stylesheet"/></head>
+<body><div class="nb-live" id="nb-demo-banner"><span class="nb-tag">Live demo</span><span class="nb-msg"><b>RotLang</b> — a language that runs in your browser. Try the playground.</span><span class="nb-links"><a class="nb-home" href="../">All demos</a><a class="nb-home" href="../../">← Portfolio</a></span></div>
+<header class="hero">
+<h1 class="wordmark">rotlang<span class="semi">;</span></h1>
+<p class="hero-tag">a real programming language, no cap</p>
+<p class="hero-sub">
+        English + slang syntax on a lexer → parser → AST → interpreter
+        pipeline, written in TypeScript. It runs in your terminal and in your
+        browser — you can even write browser games in it.
+      </p>
+<div class="hero-actions">
+<a class="btn" href="#quickstart">read the docs</a>
+<a class="btn" href="play/">open the playground</a>
+<a class="btn btn-hot" href="play/#example=flappy">play flappy bird 🐦</a>
+</div>
+<pre class="runnable"><code>btw fizzbuzz but make it brainrot
+
+finna (i from 1 to 15) {
+  sus (i % 15 is 0) { yap("fizzbuzz") }
+  mid (i % 3 is 0)  { yap("fizz") }
+  mid (i % 5 is 0)  { yap("buzz") }
+  nah               { yap(i) }
+}</code></pre>
+</header>
+<div class="layout">
+<nav aria-label="Sections" class="sidebar">
+<a href="#quickstart">quickstart</a>
+<a href="#variables">variables</a>
+<a href="#types">types</a>
+<a href="#conditionals">conditionals</a>
+<a href="#loops">loops</a>
+<a href="#functions">functions</a>
+<a href="#arrays">arrays</a>
+<a href="#objects">objects</a>
+<a href="#builtins">builtins</a>
+<a href="#errors">errors</a>
+<a href="#trycatch">try/catch</a>
+<a href="#games">games</a>
+<a href="#internals">how it works</a>
+</nav>
+<main class="content">
+<section id="quickstart">
+<h2>quickstart</h2>
+<p>Run a file from the terminal:</p>
+<pre><code class="lang-sh">git clone &lt;this repo&gt; &amp;&amp; cd RotLang
+npm install
+node bin/brainrot.js run examples/fizzbuzz.brainrot</code></pre>
+<p>
+            Or skip the install entirely — every snippet on this page has a
+            <em>run it</em> button that opens it in the
+            <a href="play/">browser playground</a>. Files end in
+            <code>.brainrot</code>. No semicolons; newlines end statements;
+            <code>btw</code> starts a comment.
+          </p>
+</section>
+<section id="variables">
+<h2>variables</h2>
+<p>
+<code>cook</code> declares, <code>be</code> assigns. Reassigning
+            doesn't need <code>cook</code> — but using a variable that was
+            never cooked is an error.
+          </p>
+<pre class="runnable"><code>cook aura be 100
+aura be aura + 1
+yap("aura level:", aura)</code></pre>
+<p>
+            Compound assignment works too — <code>+= -= *= /= %=</code> — on
+            plain variables, array slots, and object fields.
+            <code>+=</code> concatenates when the left side is a string.
+          </p>
+<pre class="runnable"><code>cook aura be 100
+aura += 50
+
+cook squad be [1, 2, 3]
+squad[0] *= 2
+
+cook bird be {y: 250, vel: 0}
+bird.y += bird.vel
+
+yap(aura, squad, bird)</code></pre>
+</section>
+<section id="types">
+<h2>types</h2>
+<table>
+<thead><tr><th>type</th><th>literals</th></tr></thead>
+<tbody>
+<tr><td>number</td><td><code>42</code>, <code>6.9</code>, <code>-3</code></td></tr>
+<tr><td>string</td><td><code>"no cap"</code> — escapes: <code>\n</code> <code>\t</code> <code>\"</code> <code>\\</code></td></tr>
+<tr><td>boolean</td><td><code>nocap</code> (true), <code>cap</code> (false)</td></tr>
+<tr><td>null</td><td><code>ghost</code></td></tr>
+<tr><td>array</td><td><code>[1, 2, 3]</code></td></tr>
+<tr><td>object</td><td><code>{name: "drake", aura: 42}</code></td></tr>
+<tr><td>function</td><td><code>sigma (x) { yeet x * 2 }</code></td></tr>
+</tbody>
+</table>
+<p>
+            Truthiness: only <code>cap</code> and <code>ghost</code> are falsy.
+            <code>0</code> and <code>""</code> are truthy — stay woke.
+            <code>+</code> concatenates when either side is a string and
+            coerces the other side.
+          </p>
+</section>
+<section id="conditionals">
+<h2>conditionals</h2>
+<p>
+<code>sus</code> = if, <code>mid</code> = else-if,
+            <code>nah</code> = else. Equality reads like speech:
+            <code>is</code> and <code>aint</code> (or <code>==</code> /
+            <code>!=</code>). Logic: <code>and</code>, <code>or</code>,
+            <code>not</code> — both short-circuit.
+          </p>
+<pre class="runnable"><code>cook aura be 777
+
+sus (aura &gt; 1000) {
+  yap("elite tier")
+} mid (aura &gt; 500 and aura aint ghost) {
+  yap("mid tier, respectable")
+} nah {
+  yap("npc behavior")
+}</code></pre>
+</section>
+<section id="loops">
+<h2>loops</h2>
+<p><code>grind</code> is while:</p>
+<pre class="runnable"><code>cook hp be 3
+grind (hp &gt; 0) {
+  yap("still grinding, hp:", hp)
+  hp be hp - 1
+}</code></pre>
+<p>
+<code>finna</code> is a range loop — <strong>inclusive on both
+            ends</strong>, optional <code>by</code> step, counts down
+            automatically when from &gt; to:
+          </p>
+<pre class="runnable"><code>finna (i from 1 to 5)        { yap(i) }
+finna (i from 10 to 0 by -5) { yap(i) }</code></pre>
+<p>
+<code>vibin</code> is for-each — arrays, string characters, or
+            object keys:
+          </p>
+<pre class="runnable"><code>vibin (member in ["kai", "livvy", "duke"]) {
+  yap(member, "pulled up")
+}</code></pre>
+<p>
+<code>dip</code> breaks out, <code>skip</code> continues to the
+            next iteration.
+          </p>
+</section>
+<section id="functions">
+<h2>functions</h2>
+<p>
+<code>sigma</code> declares, <code>yeet</code> returns. No
+            <code>yeet</code> means the function returns <code>ghost</code>.
+            Recursion and closures both work.
+          </p>
+<pre class="runnable"><code>sigma fib(n) {
+  sus (n &lt; 2) { yeet n }
+  yeet fib(n - 1) + fib(n - 2)
+}
+yap(fib(10))</code></pre>
+<p>
+            Functions are values. An anonymous <code>sigma</code> is an
+            expression — pass it straight to <code>map</code> or
+            <code>keep</code>:
+          </p>
+<pre class="runnable"><code>cook nums be [1, 2, 3, 4, 5]
+yap(map(nums, sigma (n) { yeet n * n }))
+yap(keep(nums, sigma (n) { yeet n % 2 is 0 }))</code></pre>
+<p>Closures capture their scope for real:</p>
+<pre class="runnable"><code>sigma makeCounter() {
+  cook n be 0
+  yeet sigma () {
+    n be n + 1
+    yeet n
+  }
+}
+cook clicks be makeCounter()
+clicks()
+yap("clicked", clicks(), "times")</code></pre>
+</section>
+<section id="arrays">
+<h2>arrays</h2>
+<p>Zero-indexed. Index assignment works. Out-of-bounds is an error, not <code>ghost</code>.</p>
+<pre class="runnable"><code>cook squad be ["rizz", "gyatt"]
+push(squad, "ohio")
+squad[0] be "RIZZ"
+yap(squad, "·", count(squad), "members")
+yap(sort([3, 1, 2]), chop(squad, 0, 2))</code></pre>
+</section>
+<section id="objects">
+<h2>objects</h2>
+<p>
+            String-keyed maps. Dot access for identifier-ish keys, brackets for
+            anything. Reading a missing key gives <code>ghost</code> — use
+            <code>has()</code> to check. Setting a new key just works.
+          </p>
+<pre class="runnable"><code>cook user be {name: "drake", followers: 100}
+user.followers be user.followers + 1
+user.verified be nocap
+yap(user.name, "→", user)
+yap(keys(user), has(user, "aura"))</code></pre>
+<p>Objects + <code>vibin</code> make honest work possible:</p>
+<pre class="runnable"><code>cook freq be {}
+vibin (w in rip("cap no cap no no", " ")) {
+  sus (has(freq, w)) { freq[w] be freq[w] + 1 }
+  nah { freq[w] be 1 }
+}
+vibin (k in sort(keys(freq))) { yap(k, freq[k]) }</code></pre>
+</section>
+<section id="builtins">
+<h2>builtins</h2>
+<table>
+<thead><tr><th>function</th><th>what it does</th></tr></thead>
+<tbody>
+<tr><td><code>yap(...)</code></td><td>print; args join with spaces</td></tr>
+<tr><td><code>gimme(prompt)</code></td><td>read input (stdin in CLI, prompt in browser)</td></tr>
+<tr><td><code>count(x)</code></td><td>length of array, string, or object</td></tr>
+<tr><td><code>push(arr, v)</code> / <code>pop(arr)</code></td><td>grow / shrink an array</td></tr>
+<tr><td><code>chop(x, start, end)</code></td><td>slice an array or string (end-exclusive)</td></tr>
+<tr><td><code>where(arr, v)</code></td><td>index of v, or <code>ghost</code></td></tr>
+<tr><td><code>sort(arr)</code></td><td>new sorted array (all numbers or all strings)</td></tr>
+<tr><td><code>map(arr, fn)</code> / <code>keep(arr, fn)</code></td><td>transform / filter with a sigma</td></tr>
+<tr><td><code>fold(arr, fn, init)</code></td><td>reduce to a single value</td></tr>
+<tr><td><code>flip(arr)</code></td><td>reversed copy (non-mutating)</td></tr>
+<tr><td><code>sum(arr)</code></td><td>add up an array of numbers</td></tr>
+<tr><td><code>contains(arr_or_string, v)</code></td><td>membership check → <code>nocap</code>/<code>cap</code></td></tr>
+<tr><td><code>glue(arr, sep)</code> / <code>rip(s, sep)</code></td><td>join / split</td></tr>
+<tr><td><code>screm(s)</code> / <code>whisper(s)</code></td><td>UPPERCASE / lowercase</td></tr>
+<tr><td><code>trim(s)</code></td><td>strip surrounding whitespace</td></tr>
+<tr><td><code>num(s)</code> / <code>str(x)</code></td><td>convert; unparseable num gives <code>ghost</code></td></tr>
+<tr><td><code>floor</code> <code>round</code> <code>abs</code> <code>sqrt</code> <code>pow(a,b)</code></td><td>math</td></tr>
+<tr><td><code>min(a,b)</code> / <code>max(a,b)</code> / <code>ceil(n)</code></td><td>more math</td></tr>
+<tr><td><code>clamp(v, lo, hi)</code></td><td>constrain v to [lo, hi]</td></tr>
+<tr><td><code>rando()</code> / <code>rando(lo, hi)</code></td><td>float 0–1 / integer in [lo, hi]</td></tr>
+<tr><td><code>keys(obj)</code> / <code>has(obj, k)</code> / <code>unfollow(obj, k)</code></td><td>object keys / membership / delete</td></tr>
+</tbody>
+</table>
+</section>
+<section id="errors">
+<h2>errors</h2>
+<p>Slang delivery, real line numbers:</p>
+<pre><code>yo 'x' ain't been cooked yet fr (line 7)
+expected ')' but got 'be', that ain't it chief (line 5)
+can't divide by zero, that's cap (line 2)
+bruh what even is '@' 💀 (line 3)
+this code been running way too long, go touch grass (line 1)</code></pre>
+<p>
+            That last one is the playground's statement budget catching an
+            infinite <code>grind</code> before it freezes your tab.
+          </p>
+</section>
+<section id="trycatch">
+<h2>try/catch</h2>
+<p>
+<code>lowkey</code> is try, <code>caught (err)</code> is catch.
+            If the body hits a runtime error, <code>err</code> is bound to
+            the error message as a string and the handler runs instead of
+            crashing the program.
+          </p>
+<pre class="runnable"><code>lowkey {
+  cook x be 10 / 0
+  yap("never gets here")
+} caught (err) {
+  yap("caught it:", err)
+}</code></pre>
+<p>
+            Note: the statement-budget "touch grass" error above is not
+            catchable — it's there to stop runaway loops, not to be handled.
+          </p>
+</section>
+<section id="games">
+<h2>browser games</h2>
+<p>
+            Define <code>sigma draw()</code> in a program and the
+            <a href="play/">playground</a> turns it into a game — it opens a
+            canvas and calls your program's special functions on a loop
+            instead of running it once top-to-bottom. Top-level variables
+            persist across frames, so that's where your game state lives.
+          </p>
+<table>
+<thead><tr><th>function</th><th>called when</th></tr></thead>
+<tbody>
+<tr><td><code>sigma draw()</code></td><td>every frame, to render — defining this is what turns a program into a game</td></tr>
+<tr><td><code>sigma update()</code></td><td>every frame, before <code>draw</code> — physics / state changes</td></tr>
+<tr><td><code>sigma keypressed(key)</code></td><td>on keydown — <code>key</code> is a string like <code>"space"</code>, <code>"ArrowUp"</code>, <code>"a"</code></td></tr>
+<tr><td><code>sigma clicked()</code></td><td>on mouse click / tap</td></tr>
+</tbody>
+</table>
+<p>
+            The game API is only available in the playground's game mode.
+            Colors are CSS color strings — <code>"#5ec6ff"</code>,
+            <code>"red"</code>, <code>"skyblue"</code>.
+          </p>
+<table>
+<thead><tr><th>function</th><th>what it does</th></tr></thead>
+<tbody>
+<tr><td><code>canvas(w, h)</code></td><td>set the canvas size</td></tr>
+<tr><td><code>background(color)</code></td><td>fill the whole canvas</td></tr>
+<tr><td><code>paint(color)</code></td><td>set the fill color for shapes drawn after it</td></tr>
+<tr><td><code>box(x, y, w, h)</code></td><td>draw a rectangle</td></tr>
+<tr><td><code>dot(x, y, r)</code></td><td>draw a circle</td></tr>
+<tr><td><code>streak(x1, y1, x2, y2)</code></td><td>draw a line</td></tr>
+<tr><td><code>words(text, x, y, size)</code></td><td>draw text</td></tr>
+<tr><td><code>held(key)</code></td><td>is a key currently down → <code>nocap</code>/<code>cap</code></td></tr>
+<tr><td><code>mouseX()</code> / <code>mouseY()</code></td><td>current mouse / touch position</td></tr>
+<tr><td><code>frames()</code></td><td>frame counter since start</td></tr>
+<tr><td><code>delta()</code></td><td>milliseconds since the last frame</td></tr>
+</tbody>
+</table>
+<p>Shape of a game — not runnable inline here since it needs a canvas, but paste it into the playground or just pick <strong>flappy bird</strong> from the example dropdown there:</p>
+<pre><code>canvas(400, 500)
+cook birdY be 250
+cook vel be 0
+
+sigma keypressed(key) {
+  sus (key is "space") { vel be -7 }
+}
+
+sigma update() {
+  vel += 0.4
+  birdY += vel
+}
+
+sigma draw() {
+  background("#5ec6ff")
+  paint("#ffd93d")
+  dot(80, birdY, 12)
+}</code></pre>
+<p>
+            The full game — pipes, scoring, collisions, respawn — is one click
+            away: <a href="play/#example=flappy">play flappy bird 🐦</a>.
+          </p>
+</section>
+<section id="internals">
+<h2>how it works</h2>
+<p>
+            The classic <em>Crafting Interpreters</em> pipeline, ~1k lines of
+            TypeScript, no dependencies at runtime:
+          </p>
+<ol>
+<li><strong>lexer</strong> — source text → tokens, tracking line numbers for errors</li>
+<li><strong>parser</strong> — recursive descent, tokens → AST (precedence: or → and → equality → comparison → term → factor → unary → call/index → primary)</li>
+<li><strong>interpreter</strong> — walks the AST with a chain of lexical environments; closures capture their scope; <code>dip</code>/<code>skip</code>/<code>yeet</code> travel as internal signals</li>
+</ol>
+<p>
+            Output goes through an injected sink, so the identical core runs
+            the CLI and this site's playground. The full test suite (87 tests)
+            covers the lexer, parser, interpreter, and every builtin.
+          </p>
+</section>
+<footer class="foot">
+<span>rotlang; — it compiles trust</span>
+<a href="play/">playground →</a>
+</footer>
+</main>
+</div>
+</body>
+</html>
