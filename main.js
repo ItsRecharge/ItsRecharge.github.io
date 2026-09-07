@@ -638,8 +638,8 @@ function intro() {
   // orchestrated sequence via class toggles (CSS drives the transitions)
   const seq = [
     [200, () => stage.classList.add("s-welcome")],  // "Welcome" + constellation fade in
-    [850, () => stage.classList.add("s-domain")],   // bansalcloud.com types up with caret
-    [1550, () => stage.classList.add("s-sub")],     // "neel." grows in front (no collision)
+    [850, () => stage.classList.add("s-domain")],   // bansal.dev types up with caret
+    [1550, () => stage.classList.add("s-sub")],     // "neel" grows in front (no collision)
     [2650, () => stage.classList.add("s-rise")],    // lockup rises, reveals the question + choices
   ];
   seq.forEach(([t, fn]) => setTimeout(fn, t));

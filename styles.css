@@ -301,7 +301,7 @@ body.intro-active { overflow: hidden; }
 }
 #intro.s-welcome .intro-welcome { opacity: 1; transform: translateY(0); }
 
-/* Domain lockup: one stable "bansalcloud.com" that grows its "neel." subdomain in front. */
+/* Domain lockup: one stable "bansal.dev" that grows its "neel" prefix in front, landing on neelbansal.dev. */
 .intro-domainwrap { display: flex; justify-content: center; margin-bottom: .5rem; }
 .intro-domain {
   display: inline-flex; align-items: baseline;
@@ -312,7 +312,7 @@ body.intro-active { overflow: hidden; }
 }
 #intro.s-domain .intro-domain { opacity: 1; transform: translateY(0); }
 .intro-root { color: #14181d; }
-/* the "neel." subdomain: hidden (width 0), then clip-reveals in front of the root */
+/* the "neel" prefix: hidden (width 0), then clip-reveals in front of the root */
 .intro-sub {
   color: #147a70; display: inline-block; overflow: hidden;
   max-width: 0; opacity: 0; clip-path: inset(0 100% 0 0);
