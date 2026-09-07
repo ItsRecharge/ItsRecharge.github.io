@@ -15,13 +15,35 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div id="intro" aria-hidden="true">
+    <div class="intro-inner">
+      <p class="intro-welcome">Welcome<span class="intro-dots"><i></i><i></i><i></i></span></p>
+      <div class="intro-domains">
+        <span class="intro-base">bansalcloud.com</span>
+        <span class="intro-full"><b>neel.</b>bansalcloud.com</span>
+      </div>
+      <div class="intro-ask">
+        <p class="intro-q">What do you want to start by exploring?</p>
+        <div class="intro-choices">
+          <button class="intro-choice" data-target="#top">Home</button>
+          <button class="intro-choice" data-target="#live">Curated view</button>
+          <button class="intro-choice" data-target="#work">Projects…</button>
+        </div>
+        <p class="intro-skip">or click anywhere to enter</p>
+      </div>
+    </div>
+  </div>
+
   <div class="grid-bg" aria-hidden="true"></div>
 
   <header class="nav">
     <a class="nav-brand" href="#top"><span class="brand-mark" aria-hidden="true">/\/\</span> Neel Bansal</a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="#work">Work</a>
+      <a href="#work">Projects</a>
       <a href="#live">Live demos</a>
+      <a href="#hackathons">Hackathons</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#milestones">Events</a>
       <a href="#research">Research</a>
       <a href="#about">About</a>
     </nav>
@@ -83,6 +105,36 @@
         <p class="section-sub">A desktop simulator and a theme that traveled further than expected.</p>
       </div>
       <div id="also-grid" class="grid grid-2"></div>
+
+      <div class="section-head section-head-sub">
+        <h2>Hardware &amp; systems</h2>
+        <p class="section-sub">Things I've built with my hands and my own hardware, going back to age seven. Photos and write-ups are on the way.</p>
+      </div>
+      <div id="make-grid" class="grid"></div>
+    </section>
+
+    <section class="section" id="hackathons">
+      <div class="section-head">
+        <h2>Hackathons</h2>
+        <p class="section-sub">Weekend builds that placed — two of them, plus the one that became a company.</p>
+      </div>
+      <div id="hackathon-grid" class="hack-grid"></div>
+    </section>
+
+    <section class="section" id="leadership">
+      <div class="section-head">
+        <h2>Leadership</h2>
+        <p class="section-sub">Where I've learned to run things and bring people along.</p>
+      </div>
+      <div id="leadership-grid" class="lead-grid"></div>
+    </section>
+
+    <section class="section" id="milestones">
+      <div class="section-head">
+        <h2>Milestones &amp; events</h2>
+        <p class="section-sub">A few that matter — with more detail to come.</p>
+      </div>
+      <div id="milestone-grid" class="mile-grid"></div>
     </section>
 
     <section class="section" id="research">
@@ -173,9 +225,14 @@
   </main>
 
   <footer class="footer">
-    <span>Built by Neel Bansal.</span>
-    <span class="footer-note">Demos are static test sites with fake data — no real student information.</span>
-    <a href="#top" class="footer-top">Back to top ↑</a>
+    <div class="footer-disclaimer">
+      <strong>About this site.</strong> This is a live site, and you can click into many of the projects to open exactly how they would look and click through them.
+      None of the actual functionality works, though — this is a static web page with no backend, and every demo is seeded with fictional data, not real information.
+    </div>
+    <div class="footer-row">
+      <span>Built by Neel Bansal.</span>
+      <a href="#top" class="footer-top">Back to top ↑</a>
+    </div>
   </footer>
 
   <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>

@@ -200,7 +200,133 @@ const PROJECTS = [
     cover: "assets/img/discord/Main.webp",
     desktop: true,
   },
+
+  // --- Hardware & systems (placeholders — real photos to come) ---
+  {
+    slug: "opt", name: "Ocean Power Technologies", tag: "Proprietary · current",
+    kind: "make", accent: "signal", cover: "assets/img/covers/opt.webp", placeholder: true,
+    one: "Engineering work on ocean wave-energy systems.",
+    body: "Proprietary work I'm currently doing for Ocean Power Technologies. Details to be filled in — this is a placeholder for now.",
+    tech: ["Placeholder"], links: [],
+    note: "Details coming soon.",
+  },
+  {
+    slug: "nas", name: "Home NAS", tag: "Self-hosted storage",
+    kind: "make", accent: "signal2", cover: "assets/img/covers/nas.webp", placeholder: true,
+    one: "A network-attached storage server I built and run.",
+    body: "A home NAS for backups and self-hosted storage across my devices. Write-up and photos coming soon.",
+    tech: ["Linux", "ZFS", "Networking"], links: [],
+    note: "Details coming soon.",
+  },
+  {
+    slug: "linux-wrappers", name: "Custom Linux Wrappers", tag: "Tooling",
+    kind: "make", accent: "signal", cover: "assets/img/covers/linux-wrappers.webp", placeholder: true,
+    one: "Command-line wrappers I hand-coded to fit how I work.",
+    body: "A set of custom Linux wrappers and scripts I wrote to streamline my own workflow. Write-up coming soon.",
+    tech: ["Bash", "Linux", "CLI"], links: [],
+    note: "Details coming soon.",
+  },
+  {
+    slug: "hackintosh", name: "Touchscreen Hackintosh", tag: "First build",
+    kind: "make", accent: "signal2", cover: "assets/img/covers/hackintosh.webp", placeholder: true,
+    one: "My first touchscreen Mac — a Hackintosh I assembled.",
+    body: "My first touchscreen Mac: a Hackintosh I built and configured from non-Apple hardware running macOS. Build notes and photos coming soon.",
+    tech: ["macOS", "Hardware", "Bootloaders"], links: [],
+    note: "Details coming soon.",
+  },
+  {
+    slug: "arcade", name: "Arcade Cabinet", tag: "Built during COVID",
+    kind: "make", accent: "signal", cover: "assets/img/covers/arcade.webp", placeholder: true,
+    one: "A full arcade cabinet I designed and built during lockdown.",
+    body: "During COVID I built an arcade cabinet from scratch — woodworking, wiring, and the software to run it. Photos and build log coming soon.",
+    tech: ["Woodworking", "Electronics", "Emulation"], links: [],
+    note: "Details coming soon.",
+  },
+  {
+    slug: "wireless-charger", name: "iPhone 6 Wireless Charger", tag: "Age 7 · first build",
+    kind: "make", accent: "signal2", cover: "assets/img/covers/wireless-charger.webp", placeholder: true,
+    one: "A wireless charger I made for the iPhone 6 — when I was seven.",
+    body: "The first thing I ever built: a wireless charger for the iPhone 6, made when I was seven years old. Photos and the story coming soon.",
+    tech: ["Electronics", "Induction"], links: [],
+    note: "Details coming soon.",
+  },
 ];
+
+/* ------------------------------------------------------------------ */
+/* Hackathons — origin stories pulled together                         */
+/* ------------------------------------------------------------------ */
+const HACKATHONS = [
+  {
+    name: "GrantBridge — Divergent College", award: "🥈 2nd place", venue: "Microsoft hackathon",
+    body: "A scholarship-matching platform: six LoRA-tuned agents categorize student parameters, multimodal models combine them into a percent match against the scholarship database, and a swipe interface plots deadlines and essays onto your calendar. Placed 2nd at a Microsoft hackathon.",
+    href: "#work", link: "See it in Projects", accent: "signal",
+  },
+  {
+    name: "SafetyBoston", award: "🥇 1st place", venue: "Boston University",
+    body: "A public-safety awareness map built in one weekend: open-camera activity plotted onto a map, with a model trained during the event flagging potentially dangerous behavior for human review. Won 1st place at Boston University.",
+    href: "#work", link: "See it in Projects", accent: "signal2",
+  },
+  {
+    name: "Freshline", award: "Now a company", venue: "Divergent National Hackathon · Seattle",
+    body: "Born at the Divergent National Hackathon in Seattle — meals tailored to your taste from a graph database of ingredients, with same-day fresh delivery. It's now a company in beta.",
+    href: "#work", link: "See it in Projects", accent: "signal",
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* Leadership                                                          */
+/* ------------------------------------------------------------------ */
+const LEADERSHIP = [
+  {
+    org: "Scouting BSA — Troop of ~80",
+    role: "Assistant Scoutmaster (incoming Dec 2026)",
+    body: "I joined in 7th grade and grew into leadership: patrol leader, then assistant senior patrol leader, and this December I become an assistant scoutmaster of the troop — about 80 people. It's the through-line of how I learned to run things and bring people along.",
+    timeline: [
+      { when: "7th grade", what: "Joined as a member" },
+      { when: "Soon after", what: "Patrol Leader" },
+      { when: "This year", what: "Assistant Senior Patrol Leader" },
+      { when: "Dec 2026", what: "Assistant Scoutmaster (~80-person troop)" },
+    ],
+    accent: "signal",
+  },
+  {
+    org: "Robotics Club", role: "President", accent: "signal2",
+    body: "President of my school's robotics club — running builds, competitions, and the team that uses the Combat Robot Gauntlet.",
+    timeline: [],
+  },
+  {
+    org: "DECA", role: "President", accent: "signal",
+    body: "President of our DECA chapter — business, marketing, and competitive events.",
+    timeline: [],
+  },
+  {
+    org: "Mock Trial", role: "President", accent: "signal2",
+    body: "President of the Mock Trial team — case prep, argument, and competition.",
+    timeline: [],
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* Milestones & events                                                 */
+/* ------------------------------------------------------------------ */
+const MILESTONES = [
+  {
+    title: "Eagle Scout Project", tag: "Scouting BSA", accent: "signal",
+    body: "My Eagle Scout service project — the capstone of the Scouting trail, planned and led start to finish. Details and photos coming soon.",
+    placeholder: true,
+  },
+  {
+    title: "Philmont", tag: "High-adventure trek", accent: "signal2",
+    body: "A high-adventure backcountry trek at Philmont Scout Ranch. Write-up coming soon.",
+    placeholder: true,
+  },
+];
+
+const VOLUNTEER = {
+  title: "Volunteering",
+  body: "Beyond organized programs, a running record of the service work I do — through Scouting, music honor societies, and on my own. Details coming soon.",
+  placeholder: true,
+};
 
 /* ---------------- rendering ---------------- */
 const $ = (s, r = document) => r.querySelector(s);
@@ -214,18 +340,20 @@ function linkBtn(l) {
 }
 
 function projectCard(p, opts = {}) {
-  const card = el("article", `card card-${p.kind}${opts.wide ? " card-wide" : ""}`);
+  const card = el("article", `card card-${p.kind}${opts.wide ? " card-wide" : ""}${p.placeholder ? " card-placeholder" : ""}`);
   card.dataset.slug = p.slug;
   const media = el("div", "card-media");
   const img = el("img");
-  img.loading = "lazy"; img.src = p.cover; img.alt = `${p.name} screenshot`;
+  img.loading = "lazy"; img.src = p.cover; img.alt = p.placeholder ? `${p.name} cover art` : `${p.name} screenshot`;
   media.appendChild(img);
-  if (p.gallery && p.gallery.length > 1) {
+  const hasGallery = p.gallery && p.gallery.length > 1;
+  if (hasGallery) {
     const count = el("button", "gallery-open", `${p.gallery.length} views`);
     count.addEventListener("click", () => openLightbox(p, 0));
     media.appendChild(count);
   }
-  media.addEventListener("click", (e) => { if (e.target.closest(".gallery-open")) return; openLightbox(p, 0); });
+  if (p.placeholder) media.appendChild(el("span", "media-tag", "📷 photos coming"));
+  if (hasGallery) media.addEventListener("click", (e) => { if (e.target.closest(".gallery-open")) return; openLightbox(p, 0); });
   const badges = [];
   if (p.award) badges.push(`<span class="badge badge-award">${p.tag}</span>`);
   if (p.private) badges.push(`<span class="badge badge-private" title="Source is private">private</span>`);
@@ -240,27 +368,76 @@ function projectCard(p, opts = {}) {
     <p class="card-lede">${p.body}</p>
     ${p.stat ? `<div class="datum"><span class="datum-v mono">${p.stat.value}</span><span class="datum-l">${p.stat.label}</span></div>` : ""}
     <div class="chips">${p.tech.map(chip).join("")}</div>
-    <div class="card-links">${p.links.map(linkBtn).join("")}</div>
+    ${p.links.length ? `<div class="card-links">${p.links.map(linkBtn).join("")}</div>` : (p.note ? `<p class="card-soon">${p.note}</p>` : "")}
   `;
   card.append(media, body);
   return card;
 }
 
 function render() {
-  // Featured
   const feat = PROJECTS.find((p) => p.featured);
-  $("#featured").appendChild(featuredCard(feat));
+  if ($("#featured")) $("#featured").appendChild(featuredCard(feat));
 
-  // Live band
   const live = PROJECTS.filter((p) => p.kind === "live");
   const liveWrap = $("#live-grid");
-  live.forEach((p) => liveWrap.appendChild(liveCard(p)));
+  if (liveWrap) live.forEach((p) => liveWrap.appendChild(liveCard(p)));
 
-  // Tools + also grid
   const grid = $("#work-grid");
-  PROJECTS.filter((p) => p.kind === "tool").forEach((p) => grid.appendChild(projectCard(p)));
+  if (grid) PROJECTS.filter((p) => p.kind === "tool").forEach((p) => grid.appendChild(projectCard(p)));
   const also = $("#also-grid");
-  PROJECTS.filter((p) => p.kind === "also").forEach((p) => also.appendChild(projectCard(p)));
+  if (also) PROJECTS.filter((p) => p.kind === "also").forEach((p) => also.appendChild(projectCard(p)));
+  const make = $("#make-grid");
+  if (make) PROJECTS.filter((p) => p.kind === "make").forEach((p) => make.appendChild(projectCard(p)));
+
+  renderHackathons();
+  renderLeadership();
+  renderMilestones();
+}
+
+function renderHackathons() {
+  const wrap = $("#hackathon-grid");
+  if (!wrap) return;
+  HACKATHONS.forEach((h) => {
+    const c = el("article", `hack-card accent-${h.accent}`);
+    c.innerHTML = `
+      <div class="hack-top">
+        <span class="hack-award">${h.award}</span>
+        <span class="hack-venue">${h.venue}</span>
+      </div>
+      <h3 class="hack-name">${h.name}</h3>
+      <p class="hack-body">${h.body}</p>
+      <a class="hack-link" href="${h.href}">${h.link} →</a>`;
+    wrap.appendChild(c);
+  });
+}
+
+function renderLeadership() {
+  const wrap = $("#leadership-grid");
+  if (!wrap) return;
+  LEADERSHIP.forEach((l) => {
+    const c = el("article", `lead-card accent-${l.accent}${l.timeline.length ? " lead-featured" : ""}`);
+    const tl = l.timeline.length
+      ? `<ol class="lead-timeline">${l.timeline.map((t) => `<li><span class="lt-when mono">${t.when}</span><span class="lt-what">${t.what}</span></li>`).join("")}</ol>`
+      : "";
+    c.innerHTML = `
+      <div class="lead-head"><h3>${l.org}</h3><span class="lead-role">${l.role}</span></div>
+      <p class="lead-body">${l.body}</p>
+      ${tl}`;
+    wrap.appendChild(c);
+  });
+}
+
+function renderMilestones() {
+  const wrap = $("#milestone-grid");
+  if (!wrap) return;
+  [...MILESTONES, { ...VOLUNTEER, tag: "Ongoing", accent: "signal", volunteer: true }].forEach((m) => {
+    const c = el("article", `mile-card accent-${m.accent}`);
+    c.innerHTML = `
+      <div class="mile-head"><h3>${m.title}</h3><span class="mile-tag">${m.tag}</span></div>
+      <p class="mile-body">${m.body}</p>
+      ${m.placeholder ? `<span class="mile-soon">More coming soon</span>` : ""}`;
+    wrap.appendChild(c);
+  });
 }
 
 function featuredCard(p) {
@@ -404,10 +581,53 @@ function nav() {
       map.get(e.target.id)?.classList.add("active");
     }});
   }, { rootMargin: "-45% 0px -50% 0px" });
-  ["work", "live", "research", "about"].forEach((id) => { const s = document.getElementById(id); if (s) io.observe(s); });
+  ["work", "live", "hackathons", "leadership", "milestones", "research", "about"].forEach((id) => { const s = document.getElementById(id); if (s) io.observe(s); });
   const toggle = $(".nav-toggle");
   if (toggle) toggle.addEventListener("click", () => document.body.classList.toggle("nav-open"));
   links.forEach((l) => l.addEventListener("click", () => document.body.classList.remove("nav-open")));
 }
 
-document.addEventListener("DOMContentLoaded", () => { render(); hero(); nav(); });
+/* ---------------- first-visit intro ---------------- */
+function intro() {
+  const stage = document.getElementById("intro");
+  if (!stage) return;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let seen = false;
+  try { seen = sessionStorage.getItem("nb-intro-seen") === "1"; } catch (e) {}
+  if (seen || reduce) { stage.remove(); return; }
+  try { sessionStorage.setItem("nb-intro-seen", "1"); } catch (e) {}
+
+  document.body.classList.add("intro-active");
+  const skip = () => finish();
+  let done = false;
+  function finish() {
+    if (done) return; done = true;
+    stage.classList.add("intro-out");
+    document.body.classList.remove("intro-active");
+    setTimeout(() => stage.remove(), 700);
+  }
+  stage.addEventListener("click", (e) => { if (e.target.closest(".intro-choice")) return; skip(); });
+  document.addEventListener("keydown", function esc(e) { if (e.key === "Escape") { skip(); document.removeEventListener("keydown", esc); } });
+
+  // choices navigate then dismiss
+  stage.querySelectorAll(".intro-choice").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.getAttribute("data-target");
+      finish();
+      if (target && target !== "#top") {
+        setTimeout(() => { const el2 = document.querySelector(target); if (el2) el2.scrollIntoView({ behavior: "smooth" }); }, 300);
+      }
+    });
+  });
+
+  // orchestrated sequence via class toggles (CSS drives the transitions)
+  const seq = [
+    [250, () => stage.classList.add("s-welcome")],   // "Welcome" + dots fade in
+    [900, () => stage.classList.add("s-domain")],    // bansalcloud.com appears
+    [2000, () => stage.classList.add("s-swish")],    // swish → neel.bansalcloud.com
+    [3100, () => stage.classList.add("s-rise")],     // rises up, reveals the question + choices
+  ];
+  seq.forEach(([t, fn]) => setTimeout(fn, t));
+}
+
+document.addEventListener("DOMContentLoaded", () => { intro(); render(); hero(); nav(); });
