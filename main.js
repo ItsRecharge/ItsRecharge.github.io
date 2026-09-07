@@ -12,7 +12,10 @@ const PROJECTS = [
       { label: "Explore the site", href: "demo/freshline/", kind: "demo" },
     ],
     note: "Beta key: support@freshline.life",
-    gallery: ["assets/img/freshline/freshline-hero.webp", "assets/img/freshline/freshline-section2.webp", "assets/img/freshline/freshline-section3.webp"],
+    gallery: [
+      "assets/img/freshline/freshline-hero.webp", "assets/img/freshline/freshline-section2.webp",
+      "assets/img/freshline/freshline-section3.webp", "assets/img/freshline/cucumber-poster.webp",
+    ],
     cover: "assets/img/freshline/freshline-hero.webp",
   },
 
@@ -41,7 +44,10 @@ const PROJECTS = [
       { label: "Launch demo", href: "demo/humscore/", kind: "demo" },
       { label: "GitHub", href: "https://github.com/ItsRecharge/HumScore", kind: "repo" },
     ],
-    gallery: ["assets/img/humscore/3-score.webp", "assets/img/humscore/4-two-parts.webp", "assets/img/humscore/5-playing.webp"],
+    gallery: [
+      "assets/img/humscore/3-score.webp", "assets/img/humscore/4-two-parts.webp", "assets/img/humscore/5-playing.webp",
+      "assets/img/humscore/6-three-four.webp", "assets/img/humscore/2-preview.webp", "assets/img/humscore/1-empty.webp",
+    ],
     cover: "assets/img/humscore/3-score.webp",
     embed: "demo/humscore/",
   },
@@ -82,8 +88,11 @@ const PROJECTS = [
     links: [
       { label: "Static demo", href: "demo/safetyboston/dashboard/", kind: "demo" },
     ],
-    gallery: ["assets/img/safetyboston/dashboard.webp", "assets/img/safetyboston/reports.webp", "assets/img/safetyboston/report.webp"],
-    cover: "assets/img/safetyboston/dashboard.webp",
+    gallery: [
+      "assets/img/safetyboston/gallery/feed.webp", "assets/img/safetyboston/gallery/reports.webp",
+      "assets/img/safetyboston/gallery/detail.webp", "assets/img/safetyboston/gallery/map.webp",
+    ],
+    cover: "assets/img/safetyboston/gallery/feed.webp",
     stat: { value: "human-reviewed", label: "every alert, before it counts" },
   },
   {
@@ -96,8 +105,16 @@ const PROJECTS = [
       { label: "Static demo", href: "demo/drummajor/admin/dashboard/", kind: "demo" },
       { label: "GitHub", href: "https://github.com/ItsRecharge/drummajor-portal", kind: "repo" },
     ],
-    gallery: ["assets/img/drummajor/dashboard.webp", "assets/img/drummajor/announcement-composer.webp", "assets/img/drummajor/library.webp", "assets/img/drummajor/events.webp", "assets/img/drummajor/handoff.webp"],
-    cover: "assets/img/drummajor/dashboard.webp",
+    gallery: [
+      "assets/img/drummajor/gallery/dashboard.webp", "assets/img/drummajor/gallery/announcements.webp",
+      "assets/img/drummajor/gallery/announcement-composer.webp", "assets/img/drummajor/gallery/announcement-detail.webp",
+      "assets/img/drummajor/gallery/library.webp", "assets/img/drummajor/gallery/events.webp",
+      "assets/img/drummajor/gallery/tasks.webp", "assets/img/drummajor/gallery/notes.webp",
+      "assets/img/drummajor/gallery/handoff.webp", "assets/img/drummajor/gallery/rosters.webp",
+      "assets/img/drummajor/gallery/audit.webp", "assets/img/drummajor/gallery/users.webp",
+      "assets/img/drummajor/gallery/login.webp",
+    ],
+    cover: "assets/img/drummajor/gallery/dashboard.webp",
   },
   {
     slug: "instrument-tracking", name: "Instrument Asset Tracking", tag: "7 schools",
@@ -108,8 +125,15 @@ const PROJECTS = [
     links: [
       { label: "Static demo", href: "demo/instrument-tracking/admin/dashboard/", kind: "demo" },
     ],
-    gallery: ["assets/img/instrument-tracking/instruments.webp", "assets/img/instrument-tracking/catalog.webp", "assets/img/instrument-tracking/admin.webp", "assets/img/instrument-tracking/landing.webp"],
-    cover: "assets/img/instrument-tracking/instruments.webp",
+    gallery: [
+      "assets/img/instrument-tracking/gallery/instruments.webp", "assets/img/instrument-tracking/gallery/dashboard.webp",
+      "assets/img/instrument-tracking/gallery/instrument-history.webp", "assets/img/instrument-tracking/gallery/edit-instrument.webp",
+      "assets/img/instrument-tracking/gallery/add-instrument.webp", "assets/img/instrument-tracking/gallery/check-in.webp",
+      "assets/img/instrument-tracking/gallery/catalog.webp", "assets/img/instrument-tracking/gallery/landing.webp",
+      "assets/img/instrument-tracking/gallery/features.webp", "assets/img/instrument-tracking/gallery/users.webp",
+      "assets/img/instrument-tracking/gallery/login.webp",
+    ],
+    cover: "assets/img/instrument-tracking/gallery/instruments.webp",
     stat: { value: "35+", label: "instruments once lost to unreported damage" },
   },
   {
@@ -121,8 +145,16 @@ const PROJECTS = [
     links: [
       { label: "Static demo", href: "demo/trim-hours/officer/dashboard/", kind: "demo" },
     ],
-    gallery: ["assets/img/trim-hours/officer-01-dashboard.webp", "assets/img/trim-hours/officer-03-attendance.webp", "assets/img/trim-hours/member-01-dashboard.webp"],
-    cover: "assets/img/trim-hours/officer-01-dashboard.webp",
+    gallery: [
+      "assets/img/trim-hours/gallery/officer-dashboard.webp", "assets/img/trim-hours/gallery/officer-events.webp",
+      "assets/img/trim-hours/gallery/officer-attendance.webp", "assets/img/trim-hours/gallery/officer-requests.webp",
+      "assets/img/trim-hours/gallery/officer-members.webp", "assets/img/trim-hours/gallery/officer-member-detail.webp",
+      "assets/img/trim-hours/gallery/officer-invites.webp", "assets/img/trim-hours/gallery/officer-audit.webp",
+      "assets/img/trim-hours/gallery/member-dashboard.webp", "assets/img/trim-hours/gallery/member-events.webp",
+      "assets/img/trim-hours/gallery/member-report-hours.webp", "assets/img/trim-hours/gallery/member-request-event.webp",
+      "assets/img/trim-hours/gallery/landing.webp", "assets/img/trim-hours/gallery/login.webp",
+    ],
+    cover: "assets/img/trim-hours/gallery/officer-dashboard.webp",
   },
   {
     slug: "nhs-hours", name: "NHS Hours Log", tag: "~180 students",
@@ -133,8 +165,16 @@ const PROJECTS = [
     links: [
       { label: "Static demo", href: "demo/nhs-hours/officer/dashboard/", kind: "demo" },
     ],
-    gallery: ["assets/img/nhs-hours/officer-01-dashboard.webp", "assets/img/nhs-hours/member-01-dashboard.webp", "assets/img/nhs-hours/officer-06-members.webp"],
-    cover: "assets/img/nhs-hours/officer-01-dashboard.webp",
+    gallery: [
+      "assets/img/nhs-hours/gallery/officer-dashboard.webp", "assets/img/nhs-hours/gallery/officer-events.webp",
+      "assets/img/nhs-hours/gallery/officer-attendance.webp", "assets/img/nhs-hours/gallery/officer-requests.webp",
+      "assets/img/nhs-hours/gallery/officer-members.webp", "assets/img/nhs-hours/gallery/officer-member-detail.webp",
+      "assets/img/nhs-hours/gallery/officer-chapter.webp", "assets/img/nhs-hours/gallery/officer-invites.webp",
+      "assets/img/nhs-hours/gallery/member-dashboard.webp", "assets/img/nhs-hours/gallery/member-events.webp",
+      "assets/img/nhs-hours/gallery/member-history.webp", "assets/img/nhs-hours/gallery/landing.webp",
+      "assets/img/nhs-hours/gallery/login.webp",
+    ],
+    cover: "assets/img/nhs-hours/gallery/officer-dashboard.webp",
   },
 
   // --- Also ---
@@ -142,7 +182,7 @@ const PROJECTS = [
     slug: "gauntlet", name: "Combat Robot Gauntlet", tag: "Robotics team · NHRL",
     kind: "also", accent: "signal",
     one: "Where will a combat robot break — before you build it?",
-    body: "A desktop simulator used by our school's robotics team and other members of the National Havoc Robot League. Load an STL/3MF/glTF, run it through a MuJoCo physics test cage plus an analytic mechanics-of-materials model, and get damage heatmaps showing which parts to strengthen. Hand-calc grade, not FEA — fast enough to use while you're still designing.",
+    body: "A desktop simulator used by our school's robotics team and other members of the National Havoc Robot League (NHRL). Load an STL/3MF/glTF, run it through a MuJoCo physics test cage plus an analytic mechanics-of-materials model, and get damage heatmaps showing which parts to strengthen. Hand-calc grade, not FEA — fast enough to use while you're still designing.",
     tech: ["Python", "MuJoCo", "Mechanics of materials", "STL / glTF"],
     links: [{ label: "GitHub", href: "https://github.com/ItsRecharge/Combat-Robot-Gauntlet", kind: "repo" }],
     gallery: ["assets/img/gauntlet/dashboard.webp", "assets/img/gauntlet/heatmap_failure.webp", "assets/img/gauntlet/heatmap_energy.webp"],
