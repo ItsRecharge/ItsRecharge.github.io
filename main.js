@@ -703,4 +703,39 @@ function introConstellation(stage) {
   obs.observe(document.body, { childList: true, subtree: true });
 }
 
-document.addEventListener("DOMContentLoaded", () => { intro(); render(); hero(); nav(); });
+/* ---------------- scroll reveal ---------------- */
+function revealOnScroll() {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Tag rendered cards/rows so they fade in too (staggered within each grid).
+  const groups = [
+    "#featured .featured-card", "#work-grid .card", "#live-grid .live-card",
+    "#also-grid .card", "#make-grid .card", "#hackathon-grid .hack-card",
+    "#leadership-grid .lead-card", "#milestone-grid .mile-card",
+  ];
+  groups.forEach((sel) => {
+    document.querySelectorAll(sel).forEach((el2, i) => {
+      el2.classList.add("reveal");
+      el2.style.setProperty("--reveal-delay", (i % 4) * 80 + "ms");
+    });
+  });
+  const targets = document.querySelectorAll(".reveal");
+  if (reduce || !("IntersectionObserver" in window)) {
+    targets.forEach((t) => t.classList.add("in"));
+    return;
+  }
+  const io = new IntersectionObserver((ents, obs) => {
+    ents.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); }
+    });
+  }, { rootMargin: "0px 0px -12% 0px", threshold: 0.12 });
+  targets.forEach((t) => io.observe(t));
+  // Anything already in view on load (above the fold) reveals immediately.
+  requestAnimationFrame(() => {
+    targets.forEach((t) => {
+      const r = t.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.9) t.classList.add("in");
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => { intro(); render(); hero(); nav(); revealOnScroll(); });

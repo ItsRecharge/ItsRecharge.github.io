@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=intro2">
+  <link rel="stylesheet" href="styles.css?v=reveal1">
 </head>
 <body>
   <div id="intro" aria-hidden="true">
@@ -86,22 +86,18 @@
           <p class="li-name">Neel Bansal</p>
           <p class="li-sub">Student · builder · researcher — Freshline, Instrumentify, and school-ops tools used by 450+ students.</p>
           <a class="btn btn-live li-btn" href="https://www.linkedin.com/in/neel-bansalx/" target="_blank" rel="noopener">View full profile</a>
-          <!-- Official badge hydrates here in browsers where LinkedIn's script is allowed; the card above is the reliable fallback. -->
-          <div class="badge-base LI-profile-badge li-embed" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="neel-bansalx" data-version="v1">
-            <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/neel-bansalx?trk=profile-badge"></a>
-          </div>
         </div>
       </aside>
     </section>
 
     <section class="section" id="work">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>Startups</h2>
         <p class="section-sub">Two things I'm building into companies.</p>
       </div>
       <div id="featured"></div>
 
-      <div class="section-head section-head-sub">
+      <div class="section-head section-head-sub reveal">
         <h2>Tools people use</h2>
         <p class="section-sub">Software running in real schools and competitions. Each has a click-through test site with fake data — no login needed.</p>
       </div>
@@ -109,7 +105,7 @@
     </section>
 
     <section class="section" id="live">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>Runs in your browser</h2>
         <p class="section-sub">No screenshots — the real thing, loaded on demand.</p>
       </div>
@@ -117,13 +113,13 @@
     </section>
 
     <section class="section" id="also">
-      <div class="section-head section-head-sub">
+      <div class="section-head section-head-sub reveal">
         <h2>Also built</h2>
         <p class="section-sub">A desktop simulator and a theme that traveled further than expected.</p>
       </div>
       <div id="also-grid" class="grid grid-2"></div>
 
-      <div class="section-head section-head-sub">
+      <div class="section-head section-head-sub reveal">
         <h2>Hardware &amp; systems</h2>
         <p class="section-sub">Things I've built with my hands and my own hardware, going back to age seven. Photos and write-ups are on the way.</p>
       </div>
@@ -131,7 +127,7 @@
     </section>
 
     <section class="section" id="hackathons">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>Hackathons</h2>
         <p class="section-sub">Weekend builds that placed — two of them, plus the one that became a company.</p>
       </div>
@@ -139,7 +135,7 @@
     </section>
 
     <section class="section" id="leadership">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>Leadership</h2>
         <p class="section-sub">Where I've learned to run things and bring people along.</p>
       </div>
@@ -147,7 +143,7 @@
     </section>
 
     <section class="section" id="milestones">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>Milestones &amp; events</h2>
         <p class="section-sub">A few that matter — with more detail to come.</p>
       </div>
@@ -155,11 +151,11 @@
     </section>
 
     <section class="section" id="research">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>Research</h2>
         <p class="section-sub">A paper I'm writing.</p>
       </div>
-      <article class="research-card">
+      <article class="research-card reveal">
         <div class="research-text">
           <span class="badge badge-private">paper in progress</span>
           <h3>Controlling Parameter Drift in LoRA Continual Test-Time Adaptation via Reset Detection</h3>
@@ -203,9 +199,9 @@
     </section>
 
     <section class="section" id="about">
-      <div class="about-wrap">
+      <div class="about-wrap reveal">
         <div class="about-text">
-          <div class="section-head"><h2>About</h2></div>
+          <div class="section-head reveal"><h2>About</h2></div>
           <p>
             I'm Neel Bansal. Most of my projects start the same way — I notice a thing people are doing badly by hand
             (texting one person to log 150 students' service hours; losing instruments to damage nobody reported;
@@ -227,7 +223,7 @@
   </main>
 
   <footer class="footer">
-    <div class="footer-disclaimer">
+    <div class="footer-disclaimer reveal">
       <strong>About this site.</strong> This is a live site, and you can click into many of the projects to open exactly how they would look and click through them.
       None of the actual functionality works, though — this is a static web page with no backend, and every demo is seeded with fictional data, not real information.
     </div>
@@ -237,7 +233,6 @@
     </div>
   </footer>
 
-  <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-  <script src="main.js?v=intro2" defer></script>
+  <script src="main.js?v=reveal1" defer></script>
 </body>
 </html>
