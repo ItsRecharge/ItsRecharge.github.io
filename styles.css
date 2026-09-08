@@ -224,6 +224,15 @@ em { font-style: normal; }
 .li-btn { width: 100%; justify-content: center; }
 .li-embed { margin-top: 1rem; }
 .li-embed:empty { display: none; }
+/* LinkedIn badge slot: center the official badge; show a skeleton while it loads. */
+.li-slot { width: 100%; max-width: 320px; display: flex; justify-content: center; min-height: 280px; align-items: center; }
+.li-slot[hidden] { display: none !important; }
+.li-slot .LI-profile-badge { margin: 0 auto; }
+.li-slot.li-loading { position: relative; border-radius: 16px; background: var(--paper-2); border: 1px solid var(--line);
+  background-image: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.04) 50%, transparent 70%);
+  background-size: 220% 100%; animation: li-shimmer 1.3s ease-in-out infinite; }
+@keyframes li-shimmer { to { background-position: -120% 0; } }
+@media (prefers-reduced-motion: reduce) { .li-slot.li-loading { animation: none; } }
 
 /* ---------- footer ---------- */
 .footer { max-width: var(--maxw); margin: 0 auto; padding: 2.5rem clamp(1rem, 4vw, 2.5rem) 3.5rem; border-top: 1px solid var(--line-soft); display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; align-items: center; color: var(--ink-faint); font-size: 0.85rem; }

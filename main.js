@@ -757,4 +757,48 @@ function revealOnScroll() {
   [120, 400, 1000].forEach((t) => setTimeout(sweep, t));
 }
 
-document.addEventListener("DOMContentLoaded", () => { intro(); render(); hero(); nav(); revealOnScroll(); });
+/* ---------------- LinkedIn badge with fallback ----------------
+ * Load the official LinkedIn badge on page load. If it hydrates (an iframe
+ * appears), show it. If it fails within the timeout, show the styled card. */
+function linkedInBadge() {
+  const slot = document.getElementById("li-slot");
+  const fallback = document.getElementById("li-fallback");
+  if (!slot || !fallback) return;
+
+  slot.classList.add("li-loading");
+
+  function showFallback() {
+    if (slot._settled) return; slot._settled = true;
+    slot.hidden = true;
+    fallback.hidden = false;
+  }
+  function showBadge() {
+    if (slot._settled) return; slot._settled = true;
+    slot.classList.remove("li-loading");
+    fallback.hidden = true;
+  }
+  function hydrated() {
+    const f = slot.querySelector("iframe");
+    return f && (f.clientHeight > 40 || f.getBoundingClientRect().height > 40);
+  }
+
+  // Load LinkedIn's badge script.
+  const s = document.createElement("script");
+  s.src = "https://platform.linkedin.com/badges/js/profile.js";
+  s.async = true; s.defer = true;
+  let failed = false;
+  s.onerror = () => { failed = true; showFallback(); };
+  document.body.appendChild(s);
+
+  // Poll for hydration; give up after the deadline → fallback.
+  const start = Date.now();
+  const DEADLINE = 3500;
+  (function poll() {
+    if (slot._settled) return;
+    if (hydrated()) { showBadge(); return; }
+    if (failed || Date.now() - start > DEADLINE) { showFallback(); return; }
+    setTimeout(poll, 250);
+  })();
+}
+
+document.addEventListener("DOMContentLoaded", () => { intro(); render(); hero(); nav(); revealOnScroll(); linkedInBadge(); });
