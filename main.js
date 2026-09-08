@@ -727,15 +727,34 @@ function revealOnScroll() {
     ents.forEach((e) => {
       if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); }
     });
-  }, { rootMargin: "0px 0px -12% 0px", threshold: 0.12 });
+  }, { rootMargin: "0px 0px -10% 0px", threshold: 0.08 });
   targets.forEach((t) => io.observe(t));
-  // Anything already in view on load (above the fold) reveals immediately.
-  requestAnimationFrame(() => {
-    targets.forEach((t) => {
-      const r = t.getBoundingClientRect();
-      if (r.top < window.innerHeight * 0.9) t.classList.add("in");
+
+  // Backstop: reveal anything whose top has reached the viewport bottom (i.e. it is,
+  // or ever was, on screen). Guarantees nothing stays hidden on fast/jumpy scrolls.
+  function sweep() {
+    const vh = window.innerHeight;
+    let remaining = false;
+    document.querySelectorAll(".reveal:not(.in)").forEach((t) => {
+      if (t.getBoundingClientRect().top < vh + 80) t.classList.add("in");
+      else remaining = true;
     });
-  });
+    if (!remaining) {
+      window.removeEventListener("scroll", onScroll, { passive: true });
+      window.removeEventListener("resize", onScroll);
+    }
+  }
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => { sweep(); ticking = false; });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  if ("onscrollend" in window) window.addEventListener("scrollend", sweep, { passive: true });
+  requestAnimationFrame(sweep); // reveal above-the-fold immediately
+  // Catch-up sweeps: after any jump/settle, guarantee on-screen items are revealed.
+  [120, 400, 1000].forEach((t) => setTimeout(sweep, t));
 }
 
 document.addEventListener("DOMContentLoaded", () => { intro(); render(); hero(); nav(); revealOnScroll(); });
