@@ -33,12 +33,13 @@ body {
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 .grid-bg {
-  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  position: fixed; inset: -40px 0; z-index: 0; pointer-events: none;
   background-image:
     linear-gradient(var(--line-soft) 1px, transparent 1px),
     linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
   background-size: 32px 32px;
-  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 120% 90% at 50% 30%, #000 45%, transparent 100%);
+  will-change: transform, opacity;
 }
 main, .nav, .footer { position: relative; z-index: 1; }
 

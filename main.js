@@ -723,38 +723,14 @@ function revealOnScroll() {
     targets.forEach((t) => t.classList.add("in"));
     return;
   }
-  const io = new IntersectionObserver((ents, obs) => {
+  // Reversible reveal (Apple-style): toggle .in on/off as elements enter and leave
+  // the viewport — fades in on the way down, fades back out on the way up, both ways.
+  const io = new IntersectionObserver((ents) => {
     ents.forEach((e) => {
-      if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); }
+      e.target.classList.toggle("in", e.isIntersecting);
     });
-  }, { rootMargin: "0px 0px -10% 0px", threshold: 0.08 });
+  }, { rootMargin: "-10% 0px -10% 0px", threshold: 0 });
   targets.forEach((t) => io.observe(t));
-
-  // Backstop: reveal anything whose top has reached the viewport bottom (i.e. it is,
-  // or ever was, on screen). Guarantees nothing stays hidden on fast/jumpy scrolls.
-  function sweep() {
-    const vh = window.innerHeight;
-    let remaining = false;
-    document.querySelectorAll(".reveal:not(.in)").forEach((t) => {
-      if (t.getBoundingClientRect().top < vh + 80) t.classList.add("in");
-      else remaining = true;
-    });
-    if (!remaining) {
-      window.removeEventListener("scroll", onScroll, { passive: true });
-      window.removeEventListener("resize", onScroll);
-    }
-  }
-  let ticking = false;
-  function onScroll() {
-    if (ticking) return; ticking = true;
-    requestAnimationFrame(() => { sweep(); ticking = false; });
-  }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
-  if ("onscrollend" in window) window.addEventListener("scrollend", sweep, { passive: true });
-  requestAnimationFrame(sweep); // reveal above-the-fold immediately
-  // Catch-up sweeps: after any jump/settle, guarantee on-screen items are revealed.
-  [120, 400, 1000].forEach((t) => setTimeout(sweep, t));
 }
 
 /* ---------------- LinkedIn badge with fallback ----------------
@@ -801,4 +777,26 @@ function linkedInBadge() {
   })();
 }
 
-document.addEventListener("DOMContentLoaded", () => { intro(); render(); hero(); nav(); revealOnScroll(); linkedInBadge(); });
+/* ---------------- background parallax ----------------
+ * The fixed graph-paper grid drifts slowly as you scroll, so the background
+ * moves too (a different rate than the content) — a subtle depth cue. */
+function parallaxBackground() {
+  const bg = document.querySelector(".grid-bg");
+  if (!bg) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const y = window.scrollY || window.pageYOffset || 0;
+    // grid drifts up slowly; wrap on the 32px tile so it stays seamless.
+    const shift = -(y * 0.15) % 32;
+    bg.style.transform = `translate3d(0, ${shift}px, 0)`;
+    bg.style.opacity = String(Math.max(0.35, 1 - y / 2600));
+  }
+  window.addEventListener("scroll", () => {
+    if (ticking) return; ticking = true; requestAnimationFrame(update);
+  }, { passive: true });
+  update();
+}
+
+document.addEventListener("DOMContentLoaded", () => { intro(); render(); hero(); nav(); revealOnScroll(); linkedInBadge(); parallaxBackground(); });
