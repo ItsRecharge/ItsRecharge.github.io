@@ -346,17 +346,16 @@ function projectCard(p, opts = {}) {
   const card = el("article", `card card-${p.kind}${opts.wide ? " card-wide" : ""}${p.placeholder ? " card-placeholder" : ""}`);
   card.dataset.slug = p.slug;
   const media = el("div", "card-media");
-  const img = el("img");
-  img.loading = "lazy"; img.src = p.cover; img.alt = p.placeholder ? `${p.name} cover art` : `${p.name} screenshot`;
-  media.appendChild(img);
   const hasGallery = p.gallery && p.gallery.length > 1;
   if (hasGallery) {
-    const count = el("button", "gallery-open", `${p.gallery.length} views`);
-    count.addEventListener("click", () => openLightbox(p, 0));
-    media.appendChild(count);
+    media.appendChild(carousel(p));
+  } else {
+    const img = el("img");
+    img.loading = "lazy"; img.decoding = "async"; img.src = p.cover;
+    img.alt = p.placeholder ? `${p.name} cover art` : `${p.name} screenshot`;
+    media.appendChild(img);
   }
   if (p.placeholder) media.appendChild(el("span", "media-tag", "📷 photos coming"));
-  if (hasGallery) media.addEventListener("click", (e) => { if (e.target.closest(".gallery-open")) return; openLightbox(p, 0); });
   const badges = [];
   if (p.award) badges.push(`<span class="badge badge-award">${p.tag}</span>`);
   if (p.private) badges.push(`<span class="badge badge-private" title="Source is private">private</span>`);
@@ -458,14 +457,106 @@ function featuredCard(p) {
     </div>
     <div class="featured-media"></div>
   `;
-  const media = $(".featured-media", wrap);
-  p.gallery.forEach((src, i) => {
-    const im = el("img", i === 0 ? "fm-main" : "fm-thumb");
-    im.loading = "lazy"; im.src = src; im.alt = `${p.name} ${i}`;
-    im.addEventListener("click", () => openLightbox(p, i));
-    media.appendChild(im);
-  });
+  $(".featured-media", wrap).appendChild(carousel(p));
   return wrap;
+}
+
+/* ---------------- carousel ----------------
+ * One slide at a time with arrows, dots, swipe and arrow keys. Only the current
+ * slide and its neighbours are loaded. Clicking a slide opens the lightbox. */
+function carousel(p) {
+  const imgs = p.gallery, n = imgs.length;
+  const root = el("div", "carousel");
+  root.tabIndex = 0;
+  root.setAttribute("role", "region");
+  root.setAttribute("aria-roledescription", "carousel");
+  root.setAttribute("aria-label", `${p.name} screenshots`);
+  const track = el("div", "car-track");
+  imgs.forEach((src, k) => {
+    const slide = el("div", "car-slide");
+    const im = el("img");
+    im.loading = "lazy"; im.decoding = "async"; im.draggable = false;
+    im.dataset.src = src; im.alt = `${p.name} — view ${k + 1} of ${n}`;
+    slide.appendChild(im);
+    track.appendChild(slide);
+  });
+  const prev = el("button", "car-btn car-prev", '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>');
+  const next = el("button", "car-btn car-next", '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>');
+  prev.type = next.type = "button";
+  prev.setAttribute("aria-label", "Previous screenshot");
+  next.setAttribute("aria-label", "Next screenshot");
+  const hud = el("div", "car-hud");
+  const dots = el("div", "car-dots");
+  imgs.forEach((_, k) => {
+    const d = el("button", "car-dot"); d.type = "button";
+    d.setAttribute("aria-label", `Show screenshot ${k + 1}`);
+    d.addEventListener("click", (e) => { e.stopPropagation(); go(k); });
+    dots.appendChild(d);
+  });
+  const count = el("span", "car-count mono");
+  const expand = el("button", "car-expand", '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>');
+  expand.type = "button"; expand.setAttribute("aria-label", "View full size");
+  hud.append(dots, count);
+  root.append(track, prev, next, hud, expand);
+
+  let i = 0, warm = false;
+  function load(k) {
+    const im = track.children[(k + n) % n].firstChild;
+    if (!im.getAttribute("src")) im.src = im.dataset.src;
+  }
+  function go(k) {
+    i = (k + n) % n;
+    track.style.transform = `translate3d(${-i * 100}%, 0, 0)`;
+    [...track.children].forEach((s, j) => s.classList.toggle("is-active", j === i));
+    [...dots.children].forEach((d, j) => d.classList.toggle("is-active", j === i));
+    count.textContent = `${i + 1} / ${n}`;
+    load(i);
+    if (warm) { load(i + 1); load(i - 1); }
+  }
+  // Preload neighbours only once someone shows interest in this carousel.
+  const warmUp = () => { if (warm) return; warm = true; load(i + 1); load(i - 1); };
+  ["pointerenter", "focusin", "touchstart"].forEach((ev) => root.addEventListener(ev, warmUp, { passive: true, once: true }));
+  prev.addEventListener("click", (e) => { e.stopPropagation(); go(i - 1); });
+  next.addEventListener("click", (e) => { e.stopPropagation(); go(i + 1); });
+  expand.addEventListener("click", (e) => { e.stopPropagation(); openLightbox(p, i); });
+  root.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") { e.preventDefault(); go(i - 1); }
+    else if (e.key === "ArrowRight") { e.preventDefault(); go(i + 1); }
+    else if (e.key === "Enter" && e.target === root) openLightbox(p, i);
+  });
+
+  // Touch/pen swipe: the track follows the finger, then snaps.
+  let startX = null, startY = 0, dx = 0, dragging = false, moved = false;
+  track.addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "mouse") return;
+    startX = e.clientX; startY = e.clientY; dx = 0; dragging = false; moved = false;
+  });
+  track.addEventListener("pointermove", (e) => {
+    if (startX === null) return;
+    dx = e.clientX - startX;
+    if (!dragging) {
+      if (Math.abs(e.clientY - startY) > Math.abs(dx)) { startX = null; return; } // vertical scroll wins
+      if (Math.abs(dx) < 6) return;
+      dragging = true; track.classList.add("dragging");
+      track.setPointerCapture(e.pointerId);
+    }
+    moved = true;
+    track.style.transform = `translate3d(calc(${-i * 100}% + ${dx}px), 0, 0)`;
+  });
+  const end = () => {
+    if (startX === null) return;
+    startX = null; track.classList.remove("dragging");
+    if (!dragging) return;
+    dragging = false;
+    const w = root.clientWidth || 1;
+    go(Math.abs(dx) > Math.min(60, w * 0.18) ? i + (dx < 0 ? 1 : -1) : i);
+  };
+  track.addEventListener("pointerup", end);
+  track.addEventListener("pointercancel", end);
+  track.addEventListener("click", () => { if (moved) { moved = false; return; } openLightbox(p, i); });
+
+  go(0);
+  return root;
 }
 
 function liveCard(p) {
@@ -596,18 +687,24 @@ function nav() {
   }, { rootMargin: "-45% 0px -50% 0px" });
   ["work", "live", "hackathons", "leadership", "milestones", "research", "about"].forEach((id) => { const s = document.getElementById(id); if (s) io.observe(s); });
   const toggle = $(".nav-toggle");
-  if (toggle) toggle.addEventListener("click", () => document.body.classList.toggle("nav-open"));
-  links.forEach((l) => l.addEventListener("click", () => document.body.classList.remove("nav-open")));
+  const setOpen = (open) => {
+    document.body.classList.toggle("nav-open", open);
+    if (toggle) toggle.setAttribute("aria-expanded", String(open));
+  };
+  if (toggle) toggle.addEventListener("click", () => setOpen(!document.body.classList.contains("nav-open")));
+  document.querySelectorAll(".nav-links a").forEach((l) => l.addEventListener("click", () => setOpen(false)));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
+  window.addEventListener("resize", () => { if (window.innerWidth > 900) setOpen(false); });
 }
 
 /* ---------------- first-visit intro ---------------- */
 function intro() {
   const stage = document.getElementById("intro");
-  if (!stage) return;
+  if (!stage) { markReady(); return; }
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let seen = false;
   try { seen = sessionStorage.getItem("nb-intro-seen") === "1"; } catch (e) {}
-  if (seen || reduce) { stage.remove(); return; }
+  if (seen || reduce) { stage.remove(); markReady(); return; }
   try { sessionStorage.setItem("nb-intro-seen", "1"); } catch (e) {}
 
   document.body.classList.add("intro-active");
@@ -617,6 +714,7 @@ function intro() {
     if (done) return; done = true;
     stage.classList.add("intro-out");
     document.body.classList.remove("intro-active");
+    setTimeout(markReady, 150);
     setTimeout(() => stage.remove(), 700);
   }
   stage.addEventListener("click", (e) => { if (e.target.closest(".intro-choice")) return; skip(); });
@@ -715,7 +813,7 @@ function revealOnScroll() {
   groups.forEach((sel) => {
     document.querySelectorAll(sel).forEach((el2, i) => {
       el2.classList.add("reveal");
-      el2.style.setProperty("--reveal-delay", (i % 4) * 80 + "ms");
+      el2.style.setProperty("--reveal-delay", (i % 3) * 110 + "ms");
     });
   });
   const targets = document.querySelectorAll(".reveal");
@@ -729,74 +827,101 @@ function revealOnScroll() {
     ents.forEach((e) => {
       e.target.classList.toggle("in", e.isIntersecting);
     });
-  }, { rootMargin: "-10% 0px -10% 0px", threshold: 0 });
+  }, { rootMargin: "-8% 0px -8% 0px", threshold: 0 });
   targets.forEach((t) => io.observe(t));
 }
 
-/* ---------------- LinkedIn badge with fallback ----------------
- * Load the official LinkedIn badge on page load. If it hydrates (an iframe
- * appears), show it. If it fails within the timeout, show the styled card. */
-function linkedInBadge() {
-  const slot = document.getElementById("li-slot");
-  const fallback = document.getElementById("li-fallback");
-  if (!slot || !fallback) return;
+/* ---------------- tactile hover ----------------
+ * Cards tilt a few degrees toward the cursor with a soft highlight that follows it;
+ * buttons lean toward the pointer. Fine pointers only, off for reduced motion. */
+function tactile() {
+  const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!fine || reduce) return;
 
-  slot.classList.add("li-loading");
+  const cards = document.querySelectorAll(".card, .featured-card, .live-card, .hack-card, .lead-card, .mile-card, .research-card, .profile-card");
+  cards.forEach((card) => {
+    card.classList.add("tilt");
+    let raf = 0, px = 0.5, py = 0.5, max = 3;
+    card.addEventListener("pointerenter", () => {
+      // big cards tilt less so the edges don't swing too far
+      max = Math.min(4, 1200 / Math.max(card.offsetWidth, 1));
+      card.classList.add("tilting");
+    });
+    card.addEventListener("pointermove", (e) => {
+      const r = card.getBoundingClientRect();
+      px = (e.clientX - r.left) / r.width; py = (e.clientY - r.top) / r.height;
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        card.style.setProperty("--rx", ((0.5 - py) * max * 2).toFixed(2) + "deg");
+        card.style.setProperty("--ry", ((px - 0.5) * max * 2).toFixed(2) + "deg");
+        card.style.setProperty("--mx", (px * 100).toFixed(1) + "%");
+        card.style.setProperty("--my", (py * 100).toFixed(1) + "%");
+      });
+    });
+    card.addEventListener("pointerleave", () => {
+      cancelAnimationFrame(raf); raf = 0;
+      card.classList.remove("tilting");
+      card.style.setProperty("--rx", "0deg");
+      card.style.setProperty("--ry", "0deg");
+    });
+  });
 
-  function showFallback() {
-    if (slot._settled) return; slot._settled = true;
-    slot.hidden = true;
-    fallback.hidden = false;
-  }
-  function showBadge() {
-    if (slot._settled) return; slot._settled = true;
-    slot.classList.remove("li-loading");
-    fallback.hidden = true;
-  }
-  function hydrated() {
-    const f = slot.querySelector("iframe");
-    return f && (f.clientHeight > 40 || f.getBoundingClientRect().height > 40);
-  }
-
-  // Load LinkedIn's badge script.
-  const s = document.createElement("script");
-  s.src = "https://platform.linkedin.com/badges/js/profile.js";
-  s.async = true; s.defer = true;
-  let failed = false;
-  s.onerror = () => { failed = true; showFallback(); };
-  document.body.appendChild(s);
-
-  // Poll for hydration; give up after the deadline → fallback.
-  const start = Date.now();
-  const DEADLINE = 3500;
-  (function poll() {
-    if (slot._settled) return;
-    if (hydrated()) { showBadge(); return; }
-    if (failed || Date.now() - start > DEADLINE) { showFallback(); return; }
-    setTimeout(poll, 250);
-  })();
+  document.querySelectorAll(".btn, .car-btn, .intro-choice").forEach((b) => {
+    b.classList.add("magnet");
+    b.addEventListener("pointermove", (e) => {
+      const r = b.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+      const dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+      b.style.setProperty("--tx", (dx * 4).toFixed(1) + "px");
+      b.style.setProperty("--ty", (dy * 3).toFixed(1) + "px");
+    });
+    b.addEventListener("pointerleave", () => {
+      b.style.setProperty("--tx", "0px");
+      b.style.setProperty("--ty", "0px");
+    });
+  });
 }
 
 /* ---------------- background parallax ----------------
- * The fixed graph-paper grid drifts slowly as you scroll, so the background
- * moves too (a different rate than the content) — a subtle depth cue. */
+ * Layered depth as you scroll: the graph-paper grid drifts slowly, glow orbs
+ * travel at their own rates and shift hue, and the hero plot sinks behind the
+ * text. A thin bar under the nav tracks reading progress. */
 function parallaxBackground() {
   const bg = document.querySelector(".grid-bg");
-  if (!bg) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const orbs = document.querySelector(".bg-orbs");
+  const [oa, ob, oc] = document.querySelectorAll(".orb");
+  const bar = document.querySelector(".scroll-progress");
+  const plot = document.getElementById("telemetry");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let ticking = false;
   function update() {
     ticking = false;
     const y = window.scrollY || window.pageYOffset || 0;
-    // grid drifts up slowly; wrap on the 32px tile so it stays seamless.
-    const shift = -(y * 0.15) % 32;
-    bg.style.transform = `translate3d(0, ${shift}px, 0)`;
-    bg.style.opacity = String(Math.max(0.35, 1 - y / 2600));
+    const vh = window.innerHeight;
+    const max = Math.max(1, document.documentElement.scrollHeight - vh);
+    const prog = Math.min(1, y / max);
+    if (bar) bar.style.transform = `scaleX(${prog})`;
+    if (reduce) return;
+    if (bg) {
+      // grid drifts up slowly; wrap on the 32px tile so it stays seamless.
+      bg.style.transform = `translate3d(0, ${-(y * 0.15) % 32}px, 0)`;
+      bg.style.opacity = String(Math.max(0.35, 1 - y / 2600));
+    }
+    if (oa) oa.style.transform = `translate3d(${prog * 38}vw, ${prog * 55 - y * 0.04}vh, 0)`;
+    if (ob) ob.style.transform = `translate3d(${-prog * 30}vw, ${Math.sin(prog * Math.PI) * 30}vh, 0)`;
+    if (oc) oc.style.transform = `translate3d(${Math.sin(prog * Math.PI * 2) * 18}vw, ${-prog * 60}vh, 0)`;
+    if (orbs) orbs.style.filter = `hue-rotate(${(prog * 70).toFixed(1)}deg)`;
+    if (plot && y < vh * 1.2) plot.style.transform = `translate3d(0, ${y * 0.35}px, 0)`;
   }
-  window.addEventListener("scroll", () => {
-    if (ticking) return; ticking = true; requestAnimationFrame(update);
-  }, { passive: true });
+  const req = () => { if (ticking) return; ticking = true; requestAnimationFrame(update); };
+  window.addEventListener("scroll", req, { passive: true });
+  window.addEventListener("resize", req, { passive: true });
   update();
 }
 
-document.addEventListener("DOMContentLoaded", () => { intro(); render(); hero(); nav(); revealOnScroll(); linkedInBadge(); parallaxBackground(); });
+/* Hero entrance: plays once the intro (if any) is out of the way. */
+function markReady() { document.documentElement.classList.add("ready"); }
+
+document.addEventListener("DOMContentLoaded", () => { intro(); render(); hero(); nav(); revealOnScroll(); tactile(); parallaxBackground(); });
