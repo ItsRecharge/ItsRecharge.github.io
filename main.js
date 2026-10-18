@@ -96,6 +96,17 @@ const PROJECTS = [
     stat: { value: "human-reviewed", label: "every alert, before it counts" },
   },
   {
+    slug: "gauntlet", name: "Combat Robot Gauntlet", tag: "Robotics team · NHRL",
+    kind: "tool", accent: "signal",
+    one: "Where will a combat robot break — before you build it?",
+    body: "A desktop simulator used by our school's robotics team and other members of the National Havoc Robot League (NHRL). Load an STL/3MF/glTF, run it through a MuJoCo physics test cage plus an analytic mechanics-of-materials model, and get damage heatmaps showing which parts to strengthen. Hand-calc grade, not FEA — fast enough to use while you're still designing.",
+    tech: ["Python", "MuJoCo", "Mechanics of materials", "STL / glTF"],
+    links: [{ label: "GitHub", href: "https://github.com/ItsRecharge/Combat-Robot-Gauntlet", kind: "repo" }],
+    gallery: ["assets/img/gauntlet/dashboard.webp", "assets/img/gauntlet/heatmap_failure.webp", "assets/img/gauntlet/heatmap_energy.webp"],
+    cover: "assets/img/gauntlet/heatmap_failure.webp",
+    desktop: true,
+  },
+  {
     slug: "drummajor", name: "Drum Major Portal", tag: "~120 students",
     kind: "tool", accent: "signal", private: true,
     one: "Announcements and a whole music library, run by student leaders.",
@@ -181,17 +192,6 @@ const PROJECTS = [
   },
 
   // --- Also ---
-  {
-    slug: "gauntlet", name: "Combat Robot Gauntlet", tag: "Robotics team · NHRL",
-    kind: "also", accent: "signal",
-    one: "Where will a combat robot break — before you build it?",
-    body: "A desktop simulator used by our school's robotics team and other members of the National Havoc Robot League (NHRL). Load an STL/3MF/glTF, run it through a MuJoCo physics test cage plus an analytic mechanics-of-materials model, and get damage heatmaps showing which parts to strengthen. Hand-calc grade, not FEA — fast enough to use while you're still designing.",
-    tech: ["Python", "MuJoCo", "Mechanics of materials", "STL / glTF"],
-    links: [{ label: "GitHub", href: "https://github.com/ItsRecharge/Combat-Robot-Gauntlet", kind: "repo" }],
-    gallery: ["assets/img/gauntlet/dashboard.webp", "assets/img/gauntlet/heatmap_failure.webp", "assets/img/gauntlet/heatmap_energy.webp"],
-    cover: "assets/img/gauntlet/heatmap_failure.webp",
-    desktop: true,
-  },
   {
     slug: "discord", name: "Neel's Discord", tag: "6★ · adopted by other communities",
     kind: "also", accent: "signal2",
@@ -512,7 +512,25 @@ function carousel(p) {
     count.textContent = `${i + 1} / ${n}`;
     load(i);
     if (warm) { load(i + 1); load(i - 1); }
+    if (hovering) schedule();
   }
+  // Hovering with a mouse auto-advances; any manual step restarts the timer.
+  const AUTO_MS = 2200;
+  let hovering = false, timer = 0;
+  function schedule() {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      if (!hovering) return;
+      if (lb && !lb.hidden) { schedule(); return; } // paused while the lightbox is up
+      go(i + 1);
+    }, AUTO_MS);
+  }
+  root.style.setProperty("--auto-ms", AUTO_MS + "ms");
+  root.addEventListener("pointerenter", (e) => {
+    if (e.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    hovering = true; root.classList.add("autoplay"); schedule();
+  });
+  root.addEventListener("pointerleave", () => { hovering = false; root.classList.remove("autoplay"); clearTimeout(timer); });
   // Preload neighbours only once someone shows interest in this carousel.
   const warmUp = () => { if (warm) return; warm = true; load(i + 1); load(i - 1); };
   ["pointerenter", "focusin", "touchstart"].forEach((ev) => root.addEventListener(ev, warmUp, { passive: true, once: true }));
@@ -685,7 +703,7 @@ function nav() {
       map.get(e.target.id)?.classList.add("active");
     }});
   }, { rootMargin: "-45% 0px -50% 0px" });
-  ["work", "live", "hackathons", "leadership", "milestones", "research", "about"].forEach((id) => { const s = document.getElementById(id); if (s) io.observe(s); });
+  ["work", "research", "live", "hackathons", "leadership", "milestones", "about"].forEach((id) => { const s = document.getElementById(id); if (s) io.observe(s); });
   const toggle = $(".nav-toggle");
   const setOpen = (open) => {
     document.body.classList.toggle("nav-open", open);

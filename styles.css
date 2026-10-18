@@ -266,6 +266,10 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
 .car-dots { display: flex; gap: 5px; }
 .car-dot { width: 6px; height: 6px; padding: 0; border: 0; border-radius: 999px; background: rgba(238, 242, 247, .3); cursor: pointer; transition: width .4s var(--ease-out), background .25s; }
 .car-dot.is-active { width: 18px; background: var(--signal); }
+/* While hover-autoplaying, the active dot fills up until the next slide. */
+.carousel.autoplay .car-dot.is-active { background: rgba(53, 224, 208, .3); position: relative; overflow: hidden; }
+.carousel.autoplay .car-dot.is-active::after { content: ""; position: absolute; inset: 0; background: var(--signal); transform-origin: 0 50%; animation: car-fill var(--auto-ms, 2200ms) linear forwards; }
+@keyframes car-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 .car-dot:hover { background: rgba(238, 242, 247, .6); }
 .car-count { font-size: .7rem; color: var(--ink-dim); min-width: 3.4em; text-align: right; }
 .car-expand {
